@@ -11,12 +11,11 @@
 </head>
 <body style="width: 20rem;">
 
-
 <header class="touch-header">
     <a href="javascript:history.go(-1);" id="touch-header-back" class="touch-header-back">
     </a>
     <div class="touch-header-title">购物车</div>
-    <a class="touch-header-home" href="/views/shop_template/main1.html">
+    <a class="touch-header-home" href="/shop">
     </a>
 </header>
 
@@ -159,12 +158,13 @@
 </section>
 <section class="touch-cart-fixed">
     <div class="cart-price fl">
-        <div class="total-price"><span>总额(不含运费):</span><span id="total_price" style="color:#9d5b35;" allprice="230">
-                    ￥230</span>
+        <div class="total-price">
+            <span>总额(不含运费):</span>
+            <span id="total_price" style="color:#9d5b35;" allprice="230">￥230</span>
         </div>
     </div>
-    <a id="touch-cart-confirm" href="jiesuan.php" class="touch-cart-confirm fr">去结算</a>
-    <form id="filterPostForm" action="jiesuan.php" method="post">
+    <a id="touch-cart-confirm" href="/shop/statement" class="touch-cart-confirm fr">去结算</a>
+    <form id="filterPostForm" action="/shop/statement" method="get">
         <input type="hidden" name="selected_item_keys" value="">
     </form>
 </section>

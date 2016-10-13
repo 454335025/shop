@@ -35,7 +35,7 @@
     </a>
 
     <div class="touch-header-title">确认订单</div>
-    <a class="touch-header-home" href="main1.php">
+    <a class="touch-header-home" href="main.php">
     </a>
 </header>
 

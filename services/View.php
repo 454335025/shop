@@ -37,6 +37,7 @@ class View
 
     private static function getFilePath($viewName)
     {
+
         $filePath = str_replace('.', '/', $viewName);
         return BASE_PATH.self::VIEW_BASE_PATH.$filePath.'.php';
     }

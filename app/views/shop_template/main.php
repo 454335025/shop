@@ -19,14 +19,14 @@
 <body id="main-body">
 <!--header start-->
 <!--shop car-->
-<a class="float_car" href="/views/shop_template/shop_car.html">
+<a class="float_car" href="/shop/shop_car">
     <img src="/images/main/float_car.png" data-original="/images/main/float_car.png" alt="">
 </a>
 <!--shop car-->
 <div id="search_defer">
     <!--search-->
     <header>
-        <a href="user.php">
+        <a href="/shop/user">
             <img class="my" src="/images/main/login2.png">
         </a>
         <a id="page_top" class="index-search">
@@ -113,94 +113,7 @@
 
     <!--list container start-->
     <div class="list_container">
-        <a href="/i/MobileWap/deal_view?hash_id=d161010p2809102zc&tag=intro&parent_category_id=0&sort=popular_desc&category=jumei_deal">
-            <div class="item clearfix">
-                <div class="item_image">
-                    <img src="http://s1.jmstatic.com/templates/touch/css/v3/image/bg_logo_1_1.jpg" class="lazy product-img"
-                         data-original="http://mp1.jmstatic.com/c_zoom,w_352,q_70/product/002/809/2809102_std/2809102_1000_1000.jpg?v=1469065948"/>
-                </div>
-                <div class="information">
-                    <p>
-                        【满199减100上不封顶】御泥坊补水光感透亮面膜套装41片,润泽亮肤,保持美丽！
-                    </p>
-                    <div class="price_info">
-                        <div class="clearfix" style="margin-top:7px;">
-                            <div class="now_price pull_left">
-                                <em style="margin-left: -4px;">￥209.9</em>
-
-                                                                            <span class="grey del">
-                                        <span style="margin-left: -3px;text-decoration: line-through;">￥828</span>
-                                    </span>
-                            </div>
-                                <span class="grey pull_right"
-                                      style="font-size:15px;"></span>
-                        </div>
-                        <div class="clearfix" style="margin-top:5px;">
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="/i/MobileWap/deal_view?hash_id=d161010p2809102zc&tag=intro&parent_category_id=0&sort=popular_desc&category=jumei_deal">
-            <div class="item clearfix">
-                <div class="item_image">
-                    <img src="http://s1.jmstatic.com/templates/touch/css/v3/image/bg_logo_1_1.jpg" class="lazy product-img"
-                         data-original="http://mp1.jmstatic.com/c_zoom,w_352,q_70/product/002/809/2809102_std/2809102_1000_1000.jpg?v=1469065948"/>
-                </div>
-                <div class="information">
-                    <p>
-                        【满199减100上不封顶】御泥坊补水光感透亮面膜套装41片,润泽亮肤,保持美丽！
-                    </p>
-                    <div class="price_info">
-                        <div class="clearfix" style="margin-top:7px;">
-                            <div class="now_price pull_left">
-                                <em style="margin-left: -4px;">￥209.9</em>
-
-                                                                            <span class="grey del">
-                                        <span style="margin-left: -3px;text-decoration: line-through;">￥828</span>
-                                    </span>
-                            </div>
-                                <span class="grey pull_right"
-                                      style="font-size:15px;"></span>
-                        </div>
-                        <div class="clearfix" style="margin-top:5px;">
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="/i/MobileWap/deal_view?hash_id=d161010p2809102zc&tag=intro&parent_category_id=0&sort=popular_desc&category=jumei_deal">
-            <div class="item clearfix">
-                <div class="item_image">
-                    <img src="http://s1.jmstatic.com/templates/touch/css/v3/image/bg_logo_1_1.jpg" class="lazy product-img"
-                         data-original="http://mp1.jmstatic.com/c_zoom,w_352,q_70/product/002/809/2809102_std/2809102_1000_1000.jpg?v=1469065948"/>
-                </div>
-                <div class="information">
-                    <p>
-                        【满199减100上不封顶】御泥坊补水光感透亮面膜套装41片,润泽亮肤,保持美丽！
-                    </p>
-                    <div class="price_info">
-                        <div class="clearfix" style="margin-top:7px;">
-                            <div class="now_price pull_left">
-                                <em style="margin-left: -4px;">￥209.9</em>
-
-                                                                            <span class="grey del">
-                                        <span style="margin-left: -3px;text-decoration: line-through;">￥828</span>
-                                    </span>
-                            </div>
-                                <span class="grey pull_right"
-                                      style="font-size:15px;"></span>
-                        </div>
-                        <div class="clearfix" style="margin-top:5px;">
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="/i/MobileWap/deal_view?hash_id=d161010p2809102zc&tag=intro&parent_category_id=0&sort=popular_desc&category=jumei_deal">
+        <a href="###">
             <div class="item clearfix">
                 <div class="item_image">
                     <img src="http://s1.jmstatic.com/templates/touch/css/v3/image/bg_logo_1_1.jpg" class="lazy product-img"

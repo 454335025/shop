@@ -16,7 +16,7 @@
     <div class="head-left"><a href="javascript:history.go(-1);">&nbsp;</a></div>
     <div class="head-title">我的聚美</div>
     <div class="head-right">
-        <a href="main1.php">&nbsp;</a>
+        <a href="/shop">&nbsp;</a>
     </div>
 </header>
 
