@@ -31,11 +31,11 @@
 
 
 <header class="touch-header">
-    <a href="shop_car.html" id="touch-header-back" class="touch-header-back">
+    <a href="shop_car.php" id="touch-header-back" class="touch-header-back">
     </a>
 
     <div class="touch-header-title">确认订单</div>
-    <a class="touch-header-home" href="main1.html">
+    <a class="touch-header-home" href="main1.php">
     </a>
 </header>
 
@@ -323,7 +323,5 @@
 
 
 <div class="gmu-media-detect" id="gmu-media-detect0"></div>
-<script type="text/javascript" async="async" src="http://www.google-analytics.com/ga.js"></script>
-<script type="text/javascript" async="async" src="http://hm.baidu.com/h.js?884477732c15fb2f2416fb892282394b"></script>
 </body>
 </html>

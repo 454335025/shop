@@ -9,31 +9,31 @@
     <meta http-equiv="cache-control" content="max-age=0" />
     <meta http-equiv="cache-control" content="no-cache" />
     <meta http-equiv="pragma" content="no-cache" />
-    <script src="/public/js/main/zepto.js"></script>
-    <script src="/public/js/main/main.js"></script>
-    <link type="text/css" rel="stylesheet" href="/public/css/main.css"  media="screen" charset="utf-8" />
-    <script src="/public/js/main/jmtouch_h5.js"></script>
-    <script src="/public/js/main/1.js"></script>
+    <script src="/js/main/zepto.js"></script>
+    <script src="/js/main/main.js"></script>
+    <link type="text/css" rel="stylesheet" href="/css/main.css"  media="screen" charset="utf-8" />
+    <script src="/js/main/jmtouch_h5.js"></script>
+    <script src="/js/main/1.js"></script>
 </head>
 
 <body id="main-body">
 <!--header start-->
 <!--shop car-->
 <a class="float_car" href="/views/shop_template/shop_car.html">
-    <img src="/public/images/main/float_car.png" data-original="/public/images/main/float_car.png" alt="">
+    <img src="/images/main/float_car.png" data-original="/images/main/float_car.png" alt="">
 </a>
 <!--shop car-->
 <div id="search_defer">
     <!--search-->
     <header>
-        <a href="user.html">
-            <img class="my" src="/public/images/main/login2.png">
+        <a href="user.php">
+            <img class="my" src="/images/main/login2.png">
         </a>
         <a id="page_top" class="index-search">
-            <img src="/public/images/main/search2.png"><span>搜索商品 分类 功效</span>
+            <img src="/images/main/search2.png"><span>搜索商品 分类 功效</span>
         </a>
         <span id="search_action">
-            <img class="search" src="/public/images/main/search_list2.png">
+            <img class="search" src="/images/main/search_list2.png">
         </span>
     </header>
     <!--search-->
@@ -92,24 +92,24 @@
     </div>
     <!--menu-->
 
-    <script type="text/javascript" src="/public/js/main/2.js"></script>
-    <script src="/public/js/main/swipe.js"></script>
+    <script type="text/javascript" src="/js/main/2.js"></script>
+    <script src="/js/main/swipe.js"></script>
 
     <!--banner-->
     <div class="container swipe" id="slider" style="z-index:-1">
         <div id="banners" class="swipe-wrap">
             <a href="###">
-                <img src="/public/images/banner/1.jpg"/>
+                <img src="/images/banner/1.jpg"/>
             </a>
             <a href="###">
-                <img src="/public/images/banner/1.jpg"/>
+                <img src="/images/banner/1.jpg"/>
             </a>
         </div>
         <ul id="position">
         </ul>
     </div>
     <!--banner-->
-    <script type="text/javascript" src="/public/js/main/3.js"> </script>
+    <script type="text/javascript" src="/js/main/3.js"> </script>
 
     <!--list container start-->
     <div class="list_container">
@@ -241,7 +241,7 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link type="text/css" rel="stylesheet" href="/public/css/main.css"  charset="utf-8" />
+<link type="text/css" rel="stylesheet" href="/css/main.css"  charset="utf-8" />
 <div id="page_outer">
 </div>
 <div id="search_page">
@@ -277,6 +277,6 @@
 </div>
 <input type="hidden" value="http://h5.jumei.com" id="h5_host_url"/>
 
-<script type="text/javascript" src="/public/js/main/4.js"></script>
+<script type="text/javascript" src="/js/main/4.js"></script>
 </body>
 </html>

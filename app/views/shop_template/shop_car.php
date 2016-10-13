@@ -7,7 +7,7 @@
     <title>
         购物车
     </title>
-    <link href="/public/css/shop_car.css" rel="stylesheet" type="text/css">
+    <link href="/css/shop_car.css" rel="stylesheet" type="text/css">
 </head>
 <body style="width: 20rem;">
 
@@ -163,8 +163,8 @@
                     ￥230</span>
         </div>
     </div>
-    <a id="touch-cart-confirm" href="jiesuan.html" class="touch-cart-confirm fr">去结算</a>
-    <form id="filterPostForm" action="jiesuan.html" method="post">
+    <a id="touch-cart-confirm" href="jiesuan.php" class="touch-cart-confirm fr">去结算</a>
+    <form id="filterPostForm" action="jiesuan.php" method="post">
         <input type="hidden" name="selected_item_keys" value="">
     </form>
 </section>
@@ -173,11 +173,11 @@
 <footer class="touch-footer"></footer>
 
 
-<script type="text/javascript" src="/public/js/shop_car/jumei_cartlist.js"></script>
-<script type="text/javascript" src="/public/js/shop_car/guide_download_main.js"></script>
+<script type="text/javascript" src="/js/shop_car/jumei_cartlist.js"></script>
+<script type="text/javascript" src="/js/shop_car/guide_download_main.js"></script>
 
-<script type="text/javascript" src="/public/js/shop_car/ui.js"></script>
-<script type="text/javascript" src="/public/js/shop_car/index_main.js"></script>
+<script type="text/javascript" src="/js/shop_car/ui.js"></script>
+<script type="text/javascript" src="/js/shop_car/index_main.js"></script>
 <div id="loadding-img"
      style="display: none; z-index: 10000; position: absolute; width: 20px; height: 20px; left: 206px; top: 366px;"
      class="loadding"><img style="width:100%;display:block;"

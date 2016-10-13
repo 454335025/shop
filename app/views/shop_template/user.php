@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="format-detection" content="telephone=no">
-    <script src="/public/js/user/boot.js"></script>
-    <script src="/public/js/user/dc.js"></script>
-    <script src="/public/js/user/mobile.min.js"></script>
-    <link href="/public/css/user.css" rel="stylesheet">
+    <script src="/js/user/boot.js"></script>
+    <script src="/js/user/dc.js"></script>
+    <script src="/js/user/mobile.min.js"></script>
+    <link href="/css/user.css" rel="stylesheet">
 </head>
 <body>
 
@@ -16,7 +16,7 @@
     <div class="head-left"><a href="javascript:history.go(-1);">&nbsp;</a></div>
     <div class="head-title">我的聚美</div>
     <div class="head-right">
-        <a href="main1.html">&nbsp;</a>
+        <a href="main1.php">&nbsp;</a>
     </div>
 </header>
 
