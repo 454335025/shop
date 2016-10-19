@@ -53,40 +53,28 @@
                         <span class="header-nav-line"></span>
                     </a>
                 </p>
-                <p style="width:auto;padding:0px 15px" class="navTitle nt_deal ">
-                    <a href='#'>
-                        <span>2222</span>
-                        <span class="header-nav-line"></span>
-                    </a>
-                </p>
-                <p style="width:auto;padding:0px 15px" class="navTitle nt_deal ">
-                    <a href='#'>
-                        <span>3333</span>
-                        <span class="header-nav-line"></span>
-                    </a>
-                </p>
-                <p style="width:auto;padding:0px 15px" class="navTitle nt_deal ">
-                    <a href='#'>
-                        <span>3333</span>
-                        <span class="header-nav-line"></span>
-                    </a>
-                </p>
-                <p style="width:auto;padding:0px 15px" class="navTitle nt_deal ">
-                    <a href='#'>
-                        <span>3333</span>
-                        <span class="header-nav-line"></span>
-                    </a>
-                </p>
-                <div style="width:auto;padding:0px 15px" class="navTitle nt_mall ">
-                    <a href='javascript:void(0)' onclick = "toggle(this)">
-                    <span>美妆商城</span>
-                    </a>
-                    <ul id = "mall_sel" class = "mall_sel" style="display:none;">
-                        <a href = "http://h5.jumei.com/mall/index?type=category"><li>按分类浏览</li></a>
-                        <a href = "http://h5.jumei.com/mall/index?type=brand"><li>按品牌浏览</li></a>
-                        <a href = "http://h5.jumei.com/mall/index?type=function"><li>按功效浏览</li></a>
-                    </ul>
-                </div>
+                <?php foreach ($directories as $directory){ ?>
+                    <div style="width:auto;padding:0px 15px" class="navTitle nt_mall ">
+                        <a href='javascript:void(0)' onclick = "toggle(this)">
+                            <span><?php echo $directory->name ?></span>
+                        </a>
+                        <ul id = "mall_sel" class = "mall_sel" style="display:none;">
+                            <?php foreach ($directory->sub_directories as $sub_directory){ ?>
+                                <a href = "http://h5.jumei.com/mall/index?type=category"><li><?php echo $sub_directory->name ?></li></a>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                <?php } ?>
+<!--                <div style="width:auto;padding:0px 15px" class="navTitle nt_mall ">-->
+<!--                    <a href='javascript:void(0)' onclick = "toggle(this)">-->
+<!--                    <span>美妆商城</span>-->
+<!--                    </a>-->
+<!--                    <ul id = "mall_sel" class = "mall_sel" style="display:none;">-->
+<!--                        <a href = "http://h5.jumei.com/mall/index?type=category"><li>按分类浏览</li></a>-->
+<!--                        <a href = "http://h5.jumei.com/mall/index?type=brand"><li>按品牌浏览</li></a>-->
+<!--                        <a href = "http://h5.jumei.com/mall/index?type=function"><li>按功效浏览</li></a>-->
+<!--                    </ul>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
@@ -113,27 +101,25 @@
 
     <!--list container start-->
     <div class="list_container">
-        <a href="###">
+        <?php foreach ($wares as $ware){ ?>
+        <a href="<?php echo $ware->id ?>">
             <div class="item clearfix">
                 <div class="item_image">
-                    <img src="http://s1.jmstatic.com/templates/touch/css/v3/image/bg_logo_1_1.jpg" class="lazy product-img"
-                         data-original="http://mp1.jmstatic.com/c_zoom,w_352,q_70/product/002/809/2809102_std/2809102_1000_1000.jpg?v=1469065948"/>
+                    <img src="http://mp1.jmstatic.com/c_zoom,w_352,q_70/product/002/809/2809102_std/2809102_1000_1000.jpg" class="lazy product-img"/>
                 </div>
                 <div class="information">
                     <p>
-                        【满199减100上不封顶】御泥坊补水光感透亮面膜套装41片,润泽亮肤,保持美丽！
+                        <?php echo $ware->remark ?>
                     </p>
                     <div class="price_info">
                         <div class="clearfix" style="margin-top:7px;">
                             <div class="now_price pull_left">
-                                <em style="margin-left: -4px;">￥209.9</em>
-
-                                                                            <span class="grey del">
-                                        <span style="margin-left: -3px;text-decoration: line-through;">￥828</span>
-                                    </span>
+                                <em style="margin-left: -4px;">￥ <?php echo $ware->money ?></em>
+                                <span class="grey del">
+                                    <span style="margin-left: -3px;text-decoration: line-through;">￥ <?php echo $ware->original_money ?></span>
+                                </span>
                             </div>
-                                <span class="grey pull_right"
-                                      style="font-size:15px;"></span>
+                            <span class="grey pull_right" style="font-size:15px;"></span>
                         </div>
                         <div class="clearfix" style="margin-top:5px;">
                         </div>
@@ -142,6 +128,7 @@
                 </div>
             </div>
         </a>
+        <?php } ?>
     </div>
     <!--list container end-->
 

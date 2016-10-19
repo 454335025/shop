@@ -12,6 +12,7 @@ class HomeController extends BaseController
             ->withTitle('MFFC :-D')
             ->withFuckMe('OK!');
 
+
 //        $this->mail = Mail::to(['454335025@qq.com'])
 //
 //            ->from('MotherFucker <ooxx@163.com>')

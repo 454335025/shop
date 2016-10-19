@@ -6,7 +6,7 @@
  * Date: 2016/10/13
  * Time: 15:37
  */
-class Shop_StatementController extends BaseController
+class ShopStatementController extends BaseController
 {
 
     public function index()

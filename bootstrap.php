@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
+
 // 定义 BASE_PATH
 
 define('BASE_PATH', __DIR__);
@@ -9,6 +10,9 @@ define('BASE_PATH', __DIR__);
 // Autoload 自动载入
 
 require BASE_PATH.'/vendor/autoload.php';
+
+
+require BASE_PATH.'/config/wxconfig.php';
 
 // Eloquent ORM
 
@@ -20,8 +24,8 @@ $capsule->bootEloquent();
 
 // whoops 错误提示
 
-$whoops = new \Whoops\Run;
-
-$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
-
-$whoops->register();
+//$whoops = new \Whoops\Run;
+//
+//$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+//
+//$whoops->register();

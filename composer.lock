@@ -590,12 +590,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/noahbuscher/Macaw.git",
-                "reference": "ddab156b7b15ae5706233697309648a158874019"
+                "reference": "a4d5e3e1871143416f95d7ced189545fb5147148"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/noahbuscher/Macaw/ddab156b7b15ae5706233697309648a158874019.zip",
-                "reference": "ddab156b7b15ae5706233697309648a158874019",
+                "url": "https://packagist.phpcomposer.com/files/noahbuscher/Macaw/a4d5e3e1871143416f95d7ced189545fb5147148.zip",
+                "reference": "a4d5e3e1871143416f95d7ced189545fb5147148",
                 "shasum": ""
             },
             "require": {
@@ -612,7 +612,7 @@
                 "MIT"
             ],
             "description": "Simple PHP router class.",
-            "time": "2016-09-13 22:36:09"
+            "time": "2016-10-13 22:34:57"
         },
         {
             "name": "symfony/polyfill-mbstring",
