@@ -1,11 +1,11 @@
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-10208510-2']);
-_gaq.push(['_trackPageview']);
-_gaq.push(['_addIgnoredRef', 'm.jumei.com/i/MobileWap/app_ga']);
-var reg = new RegExp("^wap_touch*"),referer = Jumei.getCookie("referer_site");
-if(referer.match(reg))
-{_gaq.push(['_setCustomVar',1,'site_type','touch',2]);}
-else {_gaq.push(['_setCustomVar',1,'site_type','wap',2]);}
+// var _gaq = _gaq || [];
+// _gaq.push(['_setAccount', 'UA-10208510-2']);
+// _gaq.push(['_trackPageview']);
+// _gaq.push(['_addIgnoredRef', 'm.jumei.com/i/MobileWap/app_ga']);
+// var reg = new RegExp("^wap_touch*"),referer = Jumei.getCookie("referer_site");
+// if(referer.match(reg))
+// {_gaq.push(['_setCustomVar',1,'site_type','touch',2]);}
+// else {_gaq.push(['_setCustomVar',1,'site_type','wap',2]);}
 
 (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;

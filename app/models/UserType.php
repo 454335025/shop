@@ -1,13 +1,13 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: GE62
- * Date: 2016/10/13
- * Time: 10:43
- */
-class UserType extends  Illuminate\Database\Eloquent\Model
+namespace app\models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class UserType extends Model
 {
 
     public $timestamps = false;
+
+    public $table = 's_user_types';
 }

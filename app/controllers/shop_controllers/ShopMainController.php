@@ -1,67 +1,78 @@
 <?php
 
-use app\models\User;
 use app\models\Directories;
 use app\models\SubDirectories;
 use app\models\Ware;
+use app\models\ShopCarts;
 
 class ShopMainController extends BaseController
 {
-    public static $openid;
+    public static $ware_name;
+
+    public function __construct()
+    {
+        parent::__construct();
+        //商品名称
+        self::$ware_name = !empty($_REQUEST['ware_name']) ? $_REQUEST['ware_name'] : '';
+
+    }
 
     public function index()
     {
-        self::$openid = $_REQUEST['openid'];
 
-        if (self::verify()) {
-            $directories = self::getDirectories();
-            $wares = self::getWares();
+        $directories = self::getDirectories();
 
-            $this->view = View::make('shop_template.main')
-                ->with('directories', $directories)
-                ->with('wares', $wares);
-        }
+        $wares = self::getWares();
 
+        $shop_cart_count = ShopCarts::where('user_id',parent::$user->id)->count();
+
+        $this->view = View::make('shop_template.main')
+            ->with('directories', $directories)
+            ->with('wares', $wares)
+            ->with('shop_cart_count', $shop_cart_count)
+            ->with('openid', parent::$openid);
 
     }
 
 
-    public static function verify()
-    {
-        if (self::$openid) {
-            $user = User::where('openid', self::$openid)->first();
-            if (!empty($user)) {
-                return password_verify(self::$openid, $user->password);
-
-            } else {
-                $password_Hash = password_hash(
-                    self::$openid,
-                    PASSWORD_DEFAULT,
-                    ['cost' => 12]
-                );
-                $users = new User();
-                $users->openid = self::$openid;
-                $users->password = $password_Hash;
-                $users->save();
-                return true;
-            }
-        } else {
-            return false;
-        }
-    }
+    /**
+     * @return $this
+     * 获取目录信息
+     */
 
     public static function getDirectories()
     {
+
         $directories = Directories::all()->sortBy('sort');
+
         foreach ($directories as $directory) {
+
             $directory->sub_directories = SubDirectories::all()->where('directory_id', $directory->id)->sortBy('sort');
+
         }
+
         return $directories;
     }
 
+    /**
+     * @return $this
+     * 获取商品信息
+     */
     public static function getWares()
     {
-        return Ware::all()->sortBy('sort');
+
+        if (self::$ware_name != '') {
+
+            return Ware::all()->where('name', 'like', '%' . self::$ware_name . '%')->sortBy('sort');
+
+        } else {
+
+            return Ware::all()->sortBy('sort');
+
+        }
+
 
     }
+
+
 }

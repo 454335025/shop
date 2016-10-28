@@ -14,11 +14,12 @@
 
 <header class="head-wrap" style="zoom: 1.2875; display: block;">
     <div class="head-left"><a href="javascript:history.go(-1);">&nbsp;</a></div>
-    <div class="head-title">我的聚美</div>
+    <div class="head-title"><?php echo $title ?></div>
     <div class="head-right">
-        <a href="/shop">&nbsp;</a>
+        <a href="/shop?openid=<?php echo $user->openid ?>">&nbsp;</a>
     </div>
 </header>
+
 
 <div id="wrapper" style="zoom: 1.2875; display: block;">
     <!-- 已登录 -->
@@ -27,8 +28,8 @@
              class="photo">
         <div class="user_bg">
             <div class="user_info">
-                <span class="name">JM183BCXN4184</span>
-                <span class="grade">普通会员</span>
+                <span class="name"><?php echo $user->username; ?></span>
+                <span class="grade"><?php echo $user_type->type ;?></span>
             </div>
         </div>
     </div>
@@ -69,7 +70,7 @@
         <div class="block-content">
             <a class="block-item" href="/m/membership/show_promocards">
                 <div class="value"></div>
-                <span>积分：123</span>
+                <span>积分：<?php echo $user->integral ?></span>
             </a>
             <!--<a class="block-item" href="/m/membership/show_red_envelope">-->
                 <!--<div class="value"></div>-->

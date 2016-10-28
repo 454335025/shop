@@ -155,7 +155,7 @@ $(function(){
             while (i--) {
                 bullets[i].className = ' ';
             }
-            bullets[pos].className = 'cur';
+            // bullets[pos].className = 'cur';
         }
     });
 })();

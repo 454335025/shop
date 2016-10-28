@@ -3036,7 +3036,7 @@ table.inner-tbl tr td {
     width: 45px;
     height: 45px;
     display: block;
-    background: rgba(237, 20, 91, 0.4);
+    background: rgba(136, 76, 14, 0.8);
     border-radius: 45px;
     z-index: 99;
     text-align: center
@@ -3054,7 +3054,7 @@ table.inner-tbl tr td {
     top: 8px;
     left: 23px;
     padding: 1px 4px;
-    color: #ed145b;
+    color: #9d5535;
     border-radius: 15px;
     font-size: 12px;
     text-align: center;
