@@ -1,0 +1,122 @@
+
+/* Date: 2016-06-30T14:29:30Z Path: css/touch/cart/portrait.css */
+.ui-dialog {
+    width: 17.5rem
+}
+
+.ui-dialog-content {
+    padding: 0
+}
+
+.ui-dialog .ui-dialog-title {
+    background: #f0f0f0
+}
+
+.ui-dialog .ui-dialog-title .ui-dialog-close {
+    background: url(http://a3.jmstatic.com/d4111f9a36c2bca2/close_new.png) center no-repeat;
+    background-size: .875rem .875rem
+}
+
+.data-title, .product-btn {
+    background: #ed145b;
+    color: #fff
+}
+
+.data-title {
+    height: 2rem;
+    padding: .625rem 1.25rem
+}
+
+.product-img {
+    width: 5rem;
+    height: 5rem
+}
+
+.product-desc {
+    width: 10rem;
+    height: 5rem;
+    padding: 0 .625rem;
+    position: relative
+}
+
+.product-desc .title {
+    height: 2.375rem;
+    margin-bottom: 1.25rem
+}
+
+.data-content {
+    padding: .625rem;
+    height: 14.375rem;
+    overflow: auto !important;
+    position: relative
+}
+
+.product-btn-common {
+    position: absolute;
+    bottom: .625rem;
+    right: 0
+}
+
+.product-btn-list {
+    margin-left: 5.625rem
+}
+
+.data-content li:first-child {
+    border-top: 0
+}
+
+.data-content li {
+    padding: .625rem 0;
+    border-top: solid .0625rem #ddd;
+    position: relative
+}
+
+.product-btn {
+    width: 4.875rem;
+    height: 1.5625rem;
+    line-height: 1.5625rem;
+    text-align: center;
+    border-radius: .9375rem
+}
+
+.product-btn.selected {
+    background: #fff;
+    color: #ed145b;
+    border: .0625rem solid #ed145b
+}
+
+.ui-dialog-btn {
+    height: 3.75rem
+}
+
+.ui-dialog {
+    background: #fff
+}
+
+.ui-dialog-btn .ui-dialog-ok {
+    height: 1.875rem;
+    width: 14.25rem !important;
+    background: #ccc;
+    margin: .9375rem auto;
+    float: none;
+    line-height: 1.875rem;
+    color: #fff;
+    border-radius: 1.875rem
+}
+
+.ui-dialog-btn .ui-dialog-ok.selected {
+    background: #ed145b
+}
+
+.icon-x {
+    float: left
+}
+
+.icon-x img {
+    width: .5rem;
+    margin-left: .25rem
+}
+
+#global-dialog {
+    z-index: 19
+}

@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>我的信息</title>
+    <title><?php echo $title ?></title>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="format-detection" content="telephone=no">
-    <script src="/js/user/boot.js"></script>
-    <script src="/js/user/dc.js"></script>
-    <script src="/js/user/mobile.min.js"></script>
-    <link href="/css/user.css" rel="stylesheet">
+    <script src="/js/shop/user/dc.js"></script>
+    <script src="/js/shop/user/mobile.min.js"></script>
+    <script src="/js/shop/user/boot.js"></script>
+<!--    <script src="https://secure2.jmstatic.com/static_lib/dist/20150525/mobile.min.js"></script>-->
+<!--    <script src="https://secure4.jmstatic.com/static_account/dist/20161025/js/boot.js"></script>-->
+    <link href="/css/shop/user/upload.css" rel="stylesheet">
+    <link href="/css/shop/user/dialog.css" rel="stylesheet">
+    <link href="/css/shop/user/myjumei.css" rel="stylesheet">
+    <link href="/css/shop/user/header.css" rel="stylesheet">
 </head>
 <body>
-
 <header class="head-wrap" style="zoom: 1.2875; display: block;">
     <div class="head-left"><a href="javascript:history.go(-1);">&nbsp;</a></div>
     <div class="head-title"><?php echo $title ?></div>
@@ -19,8 +23,6 @@
         <a href="/shop?openid=<?php echo $user->openid ?>">&nbsp;</a>
     </div>
 </header>
-
-
 <div id="wrapper" style="zoom: 1.2875; display: block;">
     <!-- 已登录 -->
     <div class="user">

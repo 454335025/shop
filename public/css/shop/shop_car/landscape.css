@@ -1,0 +1,190 @@
+
+/* Date: 2016-06-30T14:29:30Z Path: css/touch/cart/landscape.css */
+.touch-cart-fixed {
+    width: 100%
+}
+
+.ui-dialog {
+    width: 85%
+}
+
+.ui-dialog-content {
+    width: 100%;
+    padding: 0;
+    height: 6.25rem;
+    overflow: auto !important
+}
+
+.ui-dialog .ui-dialog-title {
+    background: #f0f0f0
+}
+
+.ui-dialog .ui-dialog-title .ui-dialog-close {
+    background: url(http://a3.jmstatic.com/d4111f9a36c2bca2/close_new.png) center no-repeat;
+    background-size: .875rem .875rem
+}
+
+.data-title, .product-btn {
+    background: #ed145b;
+    color: #fff;
+    text-align: center
+}
+
+.data-title {
+    min-height: 1rem;
+    padding: .5rem 1.25rem
+}
+
+.data-content, .product-desc {
+    padding: 0 .625rem;
+    position: relative
+}
+
+.product-img {
+    width: 5rem;
+    height: 5rem
+}
+
+.product-desc {
+    width: 10rem;
+    height: 5rem
+}
+
+.product-desc .title {
+    height: 2.375rem;
+    margin-bottom: 1.25rem
+}
+
+.data-content {
+    height: 4.25rem;
+    overflow: auto !important
+}
+
+.product-btn-common {
+    position: absolute;
+    bottom: .625rem;
+    right: 0
+}
+
+.product-btn-list {
+    margin-left: 5.625rem
+}
+
+.data-content li:first-child {
+    border-top: 0
+}
+
+.data-content li {
+    padding: .625rem 0;
+    border-top: solid .0625rem #ddd;
+    position: relative
+}
+
+.product-btn {
+    width: 4.875rem;
+    height: 1.5625rem;
+    line-height: 1.5625rem;
+    border-radius: .9375rem
+}
+
+.product-btn.selected {
+    background: #fff;
+    color: #ed145b;
+    border: .0625rem solid #ed145b
+}
+
+.ui-dialog-btn {
+    height: 3.75rem
+}
+
+.ui-dialog {
+    background: #fff
+}
+
+.ui-dialog-btn .ui-dialog-ok {
+    height: 1.875rem;
+    width: 14.25rem !important;
+    background: #ccc;
+    margin: .9375rem auto;
+    float: none;
+    line-height: 1.875rem;
+    color: #fff;
+    border-radius: 1.875rem
+}
+
+.ui-dialog-btn .ui-dialog-ok.selected {
+    background: #ed145b
+}
+
+.icon-x {
+    float: left
+}
+
+.icon-x img {
+    width: .5rem;
+    margin-left: .25rem
+}
+
+#global-dialog {
+    z-index: 19
+}
+
+@media (min-height: 350px) and (max-height: 380px) and (orientation: landscape) {
+    .ui-dialog-content {
+        height: 120px
+    }
+
+    .data-content {
+        height: 88px
+    }
+}
+
+@media (min-height: 381px) and (max-height: 415px) and (orientation: landscape) {
+    .ui-dialog-content {
+        height: 140px
+    }
+
+    .data-content {
+        height: 108px
+    }
+}
+
+@media (min-height: 416px) and (max-height: 445px) and (orientation: landscape) {
+    .ui-dialog-content {
+        height: 160px
+    }
+
+    .data-content {
+        height: 128px
+    }
+}
+
+@media (min-height: 446px) and (max-height: 505px) and (orientation: landscape) {
+    .ui-dialog-content {
+        height: 180px
+    }
+
+    .data-content {
+        height: 148px
+    }
+}
+
+@media (min-height: 506px) and (max-height: 601px) and (orientation: landscape) {
+    .ui-dialog-content {
+        height: 210px
+    }
+
+    .data-content {
+        height: 178px
+    }
+}
+
+@media (min-height: 602px) and (orientation: landscape) {
+    .ui-dialog-content {
+        height: 250px
+    }
+
+    .data-content {
+        height: 218px
+    }
+}

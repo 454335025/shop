@@ -1,0 +1,101 @@
+
+/* Date: 2016-06-30T14:29:30Z Path: css/touch/product/guide_download.css */
+.txt_11, .txt_11_daiyan, .txt_301, .txt_301_daiyan {
+    font-family: '黑体', Arial, Verdana, Sans-serif
+}
+
+.txt1, .txt_11, .txt_301 {
+    font-weight: 700
+}
+
+.txt, .txt2, .txt_301 {
+    color: #444
+}
+
+#jumei_location {
+    background: url(http://images.jumei.com/mobile/icon/bg_01.png);
+    height: 3.25rem;
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    display: none
+}
+
+.guide_logo {
+    width: 2.625rem;
+    margin-top: .375rem;
+    margin-left: .5rem;
+    margin-right: .75rem;
+    float: left;
+    display: block
+}
+
+.txt {
+    width: 9.25rem;
+    margin-left: 3.625rem;
+    padding-top: .125rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.txt_11 {
+    font-size: .875rem;
+    height: 1.6875rem;
+    line-height: 1.6875rem
+}
+
+.txt_11_daiyan {
+    font-size: .8125rem;
+    height: 2.125rem;
+    line-height: 2.125rem
+}
+
+.txt_301 {
+    font-size: .875rem;
+    height: 1.625rem;
+    line-height: 1.625rem
+}
+
+#jumei_lo, .txt_301_daiyan {
+    height: 1.875rem;
+    line-height: 1.875rem
+}
+
+.txt_301_daiyan {
+    font-size: .8125rem;
+    color: #444
+}
+
+#jumei_lo, .txt1, .txt2 {
+    font-size: .75rem
+}
+
+.txt1 {
+    margin-bottom: .1875rem
+}
+
+#close_banner {
+    position: absolute;
+    top: .3125rem;
+    right: .3125rem;
+    overflow: hidden
+}
+
+#close_banner img {
+    width: .75rem;
+    height: .75rem
+}
+
+#jumei_lo {
+    position: absolute;
+    top: .8125rem;
+    width: 5.25rem;
+    text-align: center;
+    color: #fff;
+    border: none;
+    border-radius: 1.25rem;
+    right: 1.375rem;
+    background: #FE4478
+}

@@ -1,0 +1,150 @@
+
+.ui-dialog-wrap {
+    position: absolute;
+    -webkit-transform-style: preserve-3d;
+    -webkit-perspective: 2600px;
+    z-index: 1000000;
+    top: 0
+}
+
+.ui-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0;
+    z-index: 9999;
+    -webkit-transition: all .5s;
+    -webkit-transform: translateZ(0);
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    display: none
+}
+
+.ui-dialog {
+    position: absolute;
+    z-index: 2000000;
+    overflow: hidden;
+    width: 284px;
+    display: none;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    background: #f5f5f5;
+    -webkit-transition: all .3s ease
+}
+
+.ui-dialog .ui-dialog-title {
+    height: 49px;
+    overflow: hidden;
+    color: #000;
+    line-height: 49px
+}
+
+.ui-dialog .ui-dialog-title div {
+    font-size: 16px;
+    text-align: center;
+    font-weight: 700
+}
+
+.ui-dialog .ui-dialog-title .ui-dialog-close {
+    float: right;
+    position: absolute;
+    top: 5px;
+    right: 3px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background: url(/images/shop/user/mobile_dialog_close.png) center no-repeat;
+    background-size: 24px 24px
+}
+
+.ui-dialog-content {
+    text-align: left;
+    min-height: 60px;
+    color: #000;
+    font-size: 16px;
+    overflow: hidden;
+    padding: 0 15px
+}
+
+.ui-dialog-btn {
+    overflow: hidden;
+    border-top: 1px solid #ccc;
+    color: #0079FF;
+    font-size: 16px
+}
+
+.ui-dialog-btn .ui-dialog-ok {
+    width: 50%;
+    height: 45px;
+    float: right;
+    text-align: center;
+    cursor: pointer;
+    border-left: 1px solid #ccc;
+    margin-right: -1px;
+    line-height: 45px
+}
+
+.ui-dialog-btn .ui-dialog-cancel {
+    float: left;
+    width: 50%;
+    height: 45px;
+    text-align: center;
+    cursor: pointer;
+    line-height: 45px
+}
+
+.rma-dialog .ui-dialog-content {
+    padding: 0
+}
+
+.rma-category-item {
+    line-height: 40px;
+    text-align: center;
+    border-top: 1px solid #e0e0e0
+}
+
+.rma-category-item a, .rma-category-item a:hover {
+    color: #ed145b;
+    font-size: 14px;
+    text-decoration: none
+}
+
+.rma-category-item a.disabled {
+    color: #e0e0e0
+}
+
+.android.ui-dialog {
+    border-radius: 0
+}
+
+.android.ui-dialog .ui-dialog-title {
+    height: 42px
+}
+
+.android.ui-dialog .ui-dialog-title div {
+    text-align: left;
+    background: #333;
+    color: #fff;
+    text-indent: 10px;
+    line-height: 42px
+}
+
+.android.ui-dialog .ui-dialog-title .ui-dialog-close {
+    background: url(/images/shop/user/mobile_dialog_close.png) center no-repeat;
+    background-size: 24px 24px;
+    top: 1px;
+    right: 0
+}
+
+.android .ui-dialog-btn .ui-dialog-cancel, .android .ui-dialog-btn .ui-dialog-ok {
+    height: 40px;
+    line-height: 40px;
+    color: #ea3a77
+}
+
+.ios .ui-dialog-close {
+    display: none
+}

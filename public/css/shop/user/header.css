@@ -1,0 +1,131 @@
+
+html {
+    -webkit-text-size-adjust: auto
+}
+
+.head-wrap {
+    height: 38px;
+    background: #FFF;
+    width: 320px;
+    font-size: 14px;
+    color: #333;
+    line-height: 38px;
+    text-align: center;
+    position: relative
+}
+
+.head-left {
+    position: absolute !important;
+    left: 0;
+    top: 0;
+    width: 92px;
+    height: 38px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.head-title {
+    position: static;
+    background: #ed145b;
+    color: #fff;
+    float: left;
+    width: 320px;
+    text-align: center;
+    line-height: 38px
+}
+
+.head-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 38px;
+    height: 38px;
+    background: url(/images/shop/user/home_white_bg.png) no-repeat center center;
+    background-size: 24px 24px
+}
+
+.head-left a, .head-right a {
+    display: block
+}
+
+.head-left a {
+    background: url(/images/shop/user/back_white_bg.png) no-repeat left center;
+    background-size: 24px 24px;
+    padding-left: 18px
+}
+
+.head-left a.back-color {
+    background: url(/images/shop/user/back_color.png) no-repeat left center;
+    background-size: 24px 24px;
+    padding-left: 18px;
+    color: #F44051
+}
+
+.head-title a {
+    padding: 5px 0
+}
+
+.head-title a.active {
+    border-bottom: 1px solid #fff
+}
+
+header .brand {
+    margin-right: 10px
+}
+
+header a {
+    text-decoration: none;
+    color: #fff
+}
+
+header {
+    display: none
+}
+
+
+
+.head-wrap {
+    zoom: 1;
+    z-index: 1;
+    background: transparent;
+}
+
+.head-title {
+    background: transparent;
+}
+
+#wrapper {
+    top: 0;
+    position: absolute;
+}
+
+.user-unlogin {
+    padding-top: 50px;
+}
+
+.user_info .name {
+    font-family: sans-serif;
+    line-height: 20px;
+}
+
+.ui-dialog-content {
+    text-align: center;
+}
+
+.android .ui-dialog-content {
+    padding: 30px 5px;
+    min-height: 0;
+}
+.gmu-media-detect {
+    -webkit-transition: width 0.001ms;
+    width: 0;
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+@media screen and (width: 412px) {
+    #gmu-media-detect0 {
+        width: 1px;
+    }
+}

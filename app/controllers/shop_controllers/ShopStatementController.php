@@ -8,7 +8,6 @@
  */
 class ShopStatementController extends BaseController
 {
-
     public function index()
     {
         $this->view = View::make('shop_template.statement');

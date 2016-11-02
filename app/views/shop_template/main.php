@@ -10,11 +10,11 @@
     <meta http-equiv="cache-control" content="max-age=0"/>
     <meta http-equiv="cache-control" content="no-cache"/>
     <meta http-equiv="pragma" content="no-cache"/>
-    <script src="/js/main/zepto.js"></script>
-    <script src="/js/main/main.js"></script>
+    <script src="/js/shop/main/zepto.js"></script>
+    <script src="/js/shop/main/main.js"></script>
     <link type="text/css" rel="stylesheet" href="/css/main.css" media="screen" charset="utf-8"/>
-    <script src="/js/main/jmtouch_h5.js"></script>
-    <script src="/js/main/1.js"></script>
+    <script src="/js/shop/main/jmtouch_h5.js"></script>
+    <script src="/js/shop/main/1.js"></script>
 </head>
 
 <body id="main-body">
@@ -91,8 +91,8 @@
     </div>
     <!--menu-->
 
-    <script type="text/javascript" src="/js/main/2.js"></script>
-    <script src="/js/main/swipe.js"></script>
+    <script type="text/javascript" src="/js/shop/main/2.js"></script>
+    <script src="/js/shop/main/swipe.js"></script>
 
     <!--banner-->
     <div class="container swipe" id="slider" style="z-index:-1">
@@ -109,7 +109,7 @@
         </ul>
     </div>
     <!--banner-->
-    <script type="text/javascript" src="/js/main/3.js"></script>
+    <script type="text/javascript" src="/js/shop/main/3.js"></script>
 
     <!--list container start-->
     <div class="list_container">
@@ -191,6 +191,6 @@
     </ul>
 </div>
 
-<script type="text/javascript" src="/js/main/4.js"></script>
+<script type="text/javascript" src="/js/shop/main/4.js"></script>
 </body>
 </html>
