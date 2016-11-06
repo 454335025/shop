@@ -21,7 +21,7 @@ Macaw::get('/shop/user',                                'ShopUserController@inde
 //我的订单
 Macaw::get('/shop/user/my_order',                       'ShopUserController@toMyOrderUI');
 //商品详情页
-Macaw::get('/shop/statement',                           'ShopStatementController@index');
+Macaw::get('/shop/ware_detail',                         'ShopWareController@index');
 
 //shop END
 

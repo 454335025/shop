@@ -1,0 +1,34 @@
+
+
+.user_info .name {
+    font-family: sans-serif;
+    line-height: 20px;
+}
+
+.ui-dialog-content {
+    text-align: center;
+}
+
+.android .ui-dialog-content {
+    padding: 30px 5px;
+    min-height: 0;
+}
+
+.head-wrap {
+    zoom: 1;
+    z-index: 1;
+    background: transparent;
+}
+
+.head-title {
+    background: transparent;
+}
+
+#wrapper {
+    top: 0;
+    position: absolute;
+}
+
+.user-unlogin {
+    padding-top: 50px;
+}

@@ -17,7 +17,7 @@ class ShopShopCarController extends BaseController
     {
         self::getWareByWareId();
         self::getCostCount();
-        parent::$view = View::make('shop_template.shop_car1')
+        parent::$view = View::make('shop_template.shop_car')
             ->with('shop_carts', self::$shop_carts)
             ->with('cost_count', self::$cost_count)
             ->with('user', parent::$user)

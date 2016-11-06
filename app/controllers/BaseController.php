@@ -8,13 +8,21 @@ class BaseController
     protected static $mail;
     protected static $openid;
     protected static $user;
+
     public function __construct()
     {
-        self::$openid = $_REQUEST['openid'];
-        if (self::verify(self::$openid)) {
-            self::$user = User::where('openid',self::$openid)->first();
+        session_start();
+        if (isset($_SESSION['openid'])) {
+            self::$openid = $_SESSION['openid'];
+            if (self::verify()) {
+                self::$user = User::where('openid', self::$openid)->first();
+            } else {
+                echo "<script>alert('未检测到账号');</script>";
+            }
         } else {
-            echo "<script>alert('未检测到账号');</script>";
+            self::$openid = $_REQUEST['openid'];
+            $_SESSION['openid'] = self::$openid;
+            self::__construct();
         }
     }
 
