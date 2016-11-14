@@ -1,12 +1,10 @@
-<?php
-
-namespace app\models;
+<?php namespace app\models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ShopCarts extends Model
+class WareImages extends Model
 {
-    protected $table = 's_shop_carts';
+    protected $table = 's_wares_images';
 
     public function belongsToWare()
     {

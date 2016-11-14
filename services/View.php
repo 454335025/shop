@@ -19,7 +19,6 @@ class View
         if ( ! $viewName ) {
             throw new InvalidArgumentException("视图名称不能为空！");
         } else {
-
             $viewFilePath = self::getFilePath($viewName);
             if ( is_file($viewFilePath) ) {
                 return new View($viewFilePath);

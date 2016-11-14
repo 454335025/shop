@@ -8,8 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
 
-    public $table = 's_users';
+    protected $table = 's_users';
 
+    public function hasOneUserType()
+    {
+        return $this->hasOne('app\models\UserType','id','user_type');
+    }
 
 
 }

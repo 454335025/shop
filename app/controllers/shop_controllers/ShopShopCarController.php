@@ -1,17 +1,11 @@
 <?php
 
 use app\models\ShopCarts;
-use app\models\Ware;
 
 class ShopShopCarController extends BaseController
 {
     public static $shop_carts;
     public static $cost_count = 0;
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     public static function index()
     {
@@ -31,9 +25,6 @@ class ShopShopCarController extends BaseController
     public static function getWareByWareId()
     {
         self::$shop_carts = ShopCarts::all()->where('user_id', parent::$user->id);
-        foreach (self::$shop_carts as $shop_cart) {
-            $shop_cart->ware = Ware::where('id', $shop_cart->ware_id)->first();
-        }
     }
 
     /**
@@ -43,7 +34,7 @@ class ShopShopCarController extends BaseController
     public static function getCostCount()
     {
         foreach (self::$shop_carts as $shop_cart) {
-            self::$cost_count = self::$cost_count + ($shop_cart->ware->money * $shop_cart->number);
+            self::$cost_count = self::$cost_count + ($shop_cart->belongsToWare->money * $shop_cart->number);
         }
     }
 
@@ -53,13 +44,15 @@ class ShopShopCarController extends BaseController
 
     public static function updateWareNumberById()
     {
-        $action = $_REQUEST['action'];
         $id = $_REQUEST['id'];
+        $action = $_REQUEST['action'];
+        $num = $_REQUEST['num'];
+
         $shop_car = ShopCarts::find($id);
         if ($action == 'add') {
-            $shop_car->number = $shop_car->number + 1;
+            $shop_car->number = $shop_car->number + $num;
         } else if ($action == 'sub') {
-            $shop_car->number = $shop_car->number - 1;
+            $shop_car->number = $shop_car->number - $num;
             if ($shop_car->number < 1) {
                 echo "<script>alert('未能修改成功');</script>";
                 self::index();

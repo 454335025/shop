@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Directories extends Model
 {
-    public $table = 's_directories';
+    protected $table = 's_directories';
 
+    public function hasManySubDirectories()
+    {
+        return parent::hasMany('app\models\SubDirectories', 'directory_id', 'id');
+    }
 
 
 }

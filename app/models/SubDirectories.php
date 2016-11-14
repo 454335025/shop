@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class SubDirectories extends Model
 {
-    public $table = 's_sub_directories';
+    protected $table = 's_sub_directories';
 
+    public function belongsToDirectories()
+    {
+        return parent::belongsTo('app\models\Directories','directory_id','id');
+    }
 
 
 }

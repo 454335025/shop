@@ -11,7 +11,7 @@ class BaseController
 
     public function __construct()
     {
-        session_start();
+//        session_start();
         if (isset($_SESSION['openid'])) {
             self::$openid = $_SESSION['openid'];
             if (self::verify()) {

@@ -1,10 +1,13 @@
 <?php
 
+use app\models\Ware;
+use app\models\WareImages;
 
 class ShopWareController extends BaseController
 {
-    public static $ware_id;
-
+    private static $ware_id;
+    private static $wares;
+    private static $parameters;
 
     public function __construct()
     {
@@ -14,8 +17,32 @@ class ShopWareController extends BaseController
 
     public function index()
     {
+        self::getWareById();
+        self::getParameter();
         self::$view = View::make('shop_template.ware_detail')
-            ->withTitle('商品描述');
+            ->with('wares', self::$wares)
+            ->with('parameters', self::$parameters)
+            ->withTitle(self::$wares->name);
+    }
+
+    /**
+     * 获取商品信息根据Id
+     */
+    public function getWareById()
+    {
+        self::$wares = Ware::find(self::$ware_id)->first();
+    }
+
+    /**
+     * 获取详细参数根据parameter
+     */
+    public function getParameter()
+    {
+        $detail = explode(';', self::$wares->parameter);
+        foreach ($detail as $key => $val) {
+            $a = explode(':', $val);
+            self::$parameters[$a[0]] = $a[1];
+        }
     }
 
 

@@ -18,9 +18,9 @@
     <meta name="format-detection" content="address=no">
     <link rel="shortcut icon" href="favicon.ico">
 
-    <link href="/css/shop/common/ui.css" rel="stylesheet" type="text/css">
-    <link href="/css/shop/main/jmtouch.css" rel="stylesheet" type="text/css">
-    <link href="/css/shop/common/guide_download.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo STATIC_COMMON;?>/css/shop/common/ui.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo STATIC_COMMON;?>/css/shop/main/jmtouch.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo STATIC_COMMON;?>/css/shop/common/guide_download.css" rel="stylesheet" type="text/css">
     <style>.gmu-media-detect {
             -webkit-transition: width 0.001ms;
             width: 0;
@@ -39,7 +39,7 @@
 
 <!--shop car-->
 <a class="float_car" href="/shop/shop_car">
-    <img src="/images/shop/main/float_car.png" data-original="/images/shop/main/float_car.png" alt="">
+    <img src="<?php echo STATIC_COMMON;?>/images/shop/main/float_car.png" data-original="<?php echo STATIC_COMMON;?>/images/shop/main/float_car.png" alt="">
     <div class="shoping_car_num">
         <?php echo $shop_cart_count ?>
     </div>
@@ -48,7 +48,7 @@
 
 <!--to top-->
 <a href="#page_top" class="go_top" style="display: inline; transform-origin: 0px 0px 0px; opacity: 1;">
-    <img src="/images/shop/main/icon_top.png" alt="">
+    <img src="<?php echo STATIC_COMMON;?>/images/shop/main/icon_top.png" alt="">
 </a>
 <!--to top-->
 
@@ -57,13 +57,13 @@
     <!--search-->
     <header>
         <a href="/shop/user">
-            <img class="my" src="/images/shop/main/login2.png">
+            <img class="my" src="<?php echo STATIC_COMMON;?>/images/shop/main/login2.png">
         </a>
         <a id="page_top" class="index-search">
-            <img src="/images/shop/main/search2.png"><span>搜索商品 分类 功效</span>
+            <img src="<?php echo STATIC_COMMON;?>/images/shop/main/search2.png"><span>搜索商品 分类 功效</span>
         </a>
         <span id="search_action">
-            <img class="search" src="/images/shop/main/search_list2.png">
+            <img class="search" src="<?php echo STATIC_COMMON;?>/images/shop/main/search_list2.png">
         </span>
     </header>
     <!--search-->
@@ -90,9 +90,9 @@
                             <span><?php echo $directory->name ?></span>
                         </a>
                         <ul id="mall_sel" class="mall_sel" style="display:none;">
-                            <?php foreach ($directory->sub_directories as $sub_directory) { ?>
+                            <?php foreach ($directory->hasManySubDirectories as $hasManySubDirectories) { ?>
                                 <a href="http://h5.jumei.com/mall/index?type=category">
-                                    <li><?php echo $sub_directory->name ?></li>
+                                    <li><?php echo $hasManySubDirectories->name ?></li>
                                 </a>
                             <?php } ?>
                         </ul>
@@ -117,7 +117,7 @@
     <div class="container swipe" id="slider" style="z-index:-1">
         <div id="banners" class="swipe-wrap">
             <a href="###">
-                <img src="/images/shop/banner/1.jpg"/>
+                <img src="<?php echo STATIC_COMMON;?>/images/shop/banner/1.jpg"/>
             </a>
         </div>
         <ul id="position">
@@ -166,10 +166,10 @@
 <div id="search_page" class="hide" style="transform-origin: 0px 0px 0px; opacity: 1;">
     <div class="search_head">
         <a id="history_back" class="pull_left">
-            <img src="/images/shop/main/NavButtonBack.png" alt="">
+            <img src="<?php echo STATIC_COMMON;?>/images/shop/main/NavButtonBack.png" alt="">
         </a>
         <div class="input_outer">
-            <img src="/images/shop/main/search2.png" alt="" class="search_icon">
+            <img src="<?php echo STATIC_COMMON;?>/images/shop/main/search2.png" alt="" class="search_icon">
             <input type="text" class="search_input" placeholder="搜索商品名称、品牌、功效" id="search_input">
         </div>
         <a class="search_btn" id="search_back" style="transform-origin: 0px 0px 0px; opacity: 1;">返回</a>
@@ -179,8 +179,8 @@
         <?php foreach ($directories as $directory) { ?>
         <li class="search_link"><?php echo $directory->name ?><span class="arrow"></span>
             <ul class="search_subs">
-                <?php foreach ($directory->sub_directories as $sub_directory) { ?>
-                <li class="search_sub"><a href="/search/index?category_id=62"><?php echo $sub_directory->name ?></a></li>
+                <?php foreach ($directory->hasManySubDirectories as $hasManySubDirectory) { ?>
+                <li class="search_sub"><a href="/search/index?category_id=62"><?php echo $hasManySubDirectory->name ?></a></li>
                 <?php } ?>
             </ul>
         </li>
@@ -206,13 +206,13 @@
     </ul>
 </div>
 <input type="hidden" value="" id="h5_host_url">
-<script type="text/javascript" src="/js/shop/main/jumei.js"></script>
-<link type="text/css" rel="stylesheet" href="/css/shop/main/search_list.css" charset="utf-8">
-<script type="text/javascript" src="/js/shop/main/search_list.js"></script>
+<script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/shop/common/jumei.js"></script>
+<link type="text/css" rel="stylesheet" href="<?php echo STATIC_COMMON;?>/css/shop/main/search_list.css" charset="utf-8">
+<script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/shop/main/search_list.js"></script>
 
-<script type="text/javascript" src="/js/shop/main/swipe.js"></script>
-<script type="text/javascript" src="/js/shop/common/index_main.js"></script>
-<script type="text/javascript" src="/js/shop/main/guide_download_main.js"></script>
+<script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/shop/main/swipe.js"></script>
+<script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/shop/common/index_main.js"></script>
+<script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/shop/common/guide_download_main.js"></script>
 
 <div class="gmu-media-detect" id="gmu-media-detect0"></div>
 </body>
