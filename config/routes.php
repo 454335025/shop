@@ -12,6 +12,8 @@ Macaw::get('/shop',                                     'ShopMainController@inde
 Macaw::get('/shop/main',                                'ShopMainController@index');
 //商城购物车
 Macaw::get('/shop/shop_car',                            'ShopShopCarController@index');
+//添加商品到购物车
+Macaw::get('/shop/shop_car/add_shopping',              'ShopShopCarController@addWare');
 //修改购物车商品数量
 Macaw::get('/shop/shop_car/update_number',              'ShopShopCarController@updateWareNumberById');
 //删除购物车商品

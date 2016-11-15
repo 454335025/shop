@@ -19,9 +19,9 @@ class ShopMainController extends BaseController
 
     public function index()
     {
-        self::getDirectories();
-        self::getWares();
-        self::getShopCarCount();
+        self::$directories = self::getDirectories();
+        self::$wares = self::getWares();
+        self::$shop_cart_count = self::getShopCarCount();
         self::$view = View::make('shop_template.main')
             ->with('directories', self::$directories)
             ->with('wares', self::$wares)
@@ -35,7 +35,7 @@ class ShopMainController extends BaseController
 
     public function getDirectories()
     {
-        self::$directories = Directories::all()->sortBy('sort');
+        return Directories::all()->sortBy('sort');
     }
 
     /**
@@ -44,10 +44,11 @@ class ShopMainController extends BaseController
     public function getWares()
     {
         if (self::$ware_name != '') {
-            self::$wares = Ware::all()->where('name', 'like', '%' . self::$ware_name . '%')->sortBy('sort');
+            $wares = Ware::all()->where('name', 'like', '%' . self::$ware_name . '%')->sortBy('sort');
         } else {
-            self::$wares = Ware::all()->sortBy('sort');
+            $wares = Ware::all()->sortBy('sort');
         }
+        return $wares;
     }
 
     /**
@@ -55,6 +56,6 @@ class ShopMainController extends BaseController
      */
     public function getShopCarCount()
     {
-        self::$shop_cart_count = ShopCarts::where('user_id', parent::$user->id)->count();
+        return ShopCarts::where('user_id', parent::$user->id)->count();
     }
 }

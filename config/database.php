@@ -3,13 +3,13 @@ return [
 
     'driver'    => 'mysql',
 
-    'host'      => 'localhost',
+    'host'      => '59.110.11.94',
 
     'database'  => 'shop_mall',
 
-    'username'  => 'root',
+    'username'  => 'liumingjun',
 
-    'password'  => '',
+    'password'  => '123456',
 
     'charset'   => 'utf8',
 

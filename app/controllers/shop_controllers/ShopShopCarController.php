@@ -9,8 +9,8 @@ class ShopShopCarController extends BaseController
 
     public static function index()
     {
-        self::getWareByWareId();
-        self::getCostCount();
+        self::$shop_carts = self::getWareByWareId();
+        self::$cost_count = self::getCostCount();
         parent::$view = View::make('shop_template.shop_car')
             ->with('shop_carts', self::$shop_carts)
             ->with('cost_count', self::$cost_count)
@@ -24,7 +24,7 @@ class ShopShopCarController extends BaseController
      */
     public static function getWareByWareId()
     {
-        self::$shop_carts = ShopCarts::all()->where('user_id', parent::$user->id);
+        return ShopCarts::all()->where('user_id', parent::$user->id);
     }
 
     /**
@@ -33,9 +33,11 @@ class ShopShopCarController extends BaseController
 
     public static function getCostCount()
     {
+        $cost = 0;
         foreach (self::$shop_carts as $shop_cart) {
-            self::$cost_count = self::$cost_count + ($shop_cart->belongsToWare->money * $shop_cart->number);
+            $cost = $cost + ($shop_cart->belongsToWare->money * $shop_cart->number);
         }
+        return $cost;
     }
 
     /**
@@ -79,5 +81,21 @@ class ShopShopCarController extends BaseController
         } else {
             echo "<script>alert('未能删除成功');</script>";
         }
+    }
+
+    /**
+     * 添加商品到购物车
+     */
+
+    public static function addWare()
+    {
+        $ware_id = $_REQUEST['ware_id'];
+        $shop_car = ShopCarts::where()->first();
+        $shop_car = $shop_car ? $shop_car : new ShopCarts();
+        $shop_car->user_id = parent::$user->id;
+        $shop_car->ware_id = $ware_id;
+        $shop_car->number = $shop_car->number + 1;
+        echo $shop_car->save() ? 1 : 0;
+        exit;
     }
 }

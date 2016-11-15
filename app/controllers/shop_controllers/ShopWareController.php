@@ -1,7 +1,6 @@
 <?php
 
 use app\models\Ware;
-use app\models\WareImages;
 
 class ShopWareController extends BaseController
 {
@@ -17,11 +16,14 @@ class ShopWareController extends BaseController
 
     public function index()
     {
-        self::getWareById();
+        self::$wares = self::getWareById();
         self::getParameter();
+        $count = new ShopMainController();
+        $count = $count->getShopCarCount();
         self::$view = View::make('shop_template.ware_detail')
             ->with('wares', self::$wares)
             ->with('parameters', self::$parameters)
+            ->with('count', $count)
             ->withTitle(self::$wares->name);
     }
 
@@ -30,7 +32,7 @@ class ShopWareController extends BaseController
      */
     public function getWareById()
     {
-        self::$wares = Ware::find(self::$ware_id)->first();
+         return Ware::find(self::$ware_id)->first();
     }
 
     /**

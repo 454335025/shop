@@ -38,7 +38,7 @@
 </head>
 <body style="width: 20rem;">
 <?php require SHOP_COMMON; ?>
-<div id="loadding-img" style="display:; z-index: 10000; position: absolute; width: 100%; height: 100%; background-color: gray;opacity: 0.5;" class="loadding">
+<!--<div id="loadding-img" style="display:; z-index: 10000; position: absolute; width: 100%; height: 100%; background-color: gray;opacity: 0.5;" class="loadding">-->
     <section id="touch-cart-container" class="touch-cart-container">
         <div class="message"></div>
         <!--购物车列表-->
@@ -96,8 +96,8 @@
             </ul>
         </section>
     </section>
-    <img style="width:100%;display:block;" src="http://images.jumei.com/mobile/act/image/loadding/8.gif">
-</div>
+<!--    <img style="width:100%;display:block;" src="http://images.jumei.com/mobile/act/image/loadding/8.gif">-->
+<!--</div>-->
 <section class="touch-cart-fixed">
     <div class="cart-price fl">
 
