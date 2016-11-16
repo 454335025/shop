@@ -20,9 +20,12 @@ class BaseController
                 echo "<script>alert('未检测到账号');</script>";
             }
         } else {
-            self::$openid = $_REQUEST['openid'];
-            $_SESSION['openid'] = self::$openid;
-            self::__construct();
+            self::$openid = !empty($_REQUEST['openid']) ? $_REQUEST['openid'] : '';
+            if (self::$openid != '') {
+                $_SESSION['openid'] = self::$openid;
+                self::__construct();
+            }
+            echo "<script>alert('未检测到账号');</script>";exit;
         }
     }
 

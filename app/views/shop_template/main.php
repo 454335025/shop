@@ -21,6 +21,7 @@
     <link href="<?php echo STATIC_COMMON;?>/css/shop/common/ui.css" rel="stylesheet" type="text/css">
     <link href="<?php echo STATIC_COMMON;?>/css/shop/main/jmtouch.css" rel="stylesheet" type="text/css">
     <link href="<?php echo STATIC_COMMON;?>/css/shop/common/guide_download.css" rel="stylesheet" type="text/css">
+
     <style>.gmu-media-detect {
             -webkit-transition: width 0.001ms;
             width: 0;
@@ -60,7 +61,7 @@
             <img class="my" src="<?php echo STATIC_COMMON;?>/images/shop/main/login2.png">
         </a>
         <a id="page_top" class="index-search">
-            <img src="<?php echo STATIC_COMMON;?>/images/shop/main/search2.png"><span>搜索商品 分类 功效</span>
+            <img src="<?php echo STATIC_COMMON;?>/images/shop/main/search2.png"><span>搜索商品</span>
         </a>
         <span id="search_action">
             <img class="search" src="<?php echo STATIC_COMMON;?>/images/shop/main/search_list2.png">
@@ -170,40 +171,35 @@
         </a>
         <div class="input_outer">
             <img src="<?php echo STATIC_COMMON;?>/images/shop/main/search2.png" alt="" class="search_icon">
-            <input type="text" class="search_input" placeholder="搜索商品名称、品牌、功效" id="search_input">
+            <input type="text" class="search_input" placeholder="搜索商品名称" id="search_input">
         </div>
         <a class="search_btn" id="search_back" style="transform-origin: 0px 0px 0px; opacity: 1;">返回</a>
         <a class="search_btn" id="search_cancel" style="display: none;">搜索</a>
     </div>
     <ul class="search_links" style="height: 686px; transform-origin: 0px 0px 0px; opacity: 1;">
         <?php foreach ($directories as $directory) { ?>
-        <li class="search_link"><?php echo $directory->name ?><span class="arrow"></span>
+        <li class="search_link"><?php echo $directory->name ?>
+            <span class="arrow"></span>
             <ul class="search_subs">
                 <?php foreach ($directory->hasManySubDirectories as $hasManySubDirectory) { ?>
-                <li class="search_sub"><a href="/search/index?category_id=62"><?php echo $hasManySubDirectory->name ?></a></li>
+                <li class="search_sub"><a href="/shop/main?sub_directory_id=<?php echo $hasManySubDirectory->id ?>"><?php echo $hasManySubDirectory->name ?></a></li>
                 <?php } ?>
             </ul>
         </li>
         <?php } ?>
-        <li class="search_link">其他<span class="arrow"></span>
-            <ul class="search_subs">
-                <li class="search_sub"><a href="/search/index?category_id=481">喜从盒来</a></li>
-                <li class="search_sub"><a href="/search/index?category_id=483">会员生日礼包</a></li>
-            </ul>
-        </li>
     </ul>
-    <ul class="history_lists" style="display: none;">
-        <div id="clear_history">清空历史记录</div>
-    </ul>
-    <ul class="recommend_lists" style="display: none;">
-        <!-- <li class="recommend_list">
-            <a href="">
-                <img src="{$cssDir}/v3/image/search_btn.png" alt="" class="icon">
-                海飞丝
-            </a>
-            <span class="arrow"></span>
-        </li> -->
-    </ul>
+<!--    <ul class="history_lists" style="display: none;">-->
+<!--        <div id="clear_history">清空历史记录</div>-->
+<!--    </ul>-->
+<!--    <ul class="recommend_lists" style="display: none;">-->
+<!--        <li class="recommend_list">-->
+<!--            <a href="">-->
+<!--                <img src="{$cssDir}/v3/image/search_btn.png" alt="" class="icon">-->
+<!--                海飞丝-->
+<!--            </a>-->
+<!--            <span class="arrow"></span>-->
+<!--        </li> -->
+<!--    </ul>-->
 </div>
 <input type="hidden" value="" id="h5_host_url">
 <script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/shop/common/jumei.js"></script>
@@ -213,6 +209,9 @@
 <script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/shop/main/swipe.js"></script>
 <script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/shop/common/index_main.js"></script>
 <script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/shop/common/guide_download_main.js"></script>
+
+<script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/shop/main/index.js"></script>
 
 <div class="gmu-media-detect" id="gmu-media-detect0"></div>
 </body>

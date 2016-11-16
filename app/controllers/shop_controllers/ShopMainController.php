@@ -9,12 +9,14 @@ class ShopMainController extends BaseController
     public static $directories;
     public static $wares;
     public static $shop_cart_count;
+    public static $sub_directory_id;
 
     public function __construct()
     {
         parent::__construct();
         //商品名称
         self::$ware_name = !empty($_REQUEST['ware_name']) ? $_REQUEST['ware_name'] : '';
+        self::$sub_directory_id = !empty($_REQUEST['sub_directory_id']) ? $_REQUEST['sub_directory_id'] : '';
     }
 
     public function index()
@@ -43,10 +45,14 @@ class ShopMainController extends BaseController
      */
     public function getWares()
     {
-        if (self::$ware_name != '') {
-            $wares = Ware::all()->where('name', 'like', '%' . self::$ware_name . '%')->sortBy('sort');
+        if (self::$sub_directory_id != '' && self::$ware_name!='') {
+            $wares = Ware::all()
+                ->where('name', 'like', '%' . self::$ware_name . '%')
+                ->where('sub_directory_id', self::$sub_directory_id)
+                ->sortBy('sort');
         } else {
-            $wares = Ware::all()->sortBy('sort');
+            $wares = Ware::all()
+                ->sortBy('sort');
         }
         return $wares;
     }
