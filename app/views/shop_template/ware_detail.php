@@ -29,7 +29,7 @@
             <div class="detail_group">
                 <p class="productPic ">
 <!--                    <img src="http://p0.jmstatic.com/banner/area/000/000/029.jpg" alt="" class="img_tag">-->
-                    <img src="<?php echo $wares->img; ?>" class="" height="160">
+                    <img src="<?php echo $wares->detail_img; ?>" class="" height="160">
                 </p>
                 <div class="detail_info_item clear">
                     <div class="detail_price_info pull_left">

@@ -90,7 +90,7 @@ class ShopShopCarController extends BaseController
     public static function addWare()
     {
         $ware_id = $_REQUEST['ware_id'];
-        $shop_car = ShopCarts::where()->first();
+        $shop_car = ShopCarts::where('user_id',parent::$user->id)->where('ware_id',$ware_id)->first();
         $shop_car = $shop_car ? $shop_car : new ShopCarts();
         $shop_car->user_id = parent::$user->id;
         $shop_car->ware_id = $ware_id;

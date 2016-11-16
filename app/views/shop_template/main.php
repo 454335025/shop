@@ -135,7 +135,7 @@
         <a href="/shop/ware_detail?ware_id=<?php echo $ware->id ?>">
             <div class="item-product clearfix">
                 <div class="item_image">
-                    <img src="<?php echo $ware->img ?>" class="lazy product-img">
+                    <img src="<?php echo $ware->main_img ?>" class="lazy product-img">
                     <img class="product-icon lazy" src="http://p0.jmstatic.com/banner/area/000/000/029.jpg">
                 </div>
                 <div class="information">
