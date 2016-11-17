@@ -24,8 +24,11 @@ class BaseController
             if (self::$openid != '') {
                 $_SESSION['openid'] = self::$openid;
                 self::__construct();
+            } else {
+                echo "<script>alert('未检测到账号');</script>";
+                exit;
             }
-            echo "<script>alert('未检测到账号');</script>";exit;
+
         }
     }
 

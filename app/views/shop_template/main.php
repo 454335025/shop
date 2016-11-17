@@ -126,10 +126,6 @@
         </ul>
     </div>
     <!--banner-->
-
-    <input type="hidden" name="call_deal_card_id" id="call_deal_card_id" value="145">
-    <input type="hidden" name="locate_key" id="locate_key" value="jmdl14">
-
     <!--list container start-->
     <div class="list_container" style="display: block; transform-origin: 0px 0px 0px; opacity: 1;">
         <?php foreach ($wares as $ware) { ?>
@@ -178,7 +174,7 @@
     </div>
     <ul class="search_links" style="height: 686px; transform-origin: 0px 0px 0px; opacity: 1;">
         <?php foreach ($directories as $directory) { ?>
-        <li class="search_link"><?php echo $directory->name ?>
+        <li class="search_link" onclick="directory(this);"><?php echo $directory->name ?>
             <span class="arrow"></span>
             <ul class="search_subs">
                 <?php foreach ($directory->hasManySubDirectories as $hasManySubDirectory) { ?>

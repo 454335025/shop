@@ -10,7 +10,7 @@ class ShopShopCarController extends BaseController
     public static function index()
     {
         self::$shop_carts = self::getWareByWareId();
-        self::$cost_count = self::getCostCount();
+        self::$cost_count = self::getCostCount(self::$shop_carts);
         parent::$view = View::make('shop_template.shop_car')
             ->with('shop_carts', self::$shop_carts)
             ->with('cost_count', self::$cost_count)
@@ -31,10 +31,10 @@ class ShopShopCarController extends BaseController
      * 获取购物车总花费
      */
 
-    public static function getCostCount()
+    public static function getCostCount($shop_carts)
     {
         $cost = 0;
-        foreach (self::$shop_carts as $shop_cart) {
+        foreach ($shop_carts as $shop_cart) {
             $cost = $cost + ($shop_cart->belongsToWare->money * $shop_cart->number);
         }
         return $cost;
@@ -90,7 +90,9 @@ class ShopShopCarController extends BaseController
     public static function addWare()
     {
         $ware_id = $_REQUEST['ware_id'];
-        $shop_car = ShopCarts::where('user_id',parent::$user->id)->where('ware_id',$ware_id)->first();
+        $shop_car = ShopCarts::where('user_id',parent::$user->id)
+            ->where('ware_id',$ware_id)
+            ->first();
         $shop_car = $shop_car ? $shop_car : new ShopCarts();
         $shop_car->user_id = parent::$user->id;
         $shop_car->ware_id = $ware_id;

@@ -16,8 +16,8 @@ class ShopWareController extends BaseController
 
     public function index()
     {
-        self::$wares = self::getWareById();
-        self::getParameter();
+        self::$wares = self::getWareById(self::$ware_id);
+        self::getParameter(self::$wares);
         $count = new ShopMainController();
         $count = $count->getShopCarCount();
         self::$view = View::make('shop_template.ware_detail')
@@ -30,17 +30,17 @@ class ShopWareController extends BaseController
     /**
      * 获取商品信息根据Id
      */
-    public function getWareById()
+    public function getWareById($ware_id)
     {
-         return Ware::find(self::$ware_id)->first();
+         return Ware::find($ware_id)->first();
     }
 
     /**
      * 获取详细参数根据parameter
      */
-    public function getParameter()
+    public function getParameter($wares)
     {
-        $detail = explode(';', self::$wares->parameter);
+        $detail = explode(';', $wares->parameter);
         foreach ($detail as $key => $val) {
             $a = explode(':', $val);
             self::$parameters[$a[0]] = $a[1];

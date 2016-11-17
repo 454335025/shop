@@ -8,3 +8,16 @@ $(document).ready(function () {
         }
     });
 });
+
+/**
+ * 目录显示隐藏
+ * @param obj
+ */
+function directory(obj) {
+    var li_class = $(obj).attr("class");
+    if (li_class =='search_link') {
+        $(obj).attr("class", "search_link select");
+    }else if(li_class =='search_link select'){
+        $(obj).attr("class", "search_link");
+    }
+}

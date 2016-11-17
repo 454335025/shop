@@ -22,7 +22,7 @@ class ShopMainController extends BaseController
     public function index()
     {
         self::$directories = self::getDirectories();
-        self::$wares = self::getWares();
+        self::$wares = self::getWares(self::$ware_name, self::$sub_directory_id);
         self::$shop_cart_count = self::getShopCarCount();
         self::$view = View::make('shop_template.main')
             ->with('directories', self::$directories)
@@ -33,6 +33,7 @@ class ShopMainController extends BaseController
 
     /**
      * 获取目录信息
+     * @return $this
      */
 
     public function getDirectories()
@@ -42,16 +43,20 @@ class ShopMainController extends BaseController
 
     /**
      * 获取商品信息
+     * @param $ware_name
+     * @param $sub_directory_id
+     * @return mixed
      */
-    public function getWares()
+    public function getWares($ware_name, $sub_directory_id)
     {
-        if (self::$sub_directory_id != '' && self::$ware_name!='') {
+        if ($sub_directory_id != '') {
             $wares = Ware::all()
-                ->where('name', 'like', '%' . self::$ware_name . '%')
-                ->where('sub_directory_id', self::$sub_directory_id)
+                ->where('name', 'like', '%' . $ware_name . '%')
+                ->where('sub_directory_id', $sub_directory_id)
                 ->sortBy('sort');
         } else {
             $wares = Ware::all()
+                ->where('name', 'like', '%' . $ware_name . '%')
                 ->sortBy('sort');
         }
         return $wares;
