@@ -28,7 +28,8 @@ class ShopMainController extends BaseController
             ->with('directories', self::$directories)
             ->with('wares', self::$wares)
             ->with('shop_cart_count', self::$shop_cart_count)
-            ->with('openid', parent::$openid);
+            ->with('openid', parent::$openid)
+            ->withTitle('main');
     }
 
     /**
@@ -51,13 +52,12 @@ class ShopMainController extends BaseController
     {
         if ($sub_directory_id != '') {
             $wares = Ware::all()
-                ->where('name', 'like', '%' . $ware_name . '%')
                 ->where('sub_directory_id', $sub_directory_id)
                 ->sortBy('sort');
         } else {
-            $wares = Ware::all()
-                ->where('name', 'like', '%' . $ware_name . '%')
-                ->sortBy('sort');
+            $wares = Ware::where('name', 'like', '%' . $ware_name . '%')
+                ->orderBy('sort')
+                ->get();
         }
         return $wares;
     }

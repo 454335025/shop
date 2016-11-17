@@ -21,7 +21,11 @@ Macaw::get('/shop/shop_car/delete_ware',                'ShopShopCarController@d
 //用户页面
 Macaw::get('/shop/user',                                'ShopUserController@index');
 //我的订单
-Macaw::get('/shop/user/my_order',                       'ShopUserController@toMyOrderUI');
+Macaw::get('/shop/user/user_order',                     'ShopUserController@toUserOrderUI');
+//my_address
+Macaw::get('/shop/user/user_address',                   'ShopUserController@toUserAddressUI');
+//my_address_add
+Macaw::get('/shop/user/user_address_add',               'ShopUserController@toUserAddressAddUI');
 //商品详情页
 Macaw::get('/shop/ware_detail',                         'ShopWareController@index');
 

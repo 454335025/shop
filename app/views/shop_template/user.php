@@ -23,10 +23,6 @@
         <a href="/shop"></a>
     </div>
 </header>
-<!--<script style="zoom: 1.2875;">-->
-<!--    seajs.use('mobile_usercenter/header');-->
-<!--</script>-->
-
 <div id="wrapper" style="zoom: 1.2875; display: block;">
     <!-- 已登录 -->
     <div class="user">
@@ -50,21 +46,13 @@
             </a>
         </div>
         <div class="block-content">
-            <a class="block-item" href="/m/order/list?status=1">
-                <i class="unpaid"></i>
-                <span>待付款</span>
-            </a>
             <a class="block-item" href="/m/order/list?status=2">
                 <i class="unconfirm"></i>
                 <span>待收货</span>
             </a>
-            <a class="block-item" href="/m/order/list?status=3">
-                <i class="uncomment"></i>
-                <span>待评价</span>
-            </a>
             <a class="block-item" href="/m/RMA/list">
                 <i class="refund"></i>
-                <span>退货/退款</span>
+                <span>退货</span>
             </a>
         </div>
     </div>
@@ -86,7 +74,7 @@
             <span>售后服务</span>
             <i class="arrow-right"></i>
         </a>
-        <a class="list-item" href="/m/address/index">
+        <a class="list-item" href="/shop/user/user_address">
             <i class="list-item-icon address"></i>
             <span>收货地址</span>
             <i class="arrow-right"></i>

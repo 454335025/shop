@@ -15,5 +15,10 @@ class User extends Model
         return $this->hasOne('app\models\UserType','id','user_type');
     }
 
+    public function hasManyUserAddress()
+    {
+        return $this->hasMany('app\models\UserAddress','user_id','id');
+    }
+
 
 }

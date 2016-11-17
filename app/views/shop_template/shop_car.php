@@ -47,7 +47,7 @@
                 <?php foreach ($shop_carts as $shop_cart) { ?>
                     <li>
                         <a class="product-img" href="/shop/ware/detail?id=<?php echo $shop_cart->ware_id ?>">
-                            <img src="<?php echo $shop_cart->belongsToWare->img ?>" title="<?php echo $shop_cart->belongsToWare->name ?>">
+                            <img src="<?php echo $shop_cart->belongsToWare->detail_img ?>" title="<?php echo $shop_cart->belongsToWare->name ?>">
                         </a>
                         <div class="clear cart-info">
                             <div class="cart-title clear">

@@ -1,8 +1,8 @@
 <html style="font-size: 20.6px; display: block;">
 <head>
     <meta charset="utf-8">
-    <title>聚美触屏版</title>
-    <meta name="description" content="聚美优品是国内知名正品女性团购网站,也是领先的品牌化妆品团购和护肤品团购网,聚美优品团购化妆品每天有超值的化妆品和护肤品团购信息.">
+    <title><?php echo $title;?></title>
+    <meta name="description" content="聚美优品是国内">
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="apple-touch-fullscreen" content="yes">
@@ -73,42 +73,20 @@
     <div style="height:40px;" id="hearder_nav">
         <div id="nav-outer" style="background: #fff;">
             <div class="headerNav clearfix" id="nav-inner">
-                <p style="width:auto;padding:0px 15px" class="navTitle nt_deal nav_select">
-                    <a href='/'>
-                        <span>今日团购</span>
-                        <span class="header-nav-line"></span>
-                    </a>
-                </p>
-                <p style="width:auto;padding:0px 15px" class="navTitle nt_deal ">
-                    <a href='#'>
-                        <span>1111</span>
-                        <span class="header-nav-line"></span>
-                    </a>
-                </p>
                 <?php foreach ($directories as $directory) { ?>
                     <div style="width:auto;padding:0px 15px" class="navTitle nt_mall ">
                         <a href='javascript:void(0)' onclick="toggle(this)">
                             <span><?php echo $directory->name ?></span>
                         </a>
                         <ul id="mall_sel" class="mall_sel" style="display:none;">
-                            <?php foreach ($directory->hasManySubDirectories as $hasManySubDirectories) { ?>
-                                <a href="http://h5.jumei.com/mall/index?type=category">
-                                    <li><?php echo $hasManySubDirectories->name ?></li>
+                            <?php foreach ($directory->hasManySubDirectories as $hasManySubDirectory) { ?>
+                                <a href="/shop/main?sub_directory_id=<?php echo $hasManySubDirectory->id ?>">
+                                    <li><?php echo $hasManySubDirectory->name ?></li>
                                 </a>
                             <?php } ?>
                         </ul>
                     </div>
                 <?php } ?>
-                <!--                <div style="width:auto;padding:0px 15px" class="navTitle nt_mall ">-->
-                <!--                    <a href='javascript:void(0)' onclick = "toggle(this)">-->
-                <!--                    <span>美妆商城</span>-->
-                <!--                    </a>-->
-                <!--                    <ul id = "mall_sel" class = "mall_sel" style="display:none;">-->
-                <!--                        <a href = "http://h5.jumei.com/mall/index?type=category"><li>按分类浏览</li></a>-->
-                <!--                        <a href = "http://h5.jumei.com/mall/index?type=brand"><li>按品牌浏览</li></a>-->
-                <!--                        <a href = "http://h5.jumei.com/mall/index?type=function"><li>按功效浏览</li></a>-->
-                <!--                    </ul>-->
-                <!--                </div>-->
             </div>
         </div>
     </div>
@@ -133,7 +111,6 @@
             <div class="item-product clearfix">
                 <div class="item_image">
                     <img src="<?php echo $ware->main_img ?>" class="lazy product-img">
-                    <img class="product-icon lazy" src="http://p0.jmstatic.com/banner/area/000/000/029.jpg">
                 </div>
                 <div class="information">
                     <p><?php echo $ware->remark ?></p>
@@ -155,7 +132,6 @@
         </a>
         <?php } ?>
     </div>
-    <div class="loading">加载中...</div>
 </div>
 
 <div id="page_outer" class="">
@@ -174,7 +150,7 @@
     </div>
     <ul class="search_links" style="height: 686px; transform-origin: 0px 0px 0px; opacity: 1;">
         <?php foreach ($directories as $directory) { ?>
-        <li class="search_link" onclick="directory(this);"><?php echo $directory->name ?>
+        <li class="search_link"><?php echo $directory->name ?>
             <span class="arrow"></span>
             <ul class="search_subs">
                 <?php foreach ($directory->hasManySubDirectories as $hasManySubDirectory) { ?>
@@ -184,20 +160,7 @@
         </li>
         <?php } ?>
     </ul>
-<!--    <ul class="history_lists" style="display: none;">-->
-<!--        <div id="clear_history">清空历史记录</div>-->
-<!--    </ul>-->
-<!--    <ul class="recommend_lists" style="display: none;">-->
-<!--        <li class="recommend_list">-->
-<!--            <a href="">-->
-<!--                <img src="{$cssDir}/v3/image/search_btn.png" alt="" class="icon">-->
-<!--                海飞丝-->
-<!--            </a>-->
-<!--            <span class="arrow"></span>-->
-<!--        </li> -->
-<!--    </ul>-->
 </div>
-<input type="hidden" value="" id="h5_host_url">
 <script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/shop/common/jumei.js"></script>
 <link type="text/css" rel="stylesheet" href="<?php echo STATIC_COMMON;?>/css/shop/main/search_list.css" charset="utf-8">
 <script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/shop/main/search_list.js"></script>

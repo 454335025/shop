@@ -32,3 +32,16 @@
 .user-unlogin {
     padding-top: 50px;
 }
+
+.gmu-media-detect {
+    -webkit-transition: width 0.001ms;
+    width: 0;
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+@media screen and (width: 412px) {
+    #gmu-media-detect0 {
+        width: 1px;
+    }
+}
