@@ -108,7 +108,7 @@
             </span>
         </div>
     </div>
-    <a id="touch-cart-confirm" href="/shop/statement" class="touch-cart-confirm fr">去结算</a>
+    <a id="touch-cart-confirm" href="/shop/order/order_add" class="touch-cart-confirm fr">去结算</a>
     <form id="filterPostForm" action="/shop/statement" method="get">
         <input type="hidden" name="selected_item_keys" value="">
     </form>

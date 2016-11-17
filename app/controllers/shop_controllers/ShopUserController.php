@@ -11,12 +11,6 @@ class ShopUserController extends BaseController
             ->withTitle('我的信息');
     }
 
-    public static function toUserOrderUI()
-    {
-        self::$view = View::make('shop_template.user_order')
-            ->withTitle('我的订单');
-    }
-
     public static function toUserAddressUI()
     {
         self::$view = View::make('shop_template.user_address')

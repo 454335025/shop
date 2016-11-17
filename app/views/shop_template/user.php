@@ -40,7 +40,7 @@
         <div class="block-title">
             <i class="block-title-icon myorder"></i>
             我的订单
-            <a href="/m/order/list" class="block-title-nav">
+            <a href="/shop/order/order_my" class="block-title-nav">
                 <span>查看我的全部订单</span>
                 <i class="arrow-right"></i>
             </a>
