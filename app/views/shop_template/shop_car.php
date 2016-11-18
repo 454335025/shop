@@ -37,7 +37,8 @@
     </style>
 </head>
 <body style="width: 20rem;">
-<?php require SHOP_COMMON; ?>
+<?php include_once SHOP_COMMON; ?>
+
 <!--<div id="loadding-img" style="display:; z-index: 10000; position: absolute; width: 100%; height: 100%; background-color: gray;opacity: 0.5;" class="loadding">-->
     <section id="touch-cart-container" class="touch-cart-container">
         <div class="message"></div>

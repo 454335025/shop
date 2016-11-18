@@ -2,10 +2,9 @@
 
 use NoahBuscher\Macaw\Macaw;
 
-Macaw::get('/', 'HomeController@home');
+//Macaw::get('/', 'HomeController@home');
 
 //shop BEGIN
-
 //商城主页
 Macaw::get('/shop',                                     'ShopMainController@index');
 //商城主页
@@ -20,25 +19,31 @@ Macaw::get('/shop/shop_car/update_number',              'ShopShopCarController@u
 Macaw::get('/shop/shop_car/delete_ware',                'ShopShopCarController@deleteWareById');
 //用户页面
 Macaw::get('/shop/user',                                'ShopUserController@index');
-//my_address
-Macaw::get('/shop/user/user_address',                   'ShopUserController@toUserAddressUI');
-//my_address_add
-Macaw::get('/shop/user/user_address_add',               'ShopUserController@toUserAddressAddUI');
+//我的订单
+Macaw::get('/shop/user/my_order',                       'ShopUserController@toMyOrderUI');
 //商品详情页
 Macaw::get('/shop/ware_detail',                         'ShopWareController@index');
 
-//我的订单
-Macaw::get('/shop/order/order_my',                     'ShopOrderController@toOrderMyUI');
-//order add
-Macaw::get('/shop/order/order_add',                     'ShopOrderController@toOrderAddUI');
-Macaw::get('/shop/order/order_my',                     'ShopOrderController@toOrderMyUI');
-
 //shop END
 
-//shop BEGIN
-Macaw::get('/manager',                                  'ManagerLoginController@index');
-Macaw::get('/manager/login',                            'ManagerLoginController@index');
-//shop END
+//manager BEGIN
+Macaw::get('/managers',                                  'ManagerIndexController@index');
+Macaw::post('/manager',                                  'ManagerIndexController@index');
+Macaw::post('/manager/index',                            'ManagerIndexController@index');
+//manager END
+
+
+
+
+
+
+
+
+
+
+
+
+
 //wx BEGIN
 Macaw::get('/wx',                                       'WxIndexController@index');
 Macaw::get('/wx/index',                                 'WxIndexController@index');
