@@ -6,10 +6,10 @@ $(document).ready(function () {
 
 function add_shopping() {
     var ware_id = $("#ware_id").val();
-    $.post("/shop/shop_car/add_shopping", {ware_id: ware_id}, function (data) {
+    $.post("/shop/shop_car/add_ware", {ware_id: ware_id}, function (data) {
         if (data == 1) {
             alert("添加成功");
-            window.location.href = "/shop/ware_detail?ware_id=" + ware_id;
+            window.location.href = "/shop/ware?ware_id=" + ware_id;
         } else {
             alert("添加失败");
         }

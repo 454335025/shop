@@ -1,6 +1,6 @@
 <?php
 
-use app\models\Ware;
+use app\models\S_Ware;
 
 class ShopWareController extends BaseController
 {
@@ -20,7 +20,7 @@ class ShopWareController extends BaseController
         self::getParameter(self::$wares);
         $count = new ShopMainController();
         $count = $count->getShopCarCount();
-        self::$view = View::make('shop_template.ware_detail')
+        self::$view = View::make('shop_template.ware')
             ->with('wares', self::$wares)
             ->with('parameters', self::$parameters)
             ->with('count', $count)
@@ -32,7 +32,7 @@ class ShopWareController extends BaseController
      */
     public function getWareById($ware_id)
     {
-         return Ware::find($ware_id)->first();
+        return S_Ware::find($ware_id);
     }
 
     /**
@@ -40,10 +40,14 @@ class ShopWareController extends BaseController
      */
     public function getParameter($wares)
     {
-        $detail = explode(';', $wares->parameter);
-        foreach ($detail as $key => $val) {
-            $a = explode(':', $val);
-            self::$parameters[$a[0]] = $a[1];
+        if ($wares->parameter != '') {
+            $detail = explode(';', $wares->parameter);
+            foreach ($detail as $key => $val) {
+                $a = explode(':', $val);
+                self::$parameters[$a[0]] = $a[1];
+            }
+        } else {
+            self::$parameters['描述'] = '无产品描述';
         }
     }
 

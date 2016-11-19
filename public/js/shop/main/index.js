@@ -1,11 +1,11 @@
 $(document).ready(function () {
     $(".arrow").on("click", function () {
-       arrow(this);
+        arrow(this);
     });
-    $(".search_links").on("click", function () {
+    $(".search_link").on("click", function () {
         directory(this);
     });
-    $("#search_cancel").on("click",function () {
+    $("#search_cancel").on("click", function () {
         searchByWareName();
     })
 });
@@ -28,9 +28,9 @@ function arrow(obj) {
  */
 function directory(obj) {
     var li_class = $(obj).attr("class");
-    if (li_class =='search_link') {
+    if (li_class == 'search_link') {
         $(obj).attr("class", "search_link select");
-    }else if(li_class =='search_link select'){
+    } else if (li_class == 'search_link select') {
         $(obj).attr("class", "search_link");
     }
 }

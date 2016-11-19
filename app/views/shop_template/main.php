@@ -107,13 +107,13 @@
     <!--list container start-->
     <div class="list_container" style="display: block; transform-origin: 0px 0px 0px; opacity: 1;">
         <?php foreach ($wares as $ware) { ?>
-        <a href="/shop/ware_detail?ware_id=<?php echo $ware->id ?>">
+        <a href="/shop/ware?ware_id=<?php echo $ware->id ?>">
             <div class="item-product clearfix">
                 <div class="item_image">
                     <img src="<?php echo $ware->main_img ?>" class="lazy product-img">
                 </div>
                 <div class="information">
-                    <p><?php echo $ware->remark ?></p>
+                    <p><?php echo $ware->name ?></p>
                 </div>
                 <div class="price_info">
                     <div class="clearfix">
@@ -167,7 +167,7 @@
 
 <script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/shop/main/swipe.js"></script>
 <script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/shop/common/index_main.js"></script>
-<script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/shop/common/guide_download_main.js"></script>
+<!--<script type="text/javascript" src="--><?php //echo STATIC_COMMON;?><!--/js/shop/common/guide_download_main.js"></script>-->
 
 <script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/shop/main/index.js"></script>

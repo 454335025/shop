@@ -40,7 +40,7 @@
         <div class="block-title">
             <i class="block-title-icon myorder"></i>
             我的订单
-            <a href="/shop/order/order_my" class="block-title-nav">
+            <a href="/shop/user/to_order" class="block-title-nav">
                 <span>查看我的全部订单</span>
                 <i class="arrow-right"></i>
             </a>
@@ -74,7 +74,7 @@
             <span>售后服务</span>
             <i class="arrow-right"></i>
         </a>
-        <a class="list-item" href="/shop/user/user_address">
+        <a class="list-item" href="/shop/user/to_address">
             <i class="list-item-icon address"></i>
             <span>收货地址</span>
             <i class="arrow-right"></i>

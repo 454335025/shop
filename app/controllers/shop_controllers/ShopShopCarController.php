@@ -1,6 +1,6 @@
 <?php
 
-use app\models\ShopCarts;
+use app\models\S_ShopCarts;
 
 class ShopShopCarController extends BaseController
 {
@@ -24,7 +24,7 @@ class ShopShopCarController extends BaseController
      */
     public static function getWareByWareId()
     {
-        return ShopCarts::all()->where('user_id', parent::$user->id);
+        return S_ShopCarts::all()->where('user_id', parent::$user->id);
     }
 
     /**
@@ -50,7 +50,7 @@ class ShopShopCarController extends BaseController
         $action = $_REQUEST['action'];
         $num = $_REQUEST['num'];
 
-        $shop_car = ShopCarts::find($id);
+        $shop_car = S_ShopCarts::find($id);
         if ($action == 'add') {
             $shop_car->number = $shop_car->number + $num;
         } else if ($action == 'sub') {
@@ -75,7 +75,7 @@ class ShopShopCarController extends BaseController
     public static function deleteWareById()
     {
         $id = $_REQUEST['id'];
-        $shop_car = ShopCarts::find($id);
+        $shop_car = S_ShopCarts::find($id);
         if ($shop_car->delete()) {
             self::index();
         } else {
@@ -90,10 +90,10 @@ class ShopShopCarController extends BaseController
     public static function addWare()
     {
         $ware_id = $_REQUEST['ware_id'];
-        $shop_car = ShopCarts::where('user_id',parent::$user->id)
+        $shop_car = S_ShopCarts::where('user_id',parent::$user->id)
             ->where('ware_id',$ware_id)
             ->first();
-        $shop_car = $shop_car ? $shop_car : new ShopCarts();
+        $shop_car = $shop_car ? $shop_car : new S_ShopCarts();
         $shop_car->user_id = parent::$user->id;
         $shop_car->ware_id = $ware_id;
         $shop_car->number = $shop_car->number + 1;

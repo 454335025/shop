@@ -34,10 +34,7 @@ abbr, body, fieldset, html, iframe, img {
     border: 0
 }
 
-html {
-    display: none;
-    -webkit-font-smoothing: antialiased
-}
+
 
 address, cite, dfn, em, i, var {
     font-style: normal
@@ -94,11 +91,7 @@ input {
     display: none
 }
 
-body {
-    font-family: Arial, helvetica, "寰蒋闆呴粦", "Microsoft Yahei", sans-serif;
-    margin: 0 auto;
-    width: 20rem
-}
+
 
 div {
     color: inherit

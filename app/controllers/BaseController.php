@@ -1,6 +1,6 @@
 <?php
 
-use app\models\User;
+use app\models\S_User;
 
 class BaseController
 {
@@ -15,7 +15,7 @@ class BaseController
         if (isset($_SESSION['openid'])) {
             self::$openid = $_SESSION['openid'];
             if (self::verify()) {
-                self::$user = User::where('openid', self::$openid)->first();
+                self::$user = S_User::where('openid', self::$openid)->first();
             } else {
                 echo "<script>alert('未检测到账号');</script>";
             }
@@ -59,7 +59,7 @@ class BaseController
     public static function verify()
     {
         if (self::$openid) {
-            $user = User::where('openid', self::$openid)->first();
+            $user = S_User::where('openid', self::$openid)->first();
             if (!empty($user)) {
                 return password_verify(self::$openid, $user->password);
             } else {
@@ -68,7 +68,7 @@ class BaseController
                     PASSWORD_DEFAULT,
                     ['cost' => 12]
                 );
-                $users = new User();
+                $users = new S_User();
                 $users->openid = self::$openid;
                 $users->password = $password_Hash;
                 $users->save();

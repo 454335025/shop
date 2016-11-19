@@ -4,7 +4,7 @@ namespace app\models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserType extends Model
+class S_UserType extends Model
 {
 
     public $timestamps = false;
@@ -13,6 +13,6 @@ class UserType extends Model
 
     public function belongsToManyUser()
     {
-        return parent::belongsToMany('app\models\User','user_type','id');
+        return parent::belongsToMany('app\models\S_User','user_type','id');
     }
 }

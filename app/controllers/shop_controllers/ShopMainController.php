@@ -1,7 +1,7 @@
 <?php
-use app\models\Directories;
-use app\models\Ware;
-use app\models\ShopCarts;
+use app\models\S_Directories;
+use app\models\S_Ware;
+use app\models\S_ShopCarts;
 
 class ShopMainController extends BaseController
 {
@@ -39,7 +39,7 @@ class ShopMainController extends BaseController
 
     public function getDirectories()
     {
-        return Directories::all()->sortBy('sort');
+        return S_Directories::all()->sortBy('sort');
     }
 
     /**
@@ -51,11 +51,11 @@ class ShopMainController extends BaseController
     public function getWares($ware_name, $sub_directory_id)
     {
         if ($sub_directory_id != '') {
-            $wares = Ware::all()
-                ->where('sub_directory_id', $sub_directory_id)
-                ->sortBy('sort');
+            $wares = S_Ware::where('sub_directory_id', $sub_directory_id)
+                ->orderBy('sort')
+                ->get();
         } else {
-            $wares = Ware::where('name', 'like', '%' . $ware_name . '%')
+            $wares = S_Ware::where('name', 'like', '%' . $ware_name . '%')
                 ->orderBy('sort')
                 ->get();
         }
@@ -67,6 +67,6 @@ class ShopMainController extends BaseController
      */
     public function getShopCarCount()
     {
-        return ShopCarts::where('user_id', parent::$user->id)->count();
+        return S_ShopCarts::where('user_id', parent::$user->id)->count();
     }
 }
