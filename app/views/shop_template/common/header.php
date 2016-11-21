@@ -17,9 +17,3 @@
     <a class="touch-header-home" href="/shop">
     </a>
 </header>
-
-<!--<div class="header">-->
-<!--    <div class="head-back"></div>-->
-<!--    <div class="head-title">--><?php //echo $title ?><!--</div>-->
-<!--    <div class="head-home"></div>-->
-<!--</div>-->

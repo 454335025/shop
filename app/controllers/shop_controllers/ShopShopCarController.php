@@ -9,22 +9,11 @@ class ShopShopCarController extends BaseController
 
     public static function index()
     {
-        self::$shop_carts = self::getWareByWareId();
-        self::$cost_count = self::getCostCount(self::$shop_carts);
+        self::$cost_count = self::getCostCount(parent::$user->hasManyShopCarts);
         parent::$view = View::make('shop_template.shop_car')
-            ->with('shop_carts', self::$shop_carts)
             ->with('cost_count', self::$cost_count)
             ->with('user', parent::$user)
             ->withTitle('购物车');
-    }
-
-    /**
-     * @return static
-     * 获取商品信息根据 商品id(ware_id)
-     */
-    public static function getWareByWareId()
-    {
-        return S_ShopCarts::all()->where('user_id', parent::$user->id);
     }
 
     /**

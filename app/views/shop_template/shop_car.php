@@ -45,25 +45,25 @@
         <!--购物车列表-->
         <section id="cart-deals-list" class="cart-deals-list">
             <ul>
-                <?php foreach ($shop_carts as $shop_cart) { ?>
+                <?php foreach ($user->hasManyShopCarts as $hasManyShopCart) { ?>
                     <li>
-                        <a class="product-img" href="/shop/ware/detail?id=<?php echo $shop_cart->ware_id ?>">
-                            <img src="<?php echo $shop_cart->belongsToWare->detail_img ?>" title="<?php echo $shop_cart->belongsToWare->name ?>">
+                        <a class="product-img" href="/shop/ware/detail?id=<?php echo $hasManyShopCart->ware_id ?>">
+                            <img src="<?php echo $hasManyShopCart->belongsToWare->detail_img ?>" title="<?php echo $hasManyShopCart->belongsToWare->name ?>">
                         </a>
                         <div class="clear cart-info">
                             <div class="cart-title clear">
                                 <div class="info-left fl">
                                     <div class="main-title new-cart-title">
-                                        <?php if (strlen($shop_cart->belongsToWare->name) > 8) {
-                                            echo substr($shop_cart->belongsToWare->name, 0, 8);
+                                        <?php if (strlen($hasManyShopCart->belongsToWare->name) > 8) {
+                                            echo substr($hasManyShopCart->belongsToWare->name, 0, 8);
                                         } else {
-                                            echo $shop_cart->belongsToWare->name;
+                                            echo $hasManyShopCart->belongsToWare->name;
                                         } ?>
                                     </div>
                                     <div class="sub-title new-cart-title"></div>
                                 </div>
                                 <div class="fr price-list">
-                                    <div class="sale-price">￥<?php echo $shop_cart->belongsToWare->money ?></div>
+                                    <div class="sale-price">￥<?php echo $hasManyShopCart->belongsToWare->money ?></div>
                                 </div>
                             </div>
 
@@ -72,23 +72,23 @@
                                     <input type="hidden" name="type" class="type" value="jumei_mall">
                                     <input type="hidden" name="item_key" class="item-key" value="1071454_">
 
-                                    <?php if ($shop_cart->number > 1) { ?>
+                                    <?php if ($hasManyShopCart->number > 1) { ?>
                                         <a class="btn-sub  btn-sub-select  fl"
-                                           href="/shop/shop_car/update_number?openid=<?php echo $user->openid ?>&id=<?php echo $shop_cart->id ?>&action=sub&num=1"></a>
+                                           href="/shop/shop_car/update_number?openid=<?php echo $user->openid ?>&id=<?php echo $hasManyShopCart->id ?>&action=sub&num=1"></a>
                                     <?php } else { ?>
                                         <a class="btn-sub  fl"></a>
                                     <?php } ?>
-                                    <input type="text" name="item-quantity" value="<?php echo $shop_cart->number ?>"
+                                    <input type="text" name="item-quantity" value="<?php echo $hasManyShopCart->number ?>"
                                            class="show-count quantity fl"
                                            readonly="readonly"
-                                           data-price="<?php echo $shop_cart->belongsToWare->money ?>"
+                                           data-price="<?php echo $hasManyShopCart->belongsToWare->money ?>"
                                            data-restriction="0">
                                     <a class="btn-add btn-add-select fl"
-                                       href="/shop/shop_car/update_number?openid=<?php echo $user->openid ?>&id=<?php echo $shop_cart->id ?>&action=add&num=1"></a>
+                                       href="/shop/shop_car/update_number?openid=<?php echo $user->openid ?>&id=<?php echo $hasManyShopCart->id ?>&action=add&num=1"></a>
                                 </div>
                                 <div class="opt fr">
                                     <a class="cart-del"
-                                       href="javascript:del_ware('<?php echo $user->openid ?>','<?php echo $shop_cart->id ?>');"></a>
+                                       href="javascript:del_ware('<?php echo $user->openid ?>','<?php echo $hasManyShopCart->id ?>');"></a>
                                 </div>
                             </div>
                         </div>
