@@ -15,9 +15,14 @@ class S_User extends Model
         return $this->hasOne('app\models\S_UserType','id','user_type');
     }
 
-    public function hasManyUserAddress()
+    public function hasManyUserAddresses()
     {
         return $this->hasMany('app\models\S_UserAddress','user_id','id');
+    }
+
+    public function hasManyShopCarts()
+    {
+        return $this->hasMany('app\models\S_ShopCarts','user_id','id');
     }
 
 

@@ -23,7 +23,7 @@ class ShopUserController extends BaseController
     {
         self::$user_addresses = self::getUserAddressById();
         self::$view = View::make('shop_template.user_address')
-            ->with('user_addresses', self::$user_addresses)
+            ->with('user', parent::$user)
             ->withTitle('我的地址');
     }
 

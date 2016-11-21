@@ -33,18 +33,18 @@
 
 <div id="wrapper" style="zoom: 1.2875; display: block;">
     <div class="addresses">
-        <?php foreach ($user_addresses as $user_address ) { ?>
+        <?php foreach ($user->hasManyUserAddresses->sortByDesc('isdefault') as $hasManyUserAddress ) { ?>
             <div class="address-item clearfix">
                 <div>
-                    <span class="name"><?php echo $user_address->realname;?></span>
-                    <span class="tel"><?php echo $user_address->phone;?></span>
+                    <span class="name"><?php echo $hasManyUserAddress->realname;?></span>
+                    <span class="tel"><?php echo $hasManyUserAddress->phone;?></span>
                 </div>
-                <div class="address ellipsis"><?php echo $user_address->address;?></div>
+                <div class="address ellipsis"><?php echo $hasManyUserAddress->address;?></div>
                 <div class="idcard">
-                    <span>身份证 <?php echo $user_address->bio;?></span>
+                    <span>身份证 <?php echo $hasManyUserAddress->bio;?></span>
                     <i class="nameauth"></i>
                 </div>
-                <div class="btn-delete" onclick="javascript:deleteUserAddress(<?php echo $user_address->id;?>)"></div>
+                <div class="btn-delete" onclick="javascript:deleteUserAddress(<?php echo $hasManyUserAddress->id;?>)"></div>
             </div>
         <?php } ?>
     </div>

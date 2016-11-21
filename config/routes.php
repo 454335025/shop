@@ -54,9 +54,9 @@ Macaw::post('/shop/user/delete_address',                    'ShopUserController@
 
 //shop/order BEGIN
 //跳转订单页面
-Macaw::get('/shop/order',                                   'ShopUserController@index');
+Macaw::get('/shop/order',                                   'ShopOrderController@toOrderUI');
 //跳转订单地址更换页面
-Macaw::get('/shop/order/to_address_update',                 'ShopUserController@toAddressUpdateUI');
+Macaw::get('/shop/order/to_address_update',                 'ShopOrderController@toAddressUpdateUI');
 //shop/order EDN
 
 //shop END
