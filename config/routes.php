@@ -48,6 +48,8 @@ Macaw::get('/shop/user/to_address',                         'ShopUserController@
 Macaw::get('/shop/user/to_address_add',                     'ShopUserController@toAddressAddUI');
 //添加地址
 Macaw::post('/shop/user/add_address',                       'ShopUserController@addAddress');
+//update address isdefault
+Macaw::post('/shop/user/update_address',                    'ShopUserController@updateAddress');
 //删除地址
 Macaw::post('/shop/user/delete_address',                    'ShopUserController@deleteAddress');
 //shop/user EDN

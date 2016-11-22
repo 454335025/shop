@@ -3,18 +3,16 @@
 
 class ShopOrderController extends BaseController
 {
-    private static $ShopShopCar;
 
     public function __construct()
     {
         parent::__construct();
-        self::$ShopShopCar = new ShopShopCarController();
 
     }
 
     public static function index()
     {
-        $cost_count = self::$ShopShopCar->getCostCount(parent::$user->hasManyShopCarts);
+        $cost_count = (new ShopShopCarController())->getCostCount(parent::$user->hasManyShopCarts);
         self::$view = View::make('shop_template.order')
             ->with('user',parent::$user)
             ->with('cost_count',$cost_count)
@@ -23,7 +21,9 @@ class ShopOrderController extends BaseController
 
     public static function toAddressUpdateUI()
     {
+
         self::$view = View::make('shop_template.order_address_update')
-            ->withTitle('update_address');exit;
+            ->with('user',parent::$user)
+            ->withTitle('update_address');
     }
 }

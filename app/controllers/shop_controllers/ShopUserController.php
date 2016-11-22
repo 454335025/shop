@@ -56,6 +56,18 @@ class ShopUserController extends BaseController
         exit;
     }
 
+    public static function updateAddress()
+    {
+        $id = $_REQUEST['id'];
+        S_UserAddress::where('user_id',parent::$user->id)->update(['isdefault'=>0]);
+        $user_address = S_UserAddress::find($id);
+        $user_address->isdefault = 1;
+        if ($user_address->save()) {
+            echo 1;
+        }
+        exit;
+    }
+
     public static function deleteAddress()
     {
         $id = $_REQUEST['id'];

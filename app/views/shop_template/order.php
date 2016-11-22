@@ -26,7 +26,7 @@
 <?php include_once SHOP_COMMON; ?>
 <div class="page">
     <div class="content">
-        <?php foreach ($user->hasManyUserAddresses->sortByDesc('isdefalut')->take(1) as $hasManyUserAddress){?>
+        <?php foreach ($user->hasManyUserAddresses->sortByDesc('isdefault')->take(1) as $hasManyUserAddress){?>
             <div class="address-box">
                 <span class="location-icon"></span>
                 <div class="addr-text">
@@ -36,7 +36,7 @@
                     </div>
                     <div class="address-detail"><?php echo $hasManyUserAddress->address?></div>
                 </div>
-                <span class="right-arrow"></span>
+                <span class="right-arrow" onclick="javascript:window.location.href='/shop/order/to_address_update'"></span>
             </div>
         <?php } ?>
 

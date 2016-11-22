@@ -19,27 +19,33 @@
     </script>
     <link rel="stylesheet" href="/css/shop/common/common.css" style="zoom: 1.2875;">
     <link rel="stylesheet" href="//p2.jmstatic.com/static/static_cart_mobile/css/address/list_99d88a82.css">
+    <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/js/shop/order/index.js"></script>
 </head>
 <body>
-
-11111111
 <?php include_once SHOP_COMMON; ?>
 <div class="items">
+    <?php foreach ($user->hasManyUserAddresses->sortByDesc('isdefault') as $hasManyUserAddress){?>
     <div class="item-outer">
         <div class="item">
             <div class="left">
-                <span class="icon-checked"></span>
+                <?php if($hasManyUserAddress->isdefault == 1){?><span class="icon-checked" id="<?php echo $hasManyUserAddress->id?>"></span>
+                <?php }else{?>
+                <span class="icon-unchecked" id="<?php echo $hasManyUserAddress->id?>"></span>
+                <?php }?>
             </div>
             <div class="info">
                 <div class="name-and-phone">
-                    <div class="name">*人</div>
-                    <div class="phone">183****4184</div>
-                </div> <div class="address">北京市-市辖区-东城区 测试123</div>
-            </div> <div class="right">
-                <span class="icon-edit"></span>
+                    <div class="name"><?php echo $hasManyUserAddress->realname?></div>
+                    <div class="phone"><?php echo $hasManyUserAddress->phone?></div>
+                </div> <div class="address"><?php echo $hasManyUserAddress->address?></div>
             </div>
+<!--            <div class="right">-->
+<!--                <span class="icon-edit"></span>-->
+<!--            </div>-->
         </div>
     </div>
+    <?php }?>
 </div>
 <!--<div class="tips">最多保存10个有效地址。每月只能新增或修改10次。您本月已新增或修改0次</div>-->
 <footer>
