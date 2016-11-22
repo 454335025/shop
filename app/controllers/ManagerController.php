@@ -1,6 +1,6 @@
 <?php
 
-use app\models\M_User;
+use app\models\M_Users;
 
 class ManagerController
 {
@@ -11,7 +11,7 @@ class ManagerController
     public function __construct()
     {
         if (isset($_SESSION['username']) && $_SESSION['username'] != '') {
-            self::$user = M_User::where('username',$_SESSION['username'])->first();
+            self::$user = M_Users::where('username',$_SESSION['username'])->first();
         } else {
             self::$view = View::make('manager_template.login');exit;
         }

@@ -1,6 +1,6 @@
 <?php
 
-use app\models\M_User;
+use app\models\M_Users;
 
 class ManagerLoginController
 {
@@ -26,7 +26,7 @@ class ManagerLoginController
 
     protected static function getUserByUsernameAndPassword()
     {
-        return M_User::where('username', self::$username)
+        return M_Users::where('username', self::$username)
             ->first();
     }
 
