@@ -15,7 +15,7 @@
     <meta name="x5-orientation" content="portrait">
     <title><?php echo $title ?></title>
 
-    <link href="<?php echo STATIC_COMMON; ?>/css/shop/shop_car/common.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo STATIC_COMMON; ?>/css/shop/common/common.css" rel="stylesheet" type="text/css">
     <link href="<?php echo STATIC_COMMON; ?>/css/shop/shop_car/guide_download.css" rel="stylesheet" type="text/css">
     <link href="<?php echo STATIC_COMMON; ?>/css/shop/common/ui.css" rel="stylesheet" type="text/css">
     <link href="<?php echo STATIC_COMMON; ?>/css/shop/shop_car/index.css" rel="stylesheet" type="text/css">

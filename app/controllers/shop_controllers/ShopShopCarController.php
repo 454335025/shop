@@ -30,6 +30,19 @@ class ShopShopCarController extends BaseController
     }
 
     /**
+     * 获取购物车总花费
+     */
+
+    public static function getIntegralCount($shop_carts)
+    {
+        $integral = 0;
+        foreach ($shop_carts as $shop_cart) {
+            $integral = $integral + ($shop_cart->belongsToWare->integral * $shop_cart->number);
+        }
+        return $integral;
+    }
+
+    /**
      * 修改购物车商品数量根据ID
      */
 
