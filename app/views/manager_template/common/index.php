@@ -13,7 +13,7 @@
 </head>
 <body>
 <!-- Start Page Loading -->
-<div class="loading"><img src="/images/manager/loading.gif" alt="loading-img"></div>
+<div class="loading"><img src="/img/loading.gif" alt="loading-img"></div>
 <!-- End Page Loading -->
 
 <?php include_once BASE_PATH.'/app/views/manager_template/common/top.php'; ?>

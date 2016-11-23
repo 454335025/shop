@@ -215,7 +215,7 @@
             <!-- Start Profile Widget -->
             <div class="col-md-12 col-lg-3">
                 <div class="widget profile-widget" style="height:380px;">
-                    <img src="/images/manager/profileimg.png" class="profile-image" alt="img">
+                    <img src="/img/profileimg.png" class="profile-image" alt="img">
                     <h1>Jonathan Doe</h1>
                     <p><i class="fa fa-map-marker"></i> London</p>
                     <a href="#" class="btn btn-sm">Follow</a>
@@ -426,7 +426,7 @@
 
                             <li>
                                 <a href="#" class="item clearfix">
-                                    <img src="/images/manager/profileimg.png" alt="img" class="img">
+                                    <img src="/img/profileimg.png" alt="img" class="img">
                                     <span class="from">Jonathan Doe</span>
                                     Hello, m8 how is goin ?
                                     <span class="date">22 May</span>
@@ -435,7 +435,7 @@
 
                             <li>
                                 <a href="#" class="item clearfix">
-                                    <img src="/images/manager/profileimg2.png" alt="img" class="img">
+                                    <img src="/img/profileimg2.png" alt="img" class="img">
                                     <span class="from">Egemem Ka</span>
                                     Problems look mighty small...
                                     <span class="date">22 May</span>
@@ -444,7 +444,7 @@
 
                             <li>
                                 <a href="#" class="item clearfix">
-                                    <img src="/images/manager/profileimg3.png" alt="img" class="img">
+                                    <img src="/img/profileimg3.png" alt="img" class="img">
                                     <span class="from">James Throwing</span>
                                     New job offer ?
                                     <span class="date">22 May</span>
@@ -453,7 +453,7 @@
 
                             <li>
                                 <a href="#" class="item clearfix">
-                                    <img src="/images/manager/profileimg4.png" alt="img" class="img">
+                                    <img src="/img/profileimg4.png" alt="img" class="img">
                                     <span class="from">Timmy Jefsin</span>
                                     Tonight Party
                                     <span class="date">22 May</span>
@@ -553,13 +553,13 @@
                     <div class="panel-body">
 
                         <div class="image-div color10-bg">
-                            <img src="/images/manager/example1.jpg" class="image" alt="img">
+                            <img src="/img/example1.jpg" class="image" alt="img">
                             <h1 class="title"><a href="#">Across the sea of space, the stars are other suns.</a></h1>
                         </div>
                         <p class="text">There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally...</p>
                         <a href="#">Read More</a>
                         <p class="author">
-                            <img src="/images/manager/profileimg.png" alt="img">
+                            <img src="/img/profileimg.png" alt="img">
                             <span>Jonathan Doe</span>
                             Designer
                         </p>
@@ -579,11 +579,11 @@
                     </div>
                     <div class="panel-body">
                         <ul class="basic-list image-list">
-                            <li><img src="/images/manager/profileimg.png" alt="img" class="img"><b>Jonathan Doe</b><span class="desc">Designer</span></li>
-                            <li><img src="/images/manager/profileimg2.png" alt="img" class="img"><b>Egemem Ka</b><span class="desc">Front-End Developer</span></li>
-                            <li><img src="/images/manager/profileimg3.png" alt="img" class="img"><b>Timmy Jefsin</b><span class="desc">Back-End Developer</span></li>
-                            <li><img src="/images/manager/profileimg4.png" alt="img" class="img"><b>James K. Throwing</b><span class="desc">Marketing</span></li>
-                            <li><img src="/images/manager/profileimg5.png" alt="img" class="img"><b>John Doe</b><span class="desc">iOS Developer</span></li>
+                            <li><img src="/img/profileimg.png" alt="img" class="img"><b>Jonathan Doe</b><span class="desc">Designer</span></li>
+                            <li><img src="/img/profileimg2.png" alt="img" class="img"><b>Egemem Ka</b><span class="desc">Front-End Developer</span></li>
+                            <li><img src="/img/profileimg3.png" alt="img" class="img"><b>Timmy Jefsin</b><span class="desc">Back-End Developer</span></li>
+                            <li><img src="/img/profileimg4.png" alt="img" class="img"><b>James K. Throwing</b><span class="desc">Marketing</span></li>
+                            <li><img src="/img/profileimg5.png" alt="img" class="img"><b>John Doe</b><span class="desc">iOS Developer</span></li>
                         </ul>
                     </div>
                 </div>

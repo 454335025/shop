@@ -12,6 +12,7 @@ class ManagerController
     {
         if (isset($_SESSION['username']) && $_SESSION['username'] != '') {
             self::$user = M_Users::where('username',$_SESSION['username'])->first();
+            $_SESSION['user'] = self::$user;
         } else {
             self::$view = View::make('manager_template.login');exit;
         }

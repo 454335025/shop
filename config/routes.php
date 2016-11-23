@@ -81,6 +81,11 @@ Macaw::post('/managers/login',                              'ManagerLoginControl
 Macaw::post('/managers/login/loginout',                     'ManagerLoginController@loginout');
 //managers/login END
 
+//managers/user BEGIN
+//管理平台用户列表
+Macaw::get('/managers/user',                                'ManagerUserController@index');
+//managers/user END
+
 //manager END
 
 

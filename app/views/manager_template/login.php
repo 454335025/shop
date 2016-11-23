@@ -9,7 +9,7 @@
     <title>Kode</title>
 
     <?php include_once BASE_PATH.'/app/views/manager_template/common/head.php'; ?>
-    <script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/manager/js/login.js"></script>
+    <script type="text/javascript" src="<?php echo STATIC_COMMON;?>/js/manager/login.js"></script>
     <style type="text/css">
         body{background: #F5F5F5;}
     </style>
@@ -19,7 +19,7 @@
 <div class="login-form">
     <form>
         <div class="top">
-            <img src="<?php echo STATIC_COMMON; ?>/images/manager/kode-icon.png" alt="icon" class="icon">
+            <img src="<?php echo STATIC_COMMON; ?>/img/kode-icon.png" alt="icon" class="icon">
             <h1>后台管理</h1>
             <h4>登录</h4>
         </div>

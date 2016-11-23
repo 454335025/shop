@@ -3,14 +3,14 @@
 <div class="sidebar clearfix">
     <ul class="sidebar-panel nav">
         <li class="sidetitle">MAIN</li>
-        <?php foreach (M_RelationMenus::all()->where('user_id',$user->id)->groupBy('menu_id') as $menu){?>
+        <?php foreach (M_RelationMenus::where('user_id',$_SESSION['user']->id)->groupBy('menu_id')->get() as $menu){?>
         <li>
             <a href="#"><span class="icon color7"><i class="fa fa-flask"></i></span><?php echo $menu->belongsToMenu->name?><span class="caret"></span></a>
             <ul>
-                <?php foreach (M_RelationMenus::all()->where('user_id',$user->id)->where('menu_id',$menu->belongsToMenu->menu_id) as $submenu){?>
+                <?php foreach (M_RelationMenus::where('user_id',$_SESSION['user']->id)->where('menu_id',$menu->menu_id)->get() as $submenu){?>
                 <li><a href="<?php echo $submenu->belongsToSubMenu->url?>"><?php echo $submenu->belongsToSubMenu->name?></a></li>
                 <?php }?>
-                <li><a href="others.html">Others<span class="label label-danger">NEW</span></a></li>
+<!--                <li><a href="others.html">Others<span class="label label-danger">NEW</span></a></li>-->
             </ul>
         </li>
         <?php }?>

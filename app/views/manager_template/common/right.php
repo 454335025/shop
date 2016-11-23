@@ -123,16 +123,16 @@
 
             <div class="gn-title">ONLINE MEMBERS (3)</div>
             <ul class="group">
-                <li class="member"><a href="#"><img src="/images/manager/profileimg.png" alt="img"><b>Allice Mingham</b>Los Angeles</a><span class="status online"></span></li>
-                <li class="member"><a href="#"><img src="/images/manager/profileimg2.png" alt="img"><b>James Throwing</b>Las Vegas</a><span class="status busy"></span></li>
-                <li class="member"><a href="#"><img src="/images/manager/profileimg3.png" alt="img"><b>Fred Stonefield</b>New York</a><span class="status away"></span></li>
-                <li class="member"><a href="#"><img src="/images/manager/profileimg4.png" alt="img"><b>Chris M. Johnson</b>California</a><span class="status online"></span></li>
+                <li class="member"><a href="#"><img src="/img/profileimg.png" alt="img"><b>Allice Mingham</b>Los Angeles</a><span class="status online"></span></li>
+                <li class="member"><a href="#"><img src="/img/profileimg2.png" alt="img"><b>James Throwing</b>Las Vegas</a><span class="status busy"></span></li>
+                <li class="member"><a href="#"><img src="/img/profileimg3.png" alt="img"><b>Fred Stonefield</b>New York</a><span class="status away"></span></li>
+                <li class="member"><a href="#"><img src="/img/profileimg4.png" alt="img"><b>Chris M. Johnson</b>California</a><span class="status online"></span></li>
             </ul>
 
             <div class="gn-title">OFFLINE MEMBERS (8)</div>
             <ul class="group">
-                <li class="member"><a href="#"><img src="/images/manager/profileimg5.png" alt="img"><b>Allice Mingham</b>Los Angeles</a><span class="status offline"></span></li>
-                <li class="member"><a href="#"><img src="/images/manager/profileimg6.png" alt="img"><b>James Throwing</b>Las Vegas</a><span class="status offline"></span></li>
+                <li class="member"><a href="#"><img src="/img/profileimg5.png" alt="img"><b>Allice Mingham</b>Los Angeles</a><span class="status offline"></span></li>
+                <li class="member"><a href="#"><img src="/img/profileimg6.png" alt="img"><b>James Throwing</b>Las Vegas</a><span class="status offline"></span></li>
             </ul>
 
             <form class="search">

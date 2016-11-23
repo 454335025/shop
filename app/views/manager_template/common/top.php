@@ -3,7 +3,7 @@
 
     <!-- Start App Logo -->
     <div class="applogo">
-        <a href="index.html" class="logo">kode</a>
+        <a href="/managers" class="logo">kode</a>
     </div>
     <!-- End App Logo -->
 
@@ -57,7 +57,7 @@
 
         <li class="dropdown link">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle profilebox">
-                <img src="/images/manager/profileimg.png" alt="img">
+                <img src="/img/profileimg.png" alt="img">
                 <b><?php echo $_SESSION['username']; ?></b>
                 <span class="caret"></span>
             </a>
