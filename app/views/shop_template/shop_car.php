@@ -63,7 +63,13 @@
                                     <div class="sub-title new-cart-title"></div>
                                 </div>
                                 <div class="fr price-list">
-                                    <div class="sale-price">￥<?php echo $hasManyShopCart->belongsToWare->money ?></div>
+                                    <div class="sale-price">￥
+                                        <?php if($hasManyShopCart->belongsToWare->is_discount == 1){
+                                            echo $hasManyShopCart->belongsToWare->money . 'x' . $user->hasOneUserType->discount;
+                                        }else{
+                                            echo $hasManyShopCart->belongsToWare->money ;
+                                        }?>
+                                    </div>
                                 </div>
                             </div>
 

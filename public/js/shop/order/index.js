@@ -7,6 +7,10 @@ $(document).ready(function () {
     });
     $(".item-outer").on("click", function () {
         updateAddress($(this));
+    });
+    $("#is_use").on("click", function () {
+        useIntegral($(this));
+
     })
 });
 
@@ -26,4 +30,13 @@ function updateAddress(obj) {
     } else {
         window.location.href = "/shop/order";
     }
+}
+
+function useIntegral(obj) {
+    var is_checked = obj.is(':checked');
+    $.get("/shop/order/use_Integral", {is_use: is_checked}, function (data) {
+        $("#cost_count").html(data);
+        $("#cost_count1").html(data);
+    });
+
 }

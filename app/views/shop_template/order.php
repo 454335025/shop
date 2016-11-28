@@ -59,7 +59,12 @@
                                             <?php echo $hasManyShopCart->belongsToWare->name ?>
                                         </span>
                                     <span
-                                        class="item-price">¥<?php echo $hasManyShopCart->belongsToWare->money ?></span>
+                                        class="item-price" style="width: ;">¥
+                                        <?php if($hasManyShopCart->belongsToWare->is_discount == 1){
+                                            echo $hasManyShopCart->belongsToWare->money . 'x' . $user->hasOneUserType->discount;
+                                        }else{
+                                            echo $hasManyShopCart->belongsToWare->money ;
+                                        }?></span>
                                 </div>
                                 <div class="item-info-2">
                                     <span>&nbsp;</span>
@@ -79,11 +84,11 @@
                     <!--                    </div>-->
                     <div class="stat-nav">
                         <div class="nav-center">
-                            <span>integral</span>
+                            <span>我的积分</span>
                             <?php if ($user->integral <= 0) { ?>
                                 <span class="no-select-tag">暂无可用</span>
                             <?php } else { ?>
-                                <span class="no-select-tag"><?php echo $surplus_integral ?>integral</span>
+                                <span class="no-select-tag"><?php echo $surplus_integral ?>积分</span>
                             <?php } ?>
                         </div>
                         <div>
@@ -93,18 +98,18 @@
                                        <?php if($surplus_integral < $user->hasOneUserType->min_integral){ ?>
                                            disabled="disabled"
                                        <?php }?>
-                                       value="123" name="theRadio" id="111">
-                                使用现金券
+                                       id="is_use" name="is_use">
+                                使用
                             </span>
                         </div>
                     </div>
                     <div class="stat-nav">
-                        <div class="nav-center">getintegral</div>
-                        <div class="notice-num"><?php echo $get_integral_count ?> integral</div>
+                        <div class="nav-center">赠送积分</div>
+                        <div class="notice-num"><?php echo $get_integral_count ?> 积分</div>
                     </div>
                     <div class="stat-nav">
                         <div class="nav-center">合计</div>
-                        <div class="notice-num">¥<?php echo $cost_count ?></div>
+                        <div class="notice-num">¥<label id="cost_count"><?php echo $cost_count ?></label></div>
                     </div>
                 </div>
             </div>
@@ -113,7 +118,7 @@
     <div class="submit-box">
         <div class="order-stat">
             <div class="stat-count">共 <?php echo $user->hasManyShopCarts->sum('number') ?> 件商品</div>
-            <div class="stat-sum">合计 <span>¥<?php echo $cost_count ?></span></div>
+            <div class="stat-sum">合计 <span>¥<label id="cost_count1"><?php echo $cost_count ?></label></span></div>
         </div>
         <button type="button">提交订单</button>
     </div>

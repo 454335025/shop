@@ -4,7 +4,7 @@ body, button, input, keygen, legend, select, textarea {
 }
 
 input, select {
-    -webkit-appearance: none
+    /*-webkit-appearance: none*/
 }
 
 .tal, caption, th {

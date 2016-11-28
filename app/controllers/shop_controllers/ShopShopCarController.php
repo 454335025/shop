@@ -20,11 +20,21 @@ class ShopShopCarController extends BaseController
      * 获取购物车总花费
      */
 
-    public static function getCostCount($shop_carts)
+    public static function getCostCount($shop_carts, $use_integral = false)
     {
         $cost = 0;
+        $discount = parent::$user->hasOneUserType->discount;
         foreach ($shop_carts as $shop_cart) {
-            $cost = $cost + ($shop_cart->belongsToWare->money * $shop_cart->number);
+            if ($shop_cart->belongsToWare->is_discount == 1) {
+                $money = $shop_cart->belongsToWare->money * $discount;
+            } else {
+                $money = $shop_cart->belongsToWare->money;
+            }
+            $cost = $cost + ($money * $shop_cart->number);
+        }
+
+        if ($use_integral) {
+            $cost = $cost - (int)(parent::$user->integral / parent::$user->hasOneUserType->min_integral) * parent::$user->hasOneUserType->exchange;
         }
         return $cost;
     }
@@ -92,8 +102,8 @@ class ShopShopCarController extends BaseController
     public static function addWare()
     {
         $ware_id = $_REQUEST['ware_id'];
-        $shop_car = S_ShopCarts::where('user_id',parent::$user->id)
-            ->where('ware_id',$ware_id)
+        $shop_car = S_ShopCarts::where('user_id', parent::$user->id)
+            ->where('ware_id', $ware_id)
             ->first();
         $shop_car = $shop_car ? $shop_car : new S_ShopCarts();
         $shop_car->user_id = parent::$user->id;
