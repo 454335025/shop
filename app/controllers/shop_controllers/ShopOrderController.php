@@ -1,5 +1,8 @@
 <?php
 
+use app\models\S_OrderDetails;
+use app\models\S_Orders;
+use app\models\S_ShopCarts;
 
 class ShopOrderController extends BaseController
 {
@@ -54,7 +57,7 @@ class ShopOrderController extends BaseController
 
     public static function getCostCount($is_use = false)
     {
-        return (new ShopShopCarController())->getCostCount(self::$shop_cars, $is_use);
+        return (new ShopShopCarController())->getActualCostCount($is_use);
 
     }
 
@@ -63,7 +66,7 @@ class ShopOrderController extends BaseController
      */
     public static function getIntegralCount()
     {
-        return (new ShopShopCarController())->getIntegralCount(self::$shop_cars);
+        return (new ShopShopCarController())->getGetIntegralCount();
     }
 
     /**
@@ -106,10 +109,52 @@ class ShopOrderController extends BaseController
 
     public static function addOrder()
     {
-        $order_id = 'O_' . date('%Y%m%d%H%i%s', time()) . rand(000000,999999);
+        $order_id = date('YmdHis', time()) . rand(100000, 999999);
+        $order_detail = new S_OrderDetails();
+        $order = new S_Orders();
+        $is_use = $_REQUEST['is_use'];
+        $i = 0;
+        foreach (self::$shop_cars as $shop_car) {
+            $order_detail->order_id = $order_id;
+            $order_detail->ware_id = $shop_car->belongsToWare->id;
+            $order_detail->money = $shop_car->belongsToWare->money;
+            $order_detail->actual_money = $shop_car->belongsToWare->money * parent::$user->discount;
+            $order_detail->number = $shop_car->number;
+            $order_detail->is_discount = $shop_car->belongsToWare->is_discount;
+            $order_detail->discount = parent::$user->discount;
+            $order_detail->is_integral = $shop_car->belongsToWare->is_integral;
+            $order_detail->cost_integral = $shop_car->belongsToWare->cost_integral;
+            $order_detail->get_integral = $shop_car->belongsToWare->integral;
+            if (!$order_detail->save()) {
+                $i++;
+            }
 
-        $cost_count =
-        $integral_count =
+        }
+
+        $order->order_id = $order_id;
+        $order->user_id = parent::$user->id;
+        $order->get_integral = self::getIntegralCount();
+        $order->user_address_id = self::getIntegralCount();
+        $order->money = (new ShopShopCarController())->getCostCount();
+        $order->actual_money = self::getCostCount($is_use);
+        $order->discount = parent::$user->discount;
+        $order->discount_money = (new ShopShopCarController())->getCostCount() - self::getCostCount();
+        $order->is_use_integral = $is_use ? 1 : 0;
+        $order->cost_integral = ((int)self::isMyInegral() / parent::$user->hasOneUserType->min_integral)
+            * parent::$user->hasOneUserType->min_integral;
+        $order->integral_money = (int)((new ShopOrderController())->isMyInegral()
+                / parent::$user->hasOneUserType->min_integral) * parent::$user->hasOneUserType->exchange;
+        if ($i == 0 && $order->save()) {
+            $shop_car_list = 1;
+//            $shop_car_list = S_ShopCarts::where('user_id',parent::$user->id)->get();
+            if($shop_car_list->delete()){
+                echo 1;exit;
+            }
+
+        }else{
+            $order_id;
+        }
+
 
     }
 }

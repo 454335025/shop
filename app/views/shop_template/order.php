@@ -59,12 +59,18 @@
                                             <?php echo $hasManyShopCart->belongsToWare->name ?>
                                         </span>
                                     <span
-                                        class="item-price" style="width: ;">¥
-                                        <?php if($hasManyShopCart->belongsToWare->is_discount == 1){
-                                            echo $hasManyShopCart->belongsToWare->money . 'x' . $user->hasOneUserType->discount;
-                                        }else{
-                                            echo $hasManyShopCart->belongsToWare->money ;
-                                        }?></span>
+                                        class="item-price" style="width: ;">
+
+                                        <?php if ($hasManyShopCart->belongsToWare->is_integral == 1) {
+                                            echo $hasManyShopCart->belongsToWare->cost_integral . '积分';
+
+                                        } else {
+                                            if ($hasManyShopCart->belongsToWare->is_discount == 1) {
+                                                echo '¥' . $hasManyShopCart->belongsToWare->money . 'x' . $user->hasOneUserType->discount;
+                                            } else {
+                                                echo '¥' . $hasManyShopCart->belongsToWare->money;
+                                            }
+                                        } ?></span>
                                 </div>
                                 <div class="item-info-2">
                                     <span>&nbsp;</span>
@@ -92,12 +98,11 @@
                             <?php } ?>
                         </div>
                         <div>
-
                             <span>
                                 <input type="checkbox"
-                                       <?php if($surplus_integral < $user->hasOneUserType->min_integral){ ?>
-                                           disabled="disabled"
-                                       <?php }?>
+                                    <?php if ($surplus_integral < $user->hasOneUserType->min_integral) { ?>
+                                        disabled="disabled"
+                                    <?php } ?>
                                        id="is_use" name="is_use">
                                 使用
                             </span>
@@ -108,8 +113,16 @@
                         <div class="notice-num"><?php echo $get_integral_count ?> 积分</div>
                     </div>
                     <div class="stat-nav">
-                        <div class="nav-center">合计</div>
-                        <div class="notice-num">¥<label id="cost_count"><?php echo $cost_count ?></label></div>
+                        <div class="nav-center">金额合计</div>
+                        <div class="notice-num">
+                            ¥<label id="cost_count"><?php echo $cost_count ?></label>
+                        </div>
+                    </div>
+                    <div class="stat-nav">
+                        <div class="nav-center">积分合计</div>
+                        <div class="notice-num">
+                            <?php echo $user->integral - $surplus_integral ?>积分
+                        </div>
                     </div>
                 </div>
             </div>
@@ -117,8 +130,17 @@
     </div>
     <div class="submit-box">
         <div class="order-stat">
-            <div class="stat-count">共 <?php echo $user->hasManyShopCarts->sum('number') ?> 件商品</div>
-            <div class="stat-sum">合计 <span>¥<label id="cost_count1"><?php echo $cost_count ?></label></span></div>
+            <div class="stat-count">
+                共 <?php echo $user->hasManyShopCarts->sum('number') ?> 件商品
+            </div>
+            <div class="stat-sum">合计
+                <span>
+                    ¥<label id="cost_count1">
+                        <?php echo $cost_count ?>
+                    </label>
+                    +<?php echo $user->integral - $surplus_integral ?>积分
+                </span>
+            </div>
         </div>
         <button type="button">提交订单</button>
     </div>

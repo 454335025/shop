@@ -40,69 +40,75 @@
 <?php include_once SHOP_COMMON; ?>
 
 <!--<div id="loadding-img" style="display:; z-index: 10000; position: absolute; width: 100%; height: 100%; background-color: gray;opacity: 0.5;" class="loadding">-->
-    <section id="touch-cart-container" class="touch-cart-container">
-        <div class="message"></div>
-        <!--购物车列表-->
-        <section id="cart-deals-list" class="cart-deals-list">
-            <ul>
-                <?php foreach ($user->hasManyShopCarts as $hasManyShopCart) { ?>
-                    <li>
-                        <a class="product-img" href="/shop/ware/detail?id=<?php echo $hasManyShopCart->ware_id ?>">
-                            <img src="<?php echo $hasManyShopCart->belongsToWare->detail_img ?>" title="<?php echo $hasManyShopCart->belongsToWare->name ?>">
-                        </a>
-                        <div class="clear cart-info">
-                            <div class="cart-title clear">
-                                <div class="info-left fl">
-                                    <div class="main-title new-cart-title">
-                                        <?php if (strlen($hasManyShopCart->belongsToWare->name) > 8) {
-                                            echo substr($hasManyShopCart->belongsToWare->name, 0, 8);
-                                        } else {
-                                            echo $hasManyShopCart->belongsToWare->name;
-                                        } ?>
-                                    </div>
-                                    <div class="sub-title new-cart-title"></div>
+<section id="touch-cart-container" class="touch-cart-container">
+    <div class="message"></div>
+    <!--购物车列表-->
+    <section id="cart-deals-list" class="cart-deals-list">
+        <ul>
+            <?php foreach ($user->hasManyShopCarts as $hasManyShopCart) { ?>
+                <li>
+                    <a class="product-img" href="/shop/ware/detail?id=<?php echo $hasManyShopCart->ware_id ?>">
+                        <img src="<?php echo $hasManyShopCart->belongsToWare->detail_img ?>"
+                             title="<?php echo $hasManyShopCart->belongsToWare->name ?>">
+                    </a>
+                    <div class="clear cart-info">
+                        <div class="cart-title clear">
+                            <div class="info-left fl">
+                                <div class="main-title new-cart-title">
+                                    <?php if (strlen($hasManyShopCart->belongsToWare->name) > 8) {
+                                        echo substr($hasManyShopCart->belongsToWare->name, 0, 8);
+                                    } else {
+                                        echo $hasManyShopCart->belongsToWare->name;
+                                    } ?>
                                 </div>
-                                <div class="fr price-list">
-                                    <div class="sale-price">￥
-                                        <?php if($hasManyShopCart->belongsToWare->is_discount == 1){
-                                            echo $hasManyShopCart->belongsToWare->money . 'x' . $user->hasOneUserType->discount;
-                                        }else{
-                                            echo $hasManyShopCart->belongsToWare->money ;
-                                        }?>
-                                    </div>
-                                </div>
+                                <div class="sub-title new-cart-title"></div>
                             </div>
+                            <div class="fr price-list">
+                                <div class="sale-price">
 
-                            <div class="cart-bar">
-                                <div class="num-count fl">
-                                    <input type="hidden" name="type" class="type" value="jumei_mall">
-                                    <input type="hidden" name="item_key" class="item-key" value="1071454_">
-
-                                    <?php if ($hasManyShopCart->number > 1) { ?>
-                                        <a class="btn-sub  btn-sub-select  fl"
-                                           href="/shop/shop_car/update_number?openid=<?php echo $user->openid ?>&id=<?php echo $hasManyShopCart->id ?>&action=sub&num=1"></a>
-                                    <?php } else { ?>
-                                        <a class="btn-sub  fl"></a>
-                                    <?php } ?>
-                                    <input type="text" name="item-quantity" value="<?php echo $hasManyShopCart->number ?>"
-                                           class="show-count quantity fl"
-                                           readonly="readonly"
-                                           data-price="<?php echo $hasManyShopCart->belongsToWare->money ?>"
-                                           data-restriction="0">
-                                    <a class="btn-add btn-add-select fl"
-                                       href="/shop/shop_car/update_number?openid=<?php echo $user->openid ?>&id=<?php echo $hasManyShopCart->id ?>&action=add&num=1"></a>
-                                </div>
-                                <div class="opt fr">
-                                    <a class="cart-del"
-                                       href="javascript:del_ware('<?php echo $user->openid ?>','<?php echo $hasManyShopCart->id ?>');"></a>
+                                    <?php if ($hasManyShopCart->belongsToWare->is_integral == 1) {
+                                        echo $hasManyShopCart->belongsToWare->cost_integral . '积分';
+                                    } else {
+                                        if ($hasManyShopCart->belongsToWare->is_discount == 1) {
+                                            echo '￥' . $hasManyShopCart->belongsToWare->money . 'x' . $user->hasOneUserType->discount;
+                                        } else {
+                                            echo '￥' . $hasManyShopCart->belongsToWare->money;
+                                        }
+                                    } ?>
                                 </div>
                             </div>
                         </div>
-                    </li>
-                <?php } ?>
-            </ul>
-        </section>
+
+                        <div class="cart-bar">
+                            <div class="num-count fl">
+                                <input type="hidden" name="type" class="type" value="jumei_mall">
+                                <input type="hidden" name="item_key" class="item-key" value="1071454_">
+
+                                <?php if ($hasManyShopCart->number > 1) { ?>
+                                    <a class="btn-sub  btn-sub-select  fl"
+                                       href="/shop/shop_car/update_number?openid=<?php echo $user->openid ?>&id=<?php echo $hasManyShopCart->id ?>&action=sub&num=1"></a>
+                                <?php } else { ?>
+                                    <a class="btn-sub  fl"></a>
+                                <?php } ?>
+                                <input type="text" name="item-quantity" value="<?php echo $hasManyShopCart->number ?>"
+                                       class="show-count quantity fl"
+                                       readonly="readonly"
+                                       data-price="<?php echo $hasManyShopCart->belongsToWare->money ?>"
+                                       data-restriction="0">
+                                <a class="btn-add btn-add-select fl"
+                                   href="/shop/shop_car/update_number?openid=<?php echo $user->openid ?>&id=<?php echo $hasManyShopCart->id ?>&action=add&num=1"></a>
+                            </div>
+                            <div class="opt fr">
+                                <a class="cart-del"
+                                   href="javascript:del_ware('<?php echo $user->openid ?>','<?php echo $hasManyShopCart->id ?>');"></a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            <?php } ?>
+        </ul>
     </section>
+</section>
 <!--    <img style="width:100%;display:block;" src="http://images.jumei.com/mobile/act/image/loadding/8.gif">-->
 <!--</div>-->
 <section class="touch-cart-fixed">
