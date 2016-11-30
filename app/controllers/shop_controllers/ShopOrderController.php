@@ -3,7 +3,7 @@
 use app\models\S_OrderDetails;
 use app\models\S_Orders;
 use app\models\S_ShopCarts;
-
+use Illuminate\Support\Facades\DB;
 class ShopOrderController extends BaseController
 {
 
@@ -114,6 +114,12 @@ class ShopOrderController extends BaseController
         $order = new S_Orders();
         $is_use = $_REQUEST['is_use'];
         $i = 0;
+        DB::transaction(function()
+        {
+            DB::table('users')->update(['votes' => 1]);
+
+            DB::table('posts')->delete();
+        });
         foreach (self::$shop_cars as $shop_car) {
             $order_detail->order_id = $order_id;
             $order_detail->ware_id = $shop_car->belongsToWare->id;
@@ -125,10 +131,8 @@ class ShopOrderController extends BaseController
             $order_detail->is_integral = $shop_car->belongsToWare->is_integral;
             $order_detail->cost_integral = $shop_car->belongsToWare->cost_integral;
             $order_detail->get_integral = $shop_car->belongsToWare->integral;
-            if (!$order_detail->save()) {
-                $i++;
-            }
-
+            $order_detail->save();
+            $i++;
         }
 
         $order->order_id = $order_id;
@@ -145,14 +149,13 @@ class ShopOrderController extends BaseController
         $order->integral_money = (int)((new ShopOrderController())->isMyInegral()
                 / parent::$user->hasOneUserType->min_integral) * parent::$user->hasOneUserType->exchange;
         if ($i == 0 && $order->save()) {
-            $shop_car_list = 1;
-//            $shop_car_list = S_ShopCarts::where('user_id',parent::$user->id)->get();
-            if($shop_car_list->delete()){
-                echo 1;exit;
+            if(S_ShopCarts::where('user_id',parent::$user->id)->delete()){
+                echo json_encode(array('data'=>1,'msg'=>'订单已经成功生成'));exit;
+            }else{
+                echo json_encode(array('data'=>2,'msg'=>'购物车商品删除失败'));exit;
             }
-
         }else{
-            $order_id;
+
         }
 
 

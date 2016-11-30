@@ -276,7 +276,7 @@ body {
 .content .count-down .clock-icon {
     width: .9375rem;
     height: .9375rem;
-    background-image: url(../../images/common/cart-clock-icon.png);
+    background-image: url(../../../images/common/cart-clock-icon.png);
     background-size: 100% 100%
 }
 
@@ -292,7 +292,7 @@ body {
 }
 
 .content .address-box {
-    background: url(../../images/confirm/border-bottom-line.png) center bottom no-repeat #fff;
+    background: url(../../../images/shop/order/border-bottom-line.png) center bottom no-repeat #fff;
     background-size: 100% .15625rem;
     padding: .59375rem .75rem 1rem;
     display: -webkit-box;
@@ -309,7 +309,7 @@ body {
 .content .address-box .location-icon {
     width: .75rem;
     height: 1rem;
-    background: url(../../images/confirm/location.png) center center no-repeat;
+    background: url(../../../images/shop/order/location.png) center center no-repeat;
     background-size: 100% 100%;
     display: block
 }
@@ -355,7 +355,7 @@ body {
 .content .address-box .right-arrow {
     width: .34375rem;
     height: .5625rem;
-    background-image: url(../../images/common/right-arrow.png);
+    background-image: url(../../../images/shop/order/right-arrow.png);
     background-size: 100% 100%;
     display: block
 }
@@ -379,7 +379,7 @@ body {
 .content .no-address .no-addr-icon {
     width: 3.75rem;
     height: 4rem;
-    background-image: url(../../images/confirm/no-addr-icon.png);
+    background-image: url(../../../images/shop/order/no-addr-icon.png);
     background-size: 100% 100%
 }
 
@@ -410,7 +410,7 @@ body {
 .content .time-select-box .calendar-icon {
     width: 1rem;
     height: 1rem;
-    background: url(../../images/confirm/brief-case.png) center center no-repeat;
+    background: url(../../../images/shop/order/brief-case.png) center center no-repeat;
     background-size: 100% 100%;
     display: block
 }
@@ -448,7 +448,7 @@ body {
 .content .order-groups .order-group .group-head .store-icon {
     width: 1.03125rem;
     height: .9375rem;
-    background: url(../../images/confirm/shop-head-icon.png) no-repeat;
+    background: url(../../../images/shop/order/shop-head-icon.png) no-repeat;
     background-size: 100% 100%;
     display: block
 }
@@ -613,7 +613,7 @@ body {
 
 .content .order-groups .film-group .film-items .film-item {
     margin-top: .5rem;
-    background: url(../../images/confirm/half-circle.png) left bottom repeat-x #fff;
+    background: url(../../../images/shop/order/half-circle.png) left bottom repeat-x #fff;
     background-size: .625rem .375rem;
     padding: 1.25rem .75rem .375rem
 }
@@ -748,7 +748,7 @@ body {
     width: .75rem;
     height: .75rem;
     margin-left: .3125rem;
-    background-image: url(../../images/common/ques-detail-icon.png);
+    background-image: url(../../../images/shop/order/ques-detail-icon.png);
     background-size: 100% 100%;
     display: inline-block
 }
@@ -760,11 +760,11 @@ body {
 }
 
 .content .invoice-box .invo-nav .select-icon.checked {
-    background-image: url(../../images/common/check-box-checked.png)
+    background-image: url(../../../images/shop/order/check-box-checked.png)
 }
 
 .content .invoice-box .invo-nav .select-icon.unchecked {
-    background-image: url(../../images/common/check-box-unchecked.png)
+    background-image: url(../../../images/shop/order/check-box-unchecked.png)
 }
 
 .content .invoice-box .invo-nav .invo-title {
@@ -780,7 +780,7 @@ body {
     width: .34375rem;
     height: .5625rem;
     margin-left: 1.0625rem;
-    background-image: url(../../images/common/right-arrow.png);
+    background-image: url(../../../images/shop/order/right-arrow.png);
     background-size: 100% 100%;
     display: inline-block
 }
@@ -1215,7 +1215,7 @@ body {
 .invoice-edit .invoice-item .check-icon {
     width: 1.25rem;
     height: 1.25rem;
-    background: url(../../images/common/check-box-checked.png) no-repeat;
+    background: url(../../../images/shop/order/check-box-checked.png) no-repeat;
     background-size: 100% 100%;
     display: block
 }
@@ -1223,7 +1223,7 @@ body {
 .invoice-edit .invoice-item .uncheck-icon {
     width: 1.25rem;
     height: 1.25rem;
-    background: url(../../images/common/check-box-unchecked.png) no-repeat;
+    background: url(../../../images/shop/order/check-box-unchecked.png) no-repeat;
     background-size: 100% 100%;
     display: block
 }

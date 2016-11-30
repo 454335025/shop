@@ -21,7 +21,7 @@
     <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="/js/shop/order/index.js"></script>
     <link href="<?php echo STATIC_COMMON; ?>/css/shop/common/common.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="//p2.jmstatic.com/static/static_cart_mobile/css/confirm/confirm_91e237f5.css">
+    <link rel="stylesheet" href="<?php echo STATIC_COMMON; ?>/css/shop/order/confirm.css">
 </head>
 <body>
 <?php include_once SHOP_COMMON; ?>
@@ -55,7 +55,7 @@
                             <div class="item-info">
                                 <div class="item-info-1">
                                         <span class="item-title">
-<!--                                            <span class="red">[极速免税]</span>-->
+                                            <!--<span class="red">[极速免税]</span>-->
                                             <?php echo $hasManyShopCart->belongsToWare->name ?>
                                         </span>
                                     <span
