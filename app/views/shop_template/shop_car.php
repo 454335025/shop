@@ -47,7 +47,7 @@
         <ul>
             <?php foreach ($user->hasManyShopCarts as $hasManyShopCart) { ?>
                 <li>
-                    <a class="product-img" href="/shop/ware/detail?id=<?php echo $hasManyShopCart->ware_id ?>">
+                    <a class="product-img" href="/shop/ware?ware_id=<?php echo $hasManyShopCart->ware_id ?>">
                         <img src="<?php echo $hasManyShopCart->belongsToWare->detail_img ?>"
                              title="<?php echo $hasManyShopCart->belongsToWare->name ?>">
                     </a>

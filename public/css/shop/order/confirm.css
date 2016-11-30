@@ -83,7 +83,7 @@ input, select, textarea {
 }
 
 input, textarea {
-    -webkit-appearance: none
+    /*-webkit-appearance: none*/
 }
 
 table {

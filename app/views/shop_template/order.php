@@ -138,11 +138,13 @@
                     ¥<label id="cost_count1">
                         <?php echo $cost_count ?>
                     </label>
-                    +<?php echo $user->integral - $surplus_integral ?>积分
+                    +<label id="cost_integral">
+                        <?php echo $user->integral - $surplus_integral ?>
+                    </label>积分
                 </span>
             </div>
         </div>
-        <button type="button">提交订单</button>
+        <button type="button" id="add_order">提交订单</button>
     </div>
 </div>
 </body>

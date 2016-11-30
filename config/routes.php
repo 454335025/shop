@@ -59,8 +59,10 @@ Macaw::post('/shop/user/delete_address',                    'ShopUserController@
 Macaw::get('/shop/order',                                   'ShopOrderController@index');
 //跳转订单地址更换页面
 Macaw::get('/shop/order/to_address_update',                 'ShopOrderController@toAddressUpdateUI');
-//
-Macaw::get('/shop/order/use_Integral',                     'ShopOrderController@getCostCountByIsUseIntegral');
+//use integral
+Macaw::get('/shop/order/use_Integral',                      'ShopOrderController@getCostCountByIsUseIntegral');
+//add order
+Macaw::get('/shop/order/add_orders',                        'ShopOrderController@addOrders');
 //shop/order EDN
 
 //shop END

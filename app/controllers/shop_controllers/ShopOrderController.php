@@ -3,23 +3,21 @@
 use app\models\S_OrderDetails;
 use app\models\S_Orders;
 use app\models\S_ShopCarts;
-use Illuminate\Support\Facades\DB;
+use app\models\S_User;
+
 class ShopOrderController extends BaseController
 {
-
-    private static $shop_cars;
-
-    public function __construct()
-    {
-        parent::__construct();
-        self::$shop_cars = parent::$user->hasManyShopCarts;
-
-    }
 
     public static function index()
     {
 
-        $cost_count = self::getCostCount();
+        $cost_count = self::getActualCostCount();
+        if (self::getCostCount() <= 0) {
+            echo "<script>
+                alert('your shop car is null');
+                window.location.href='/shop/main';</script>";
+            exit;
+        }
         $get_integral_count = self::getIntegralCount();
         $surplus_integral = self::isMyInegral();
         if ($surplus_integral) {
@@ -47,7 +45,12 @@ class ShopOrderController extends BaseController
     {
         $is_use = $_REQUEST['is_use'];
         $is_use == 'true' ? $is_use = true : $is_use = false;
-        echo self::getCostCount((boolean)$is_use);
+        echo json_encode(
+            array(
+                'money' => self::getActualCostCount() - self::getCostCountByIngeral($is_use),
+                'integral' => parent::$user->integral - self::isMyInegral() + self::getCostIngeral()
+            )
+        );
         exit;
     }
 
@@ -55,9 +58,39 @@ class ShopOrderController extends BaseController
      * @return int
      */
 
-    public static function getCostCount($is_use = false)
+    public static function getCostCount()
     {
-        return (new ShopShopCarController())->getActualCostCount($is_use);
+        return (new ShopShopCarController())->getCostCount();
+
+    }
+
+    /**
+     * @return int
+     */
+
+    public static function getActualCostCount()
+    {
+        return (new ShopShopCarController())->getActualCostCount();
+
+    }
+
+    /**
+     * @return int
+     */
+
+    public static function getCostCountByIngeral($is_use = false)
+    {
+        return (new ShopShopCarController())->getCostCountByIngeral($is_use);
+
+    }
+
+    /**
+     * @return int
+     */
+
+    public static function getCostIngeral()
+    {
+        return (new ShopShopCarController())->getCostIngeral();
 
     }
 
@@ -89,7 +122,7 @@ class ShopOrderController extends BaseController
     public static function isMyInegral()
     {
         $surplus_integral = parent::$user->integral;
-        foreach (self::$shop_cars as $shop_car) {
+        foreach (parent::$user->hasManyShopCarts as $shop_car) {
             if ($shop_car->belongsToWare->is_integral == 1) {
                 $surplus_integral = $surplus_integral - $shop_car->belongsToWare->cost_integral * $shop_car->number;
             }
@@ -107,57 +140,74 @@ class ShopOrderController extends BaseController
      *
      */
 
-    public static function addOrder()
+    public static function addOrders()
     {
         $order_id = date('YmdHis', time()) . rand(100000, 999999);
-        $order_detail = new S_OrderDetails();
-        $order = new S_Orders();
         $is_use = $_REQUEST['is_use'];
-        $i = 0;
-        DB::transaction(function()
-        {
-            DB::table('users')->update(['votes' => 1]);
+        $is_use == 'true' ? $is_use = true : $is_use = false;
+        $order_detail = self::addOrderDetail($order_id);
+        if ($order_detail['i'] != 0) {
+            S_OrderDetails::where('order_id', $order_id)->delete();
+            echo json_encode(array('data' => 2, 'msg' => 'create order error'));
+            exit;
+        } else if ($order_detail['i'] == 0) {
+            if (self::addOrder($order_id, $is_use, $order_detail)) {
+//                S_ShopCarts::where('user_id', parent::$user->id)->delete();
+                $user = S_User::find(parent::$user->id);
+                $user->integral = $user->integral - $order_detail['cost_integral'] - self::getCostIngeral();
+                $user->save();
+                echo json_encode(array('data' => 1, 'msg' => '订单已经成功生成'));
+                exit;
+            } else {
+                S_OrderDetails::where('order_id', $order_id)->delete();
+                echo json_encode(array('data' => 2, 'msg' => 'create order error'));
+                exit;
+            }
+        }
+    }
 
-            DB::table('posts')->delete();
-        });
-        foreach (self::$shop_cars as $shop_car) {
+    public static function addOrder($order_id, $is_use, $order_detail)
+    {
+        $order = new S_Orders();
+
+        $order->order_id = $order_id;
+        $order->user_id = parent::$user->id;
+        $order->get_integral = self::getIntegralCount();
+        $order->user_address_id = self::getIntegralCount();
+        $order->money = self::getCostCount();
+        $order->actual_money = self::getActualCostCount() - self::getCostCountByIngeral($is_use);
+        $order->discount = parent::$user->hasOneUserType->discount;
+        $order->discount_money = self::getCostCount() - self::getActualCostCount();
+        $order->is_use_integral = $is_use ? 1 : 0;
+        $order->cost_integral = $order_detail['cost_integral'] + $is_use ? self::getCostIngeral() : 0;
+        $order->integral_money = self::getCostCountByIngeral($is_use);
+        return $order->save();
+
+    }
+
+    public static function addOrderDetail($order_id)
+    {
+        $order_detail = new S_OrderDetails();
+        $cost_integral = 0;
+        $i = 0;
+        foreach (parent::$user->hasManyShopCarts as $shop_car) {
             $order_detail->order_id = $order_id;
             $order_detail->ware_id = $shop_car->belongsToWare->id;
             $order_detail->money = $shop_car->belongsToWare->money;
             $order_detail->actual_money = $shop_car->belongsToWare->money * parent::$user->discount;
             $order_detail->number = $shop_car->number;
             $order_detail->is_discount = $shop_car->belongsToWare->is_discount;
-            $order_detail->discount = parent::$user->discount;
+            $order_detail->discount = parent::$user->hasOneUserType->discount;
             $order_detail->is_integral = $shop_car->belongsToWare->is_integral;
             $order_detail->cost_integral = $shop_car->belongsToWare->cost_integral;
             $order_detail->get_integral = $shop_car->belongsToWare->integral;
             $order_detail->save();
-            $i++;
+//            if (!$order_detail->save()) {
+//                $i++;
+//                continue;
+//            }
+            $cost_integral = $cost_integral + $order_detail->cost_integral;
         }
-
-        $order->order_id = $order_id;
-        $order->user_id = parent::$user->id;
-        $order->get_integral = self::getIntegralCount();
-        $order->user_address_id = self::getIntegralCount();
-        $order->money = (new ShopShopCarController())->getCostCount();
-        $order->actual_money = self::getCostCount($is_use);
-        $order->discount = parent::$user->discount;
-        $order->discount_money = (new ShopShopCarController())->getCostCount() - self::getCostCount();
-        $order->is_use_integral = $is_use ? 1 : 0;
-        $order->cost_integral = ((int)self::isMyInegral() / parent::$user->hasOneUserType->min_integral)
-            * parent::$user->hasOneUserType->min_integral;
-        $order->integral_money = (int)((new ShopOrderController())->isMyInegral()
-                / parent::$user->hasOneUserType->min_integral) * parent::$user->hasOneUserType->exchange;
-        if ($i == 0 && $order->save()) {
-            if(S_ShopCarts::where('user_id',parent::$user->id)->delete()){
-                echo json_encode(array('data'=>1,'msg'=>'订单已经成功生成'));exit;
-            }else{
-                echo json_encode(array('data'=>2,'msg'=>'购物车商品删除失败'));exit;
-            }
-        }else{
-
-        }
-
-
+        return array('i' => $i, 'cost_integral' => $cost_integral);
     }
 }
