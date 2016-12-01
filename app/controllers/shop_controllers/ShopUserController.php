@@ -1,11 +1,15 @@
 <?php
 
 use app\models\S_UserAddress;
+use app\models\S_Orders;
 
 class ShopUserController extends BaseController
 {
     private static $user_addresses;
 
+    /**
+     * 跳转我的信息页面
+     */
     public function index()
     {
         self::$view = View::make('shop_template.user')
@@ -13,12 +17,24 @@ class ShopUserController extends BaseController
             ->withTitle('我的信息');
     }
 
+    /**
+     * 跳转我的订单页面
+     */
     public static function toOrderUI()
     {
+        $orders = !empty($_REQUEST['type'])
+            ? S_Orders::where('type', $_REQUEST['type'])->where('user_id', parent::$user->id)->get()
+            : parent::$user->hasManyOrders;
+//        echo $_REQUEST['type'];exit;
         self::$view = View::make('shop_template.user_order')
+            ->with('user', parent::$user)
+            ->with('orders', $orders)
             ->withTitle('我的订单');
     }
 
+    /**
+     * 跳转收货地址页面
+     */
     public static function toAddressUI()
     {
         self::$user_addresses = self::getUserAddressById();
@@ -27,17 +43,27 @@ class ShopUserController extends BaseController
             ->withTitle('我的地址');
     }
 
+    /**
+     * 跳转添加收货地址页面
+     */
     public static function toAddressAddUI()
     {
         self::$view = View::make('shop_template.user_address_add')
             ->withTitle('添加信息地址');
     }
 
+    /**
+     * 获取收货地址
+     * @return mixed
+     */
     public static function getUserAddressById()
     {
         return S_UserAddress::all()->where('user_id', self::$user->id)->sortByDesc('isdefault');
     }
 
+    /**
+     * 添加收货地址
+     */
     public static function addAddress()
     {
         $address = $_REQUEST['address'];
@@ -56,10 +82,13 @@ class ShopUserController extends BaseController
         exit;
     }
 
+    /**
+     * 修改收货地址
+     */
     public static function updateAddress()
     {
         $id = $_REQUEST['id'];
-        S_UserAddress::where('user_id',parent::$user->id)->update(['isdefault'=>0]);
+        S_UserAddress::where('user_id', parent::$user->id)->update(['isdefault' => 0]);
         $user_address = S_UserAddress::find($id);
         $user_address->isdefault = 1;
         if ($user_address->save()) {
@@ -68,6 +97,9 @@ class ShopUserController extends BaseController
         exit;
     }
 
+    /**
+     * 删除收货地址
+     */
     public static function deleteAddress()
     {
         $id = $_REQUEST['id'];

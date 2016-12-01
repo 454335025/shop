@@ -48,7 +48,7 @@
             <div class="order-group">
                 <div class="group-head">
                     <span class="store-icon"></span> <span class="store-info">旗舰店发货</span></div>
-                <?php foreach ($user->hasManyShopCarts as $hasManyShopCart) { ?>
+                    <?php foreach ($user->hasManyShopCarts as $hasManyShopCart) { ?>
                     <div class="product-items">
                         <div class="product-item">
                             <img class="item-img" src="<?php echo $hasManyShopCart->belongsToWare->detail_img ?>">
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                     </div>
-                <?php } ?>
+                    <?php } ?>
                 <div class="group-stat">
                     <!--                    <div class="stat-nav">-->
                     <!--                        <div>运费</div>-->

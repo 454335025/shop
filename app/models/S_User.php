@@ -25,5 +25,10 @@ class S_User extends Model
         return $this->hasMany('app\models\S_ShopCarts','user_id','id');
     }
 
+    public function hasManyOrders()
+    {
+        return $this->hasMany('app\models\S_Orders','user_id','id');
+    }
+
 
 }

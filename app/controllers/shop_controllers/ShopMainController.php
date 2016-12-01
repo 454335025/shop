@@ -19,6 +19,9 @@ class ShopMainController extends BaseController
         self::$sub_directory_id = !empty($_REQUEST['sub_directory_id']) ? $_REQUEST['sub_directory_id'] : '';
     }
 
+    /**
+     * 跳转商城主页页面
+     */
     public function index()
     {
         self::$directories = self::getDirectories();

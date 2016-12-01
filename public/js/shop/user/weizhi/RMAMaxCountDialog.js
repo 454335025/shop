@@ -1,0 +1,1 @@
+define("templates/RMAMaxCountDialog",[],function(){return'<div class="ui-dialog <%=element%>"> <div class="ui-dialog-title"> <div><%=title%></div> <div class="ui-dialog-close"></div> </div> <div class="ui-dialog-content" style="font-size:12px;text-align:center;min-height:30px;<%if(platform==\'android\') {%>padding:15px 25px;<%}%>"><%=content%></div> </div>'});

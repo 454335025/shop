@@ -46,11 +46,11 @@ function useIntegral(obj) {
 
 function add_order() {
     var is_checked = $("#is_use").is(':checked');
-    $.get("/shop/order/add_orders", {is_use: is_checked}, function (data) {
+    $.post("/shop/order/add_orders", {is_use: is_checked}, function (data) {
         var result =JSON.parse(data);
         alert(result.msg);
         if(result.data == 1){
-            // window.location.href = "/shop/user";
+            window.location.href = "/shop/user";
         }
     });
 }

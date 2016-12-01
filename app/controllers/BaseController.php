@@ -1,6 +1,7 @@
 <?php
 
 use app\models\S_User;
+use app\models\S_ShopCarts;
 
 class BaseController
 {
@@ -8,17 +9,18 @@ class BaseController
     protected static $mail;
     protected static $openid;
     protected static $user;
+    protected static $shop_carts;
 
     public function __construct()
     {
 //        session_start();
+
         if (isset($_SESSION['openid'])) {
             self::$openid = $_SESSION['openid'];
-            if (self::verify()) {
-                self::$user = S_User::where('openid', self::$openid)->first();
-            } else {
+            if (!self::verify()) {
                 echo "<script>alert('未检测到账号');</script>";
             }
+            self::$shop_carts = S_ShopCarts::with('belongsToWare')->where('user_id', self::$user->id)->get();
         } else {
             self::$openid = !empty($_REQUEST['openid']) ? $_REQUEST['openid'] : '';
             if (self::$openid != '') {
@@ -59,9 +61,9 @@ class BaseController
     public static function verify()
     {
         if (self::$openid) {
-            $user = S_User::where('openid', self::$openid)->first();
-            if (!empty($user)) {
-                return password_verify(self::$openid, $user->password);
+            self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', self::$openid)->first();
+            if (!empty(self::$user)) {
+                return password_verify(self::$openid, self::$user->password);
             } else {
                 $password_Hash = password_hash(
                     self::$openid,

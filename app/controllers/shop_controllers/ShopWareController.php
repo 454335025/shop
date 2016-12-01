@@ -14,6 +14,9 @@ class ShopWareController extends BaseController
         self::$ware_id = $_REQUEST['ware_id'];
     }
 
+    /**
+     * 跳转商品详情页面
+     */
     public function index()
     {
         self::$wares = self::getWareById(self::$ware_id);
@@ -30,7 +33,7 @@ class ShopWareController extends BaseController
     /**
      * 获取商品信息根据Id
      */
-    public function getWareById($ware_id)
+    public static function getWareById($ware_id)
     {
         return S_Ware::find($ware_id);
     }
@@ -38,7 +41,7 @@ class ShopWareController extends BaseController
     /**
      * 获取详细参数根据parameter
      */
-    public function getParameter($wares)
+    public static function getParameter($wares)
     {
         if ($wares->parameter != '') {
             $detail = explode(';', $wares->parameter);

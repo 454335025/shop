@@ -2,6 +2,9 @@ $(document).ready(function () {
     $("#addUserAddress").on("click", function () {
         addUserAddress();
     });
+    $(".status-btn").on("click", function () {
+        is_send($(this))
+    })
 });
 
 function addUserAddress() {
@@ -41,4 +44,19 @@ function deleteUserAddress(id) {
             }
         });
     }
+}
+
+function is_send(obj) {
+    var order_id = obj.attr("data-orderid");
+    if(confirm("您确认货物已收到了吗？")){
+        $.post("/shop/order/update_order_type", {
+            order_id:order_id
+        }, function (data) {
+            if (data == 1) {
+                alert("感谢您的购物！");
+                window.location.href = "/shop/user/to_order";
+            }
+        });
+    }
+
 }

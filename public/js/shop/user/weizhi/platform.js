@@ -1,0 +1,1 @@
+define("touch/comp/platform",[],function(){return function(){if(!Jumei||!Jumei.checkPlatformWap)return"wap";if(Jumei.checkPlatformWap())return"wap";var a=navigator.userAgent;return a.indexOf("iPhone")>-1&&Jumei.checkPlatformWap()!==!0?"iphone":Jumei.checkPlatformWap()!==!0?"android":void 0}});

@@ -10,11 +10,10 @@ class ShopOrderController extends BaseController
 
     public static function index()
     {
-
         $cost_count = self::getActualCostCount();
         if (self::getCostCount() <= 0) {
             echo "<script>
-                alert('your shop car is null');
+                alert('购物车里没有商品,快去商城添加吧');
                 window.location.href='/shop/main';</script>";
             exit;
         }
@@ -23,6 +22,7 @@ class ShopOrderController extends BaseController
         if ($surplus_integral) {
             self::$view = View::make('shop_template.order')
                 ->with('user', parent::$user)
+                ->with('shop_carts', parent::$shop_carts)
                 ->with('cost_count', $cost_count)
                 ->with('get_integral_count', $get_integral_count)
                 ->with('surplus_integral', $surplus_integral)
@@ -34,13 +34,11 @@ class ShopOrderController extends BaseController
                 window.location.href='/shop/shop_car';</script>";
             exit;
         }
-
     }
 
     /**
-     *
+     * 获取花费积分抵扣金钱
      */
-
     public static function getCostCountByIsUseIntegral()
     {
         $is_use = $_REQUEST['is_use'];
@@ -55,94 +53,125 @@ class ShopOrderController extends BaseController
     }
 
     /**
+     * 获取总花费金额
      * @return int
      */
-
     public static function getCostCount()
     {
-        return (new ShopShopCarController())->getCostCount();
-
+        $cost = 0;
+        foreach (parent::$shop_carts as $shop_cart) {
+            if ($shop_cart->belongsToWare->is_integral != 1) {
+                $money = $shop_cart->belongsToWare->money;
+                $cost = $cost + ($money * $shop_cart->number);
+            }
+        }
+        return $cost;
     }
 
     /**
+     * 获取实际花费金额
      * @return int
      */
-
     public static function getActualCostCount()
     {
-        return (new ShopShopCarController())->getActualCostCount();
-
+        $cost = 0;
+        $discount = parent::$user->hasOneUserType->discount;
+        foreach (parent::$shop_carts as $shop_cart) {
+            if ($shop_cart->belongsToWare->is_integral != 1) {
+                if ($shop_cart->belongsToWare->is_discount == 1) {
+                    $money = $shop_cart->belongsToWare->money * $discount;
+                } else {
+                    $money = $shop_cart->belongsToWare->money;
+                }
+                $cost = $cost + ($money * $shop_cart->number);
+            }
+        }
+        return $cost;
     }
 
     /**
+     * 获取抵扣金钱
      * @return int
      */
-
     public static function getCostCountByIngeral($is_use = false)
     {
-        return (new ShopShopCarController())->getCostCountByIngeral($is_use);
+        if ($is_use) {
+            $cost = self::getCostIngeral()
+                / parent::$user->hasOneUserType->min_integral
+                * parent::$user->hasOneUserType->exchange;
+        } else {
+            $cost = 0;
+        }
+        return $cost;
 
     }
 
     /**
+     * 获取最大可用抵扣积分
      * @return int
      */
-
     public static function getCostIngeral()
     {
-        return (new ShopShopCarController())->getCostIngeral();
+        $need_integral = (int)(self::getActualCostCount() / parent::$user->hasOneUserType->exchange)
+            * parent::$user->hasOneUserType->min_integral;
+        if (self::isMyInegral() - $need_integral > 0) {
+            $integral = $need_integral;
+        } else {
+            $integral = ((int)(self::isMyInegral() / parent::$user->hasOneUserType->min_integral)) * parent::$user->hasOneUserType->min_integral;
+        }
+        return $integral;
 
     }
 
     /**
+     * 获取需要兑换商品积分总数
      * @return int
      */
     public static function getIntegralCount()
     {
-        return (new ShopShopCarController())->getGetIntegralCount();
+        $integral = 0;
+        foreach (parent::$shop_carts as $shop_cart) {
+            $integral = $integral + ($shop_cart->belongsToWare->integral * $shop_cart->number);
+        }
+        return $integral;
     }
 
     /**
-     *
+     *跳转修改默认地址页面
      */
-
     public static function toAddressUpdateUI()
     {
-
         self::$view = View::make('shop_template.order_address_update')
             ->with('user', parent::$user)
             ->withTitle('update_address');
     }
 
-
     /**
+     * 获取我的剩余积分
      * @return bool
      */
-
     public static function isMyInegral()
     {
         $surplus_integral = parent::$user->integral;
-        foreach (parent::$user->hasManyShopCarts as $shop_car) {
-            if ($shop_car->belongsToWare->is_integral == 1) {
-                $surplus_integral = $surplus_integral - $shop_car->belongsToWare->cost_integral * $shop_car->number;
+        foreach (parent::$shop_carts as $shop_cart) {
+            if ($shop_cart->belongsToWare->is_integral == 1) {
+                $surplus_integral = $surplus_integral - $shop_cart->belongsToWare->cost_integral * $shop_cart->number;
             }
         }
         if ($surplus_integral < 0) {
             return false;
-
         } else {
             return $surplus_integral;
         }
     }
 
-
     /**
-     *
+     *添加订单
      */
-
     public static function addOrders()
     {
-        $order_id = date('YmdHis', time()) . rand(100000, 999999);
+
+        $order_id = 'DDBH' . (date('YmdHis', time()) . rand(100000, 999999));
         $is_use = $_REQUEST['is_use'];
         $is_use == 'true' ? $is_use = true : $is_use = false;
         $order_detail = self::addOrderDetail($order_id);
@@ -152,7 +181,7 @@ class ShopOrderController extends BaseController
             exit;
         } else if ($order_detail['i'] == 0) {
             if (self::addOrder($order_id, $is_use, $order_detail)) {
-//                S_ShopCarts::where('user_id', parent::$user->id)->delete();
+                S_ShopCarts::where('user_id', parent::$user->id)->delete();
                 $user = S_User::find(parent::$user->id);
                 $user->integral = $user->integral - $order_detail['cost_integral'] - self::getCostIngeral();
                 $user->save();
@@ -160,16 +189,22 @@ class ShopOrderController extends BaseController
                 exit;
             } else {
                 S_OrderDetails::where('order_id', $order_id)->delete();
-                echo json_encode(array('data' => 2, 'msg' => 'create order error'));
+                echo json_encode(array('data' => 2, 'msg' => '订单生产失败'));
                 exit;
             }
         }
     }
 
+    /**
+     * 添加订单信息
+     * @param $order_id 订单编号
+     * @param $is_use 是否使用积分
+     * @param $order_detail 订单商品详情添加状态
+     * @return bool
+     */
     public static function addOrder($order_id, $is_use, $order_detail)
     {
         $order = new S_Orders();
-
         $order->order_id = $order_id;
         $order->user_id = parent::$user->id;
         $order->get_integral = self::getIntegralCount();
@@ -185,29 +220,41 @@ class ShopOrderController extends BaseController
 
     }
 
+    /**
+     * 添加订单商品信息
+     * @param $order_id 订单编号
+     * @return array
+     */
     public static function addOrderDetail($order_id)
     {
-        $order_detail = new S_OrderDetails();
         $cost_integral = 0;
         $i = 0;
-        foreach (parent::$user->hasManyShopCarts as $shop_car) {
+        foreach (parent::$shop_carts as $shop_cart) {
+            $order_detail = new S_OrderDetails();
             $order_detail->order_id = $order_id;
-            $order_detail->ware_id = $shop_car->belongsToWare->id;
-            $order_detail->money = $shop_car->belongsToWare->money;
-            $order_detail->actual_money = $shop_car->belongsToWare->money * parent::$user->discount;
-            $order_detail->number = $shop_car->number;
-            $order_detail->is_discount = $shop_car->belongsToWare->is_discount;
+            $order_detail->ware_id = $shop_cart->belongsToWare->id;
+            $order_detail->money = $shop_cart->belongsToWare->money;
+            $order_detail->actual_money = $shop_cart->belongsToWare->money * parent::$user->hasOneUserType->discount;
+            $order_detail->number = $shop_cart->number;
+            $order_detail->is_discount = $shop_cart->belongsToWare->is_discount;
             $order_detail->discount = parent::$user->hasOneUserType->discount;
-            $order_detail->is_integral = $shop_car->belongsToWare->is_integral;
-            $order_detail->cost_integral = $shop_car->belongsToWare->cost_integral;
-            $order_detail->get_integral = $shop_car->belongsToWare->integral;
-            $order_detail->save();
-//            if (!$order_detail->save()) {
-//                $i++;
-//                continue;
-//            }
-            $cost_integral = $cost_integral + $order_detail->cost_integral;
+            $order_detail->is_integral = $shop_cart->belongsToWare->is_integral;
+            $order_detail->cost_integral = $shop_cart->belongsToWare->cost_integral;
+            $order_detail->get_integral = $shop_cart->belongsToWare->integral;
+            if (!$order_detail->save()) {
+                $i++;
+                continue;
+            }
+            $cost_integral = $cost_integral + $shop_cart->belongsToWare->cost_integral;
         }
         return array('i' => $i, 'cost_integral' => $cost_integral);
+    }
+
+    public static function updateOrderType()
+    {
+        $order_id = $_REQUEST['order_id'];
+        S_Orders::where('order_id', $order_id)->update(['type' => 3]);
+        echo 1;
+        exit;
     }
 }

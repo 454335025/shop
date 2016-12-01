@@ -48,10 +48,11 @@ Macaw::get('/shop/user/to_address',                         'ShopUserController@
 Macaw::get('/shop/user/to_address_add',                     'ShopUserController@toAddressAddUI');
 //添加地址
 Macaw::post('/shop/user/add_address',                       'ShopUserController@addAddress');
-//update address isdefault
+//修改地址
 Macaw::post('/shop/user/update_address',                    'ShopUserController@updateAddress');
 //删除地址
 Macaw::post('/shop/user/delete_address',                    'ShopUserController@deleteAddress');
+
 //shop/user EDN
 
 //shop/order BEGIN
@@ -59,10 +60,12 @@ Macaw::post('/shop/user/delete_address',                    'ShopUserController@
 Macaw::get('/shop/order',                                   'ShopOrderController@index');
 //跳转订单地址更换页面
 Macaw::get('/shop/order/to_address_update',                 'ShopOrderController@toAddressUpdateUI');
-//use integral
+//使用积分
 Macaw::get('/shop/order/use_Integral',                      'ShopOrderController@getCostCountByIsUseIntegral');
-//add order
-Macaw::get('/shop/order/add_orders',                        'ShopOrderController@addOrders');
+//添加订单
+Macaw::post('/shop/order/add_orders',                       'ShopOrderController@addOrders');
+//确认收货
+Macaw::post('/shop/order/update_order_type',                'ShopOrderController@updateOrderType');
 //shop/order EDN
 
 //shop END

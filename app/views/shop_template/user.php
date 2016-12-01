@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="format-detection" content="telephone=no">
     <script src="/js/shop/user/mobile.min.js"></script>
-    <script src="/js/shop/user/boot.js"></script>
+    <script src="/js/shop/user/myjumei.js"></script>
     <link href="/css/shop/user/upload.css" rel="stylesheet">
     <link href="/css/shop/user/dialog.css" rel="stylesheet">
     <link href="/css/shop/user/myjumei.css" rel="stylesheet" style="zoom: 1.2875;">
@@ -46,13 +46,17 @@
             </a>
         </div>
         <div class="block-content">
-            <a class="block-item" href="/m/order/list?status=2">
+            <a class="block-item" href="/shop/user/to_order?type=1">
+                <i class="unconfirm"></i>
+                <span>待处理</span>
+            </a>
+            <a class="block-item" href="/shop/user/to_order?type=2">
                 <i class="unconfirm"></i>
                 <span>待收货</span>
             </a>
-            <a class="block-item" href="/m/RMA/list">
+            <a class="block-item" href="/shop/user/to_order?type=3">
                 <i class="refund"></i>
-                <span>退货</span>
+                <span>已完成</span>
             </a>
         </div>
     </div>
@@ -69,7 +73,7 @@
         </div>
     </div>
     <div class="block list">
-        <a class="list-item" href="/m/RMA/service">
+        <a class="list-item" href="###">
             <i class="list-item-icon rmaservice"></i>
             <span>售后服务</span>
             <i class="arrow-right"></i>

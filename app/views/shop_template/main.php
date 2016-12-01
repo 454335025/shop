@@ -16,7 +16,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <meta name="format-detection" content="address=no">
-    <link rel="shortcut icon" href="favicon.ico">
 
     <link href="<?php echo STATIC_COMMON;?>/css/shop/common/ui.css" rel="stylesheet" type="text/css">
     <link href="<?php echo STATIC_COMMON;?>/css/shop/main/jmtouch.css" rel="stylesheet" type="text/css">
