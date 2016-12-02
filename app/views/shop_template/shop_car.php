@@ -55,11 +55,11 @@
                         <div class="cart-title clear">
                             <div class="info-left fl">
                                 <div class="main-title new-cart-title">
-                                    <?php if (strlen($shop_cart->belongsToWare->name) > 8) {
-                                        echo substr($shop_cart->belongsToWare->name, 0, 8);
-                                    } else {
+<!--                                    --><?php //if (strlen($shop_cart->belongsToWare->name) > 12) {
+//                                        echo substr($shop_cart->belongsToWare->name, 0, 12);
+//                                    } else {
                                         echo $shop_cart->belongsToWare->name;
-                                    } ?>
+//                                    } ?>
                                 </div>
                                 <div class="sub-title new-cart-title"></div>
                             </div>

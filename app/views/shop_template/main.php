@@ -97,6 +97,9 @@
             <a href="###">
                 <img src="<?php echo STATIC_COMMON;?>/images/shop/banner/1.jpg"/>
             </a>
+            <a href="###">
+                <img src="<?php echo STATIC_COMMON;?>/images/shop/banner/2.jpg"/>
+            </a>
         </div>
         <ul id="position">
 
@@ -113,6 +116,8 @@
                 </div>
                 <div class="information">
                     <p><?php echo $ware->name ?></p>
+                    <p> <?php echo $ware->remark ?></p>
+
                 </div>
                 <div class="price_info">
                     <div class="clearfix">
