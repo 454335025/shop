@@ -492,6 +492,7 @@ Sidebar
 ================================================================================= */
 .sidebar {
   width: 250px;
+  height:100%;
   position: absolute;
   top: 60px;
   left: 0;
@@ -875,6 +876,7 @@ Sidepanel
 Content 
 ================================================================================= */
 .content {
+  height: 100%;
   padding-left: 30px;
   padding-right: 30px;
   padding-top: 80px;

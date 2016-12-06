@@ -70,6 +70,6 @@ class ShopMainController extends BaseController
      */
     public function getShopCarCount()
     {
-        return S_ShopCarts::where('user_id', parent::$user->id)->count();
+        return S_ShopCarts::where('user_id', parent::$user->id)->sum('number');
     }
 }

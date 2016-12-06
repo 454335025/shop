@@ -1,7 +1,8 @@
 <html style="font-size: 20.6px; display: block;">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta name="viewport" id="viewport" content="width=320,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+    <meta name="viewport" id="viewport"
+          content="width=320,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
     <meta name="format-detection" content="telephone=no">
     <meta name="description" content="这是网页描述">
     <meta name="apple-touch-fullscreen" content="yes">
@@ -28,14 +29,22 @@
         <div class="detailsInfo new_detailsInfo">
             <div class="detail_group">
                 <p class="productPic ">
-<!--                    <img src="http://p0.jmstatic.com/banner/area/000/000/029.jpg" alt="" class="img_tag">-->
+                    <!--                    <img src="http://p0.jmstatic.com/banner/area/000/000/029.jpg" alt="" class="img_tag">-->
                     <img src="<?php echo $wares->detail_img; ?>" class="" height="160">
                 </p>
                 <div class="detail_info_item clear">
                     <div class="detail_price_info pull_left">
                         <div class="now_price">
                             <span class="font_size12">团购价</span>
-                            <span><span class="font_size12">￥</span><span id="newPrice"><?php echo $wares->money; ?></span></span>
+                            <span>
+                                 <?php if ($wares->is_integral == 1) { ?>
+                                     <span id="newPrice"><?php echo $wares->money; ?></span>
+                                     <span class="font_size12">积分</span>
+                                 <?php } else { ?>
+                                     <span class="font_size12">￥</span>
+                                     <span id="newPrice"><?php echo $wares->money; ?></span>
+                                 <?php } ?>
+                            </span>
                         </div>
                     </div>
                     <div class="sale_info pull_right">
@@ -70,7 +79,7 @@
                 <li>
                     <span class="title">商品名称:</span>
                     <span class="content"><?php echo $wares->name; ?></span>
-                    <?php foreach ($parameters as $key => $val){ ?>
+                    <?php foreach ($parameters as $key => $val) { ?>
                         <span class="title"><?php echo $key; ?></span>
                         <span class="content"><?php echo $val; ?></span>
                     <?php } ?>
@@ -84,7 +93,7 @@
                 <div class="detail_nav_inner">
                     <ul class="clear padding10">
                         <li class="detail_tap pull_left select" id="imgs_tap">商品详情</li>
-<!--                        <li class="detail_tap pull_left" id="pingjia_tap">口碑信息</li>-->
+                        <!--                        <li class="detail_tap pull_left" id="pingjia_tap">口碑信息</li>-->
                     </ul>
                 </div>
             </div>
@@ -93,9 +102,9 @@
                     <div class="padding10 word_break">
                         <div id="detail_imgs_inner" class="zoom_jianrong">
                             <div id="info" class="detail_info">
-                                <?php foreach ($wares->hasManyWareImages as $hasManyWareImage){?>
+                                <?php foreach ($wares->hasManyWareImages as $hasManyWareImage) { ?>
                                     <img src="<?php echo $hasManyWareImage->image; ?>" alt="">
-                                <?php }?>
+                                <?php } ?>
                             </div>
                         </div>
                 </section>
@@ -114,8 +123,10 @@
 <script type="text/javascript" src="/js/shop/common/guide_download_main.js"></script>
 <script type="text/javascript" src="/js/shop/common/ui.js"></script>
 <!--<script type="text/javascript" src="//a5.jmstatic.com/a3dc29676cc4dd43/detail_main.js"></script>-->
-<div id="toTop" style="background: url(http://ms0.jmstatic.com/beauty/image/back_top@2x.png) left center no-repeat !important;background-size: 44px 44px !important;position: fixed;bottom: 80px;width: 45px;height: 45px;z-index: 200000;right: 10px;display: none;"></div>
-<span id="toast-boxs" class="toast-boxs" style="transition: -webkit-transform 1s ease 0s , opacity 1s ease 0s;-webkit-transition: -webkit-transform 1s ease 0s , opacity 1s ease 0s;opacity:0;visibility: hidden;position:fixed;"></span>
+<div id="toTop"
+     style="background: url(http://ms0.jmstatic.com/beauty/image/back_top@2x.png) left center no-repeat !important;background-size: 44px 44px !important;position: fixed;bottom: 80px;width: 45px;height: 45px;z-index: 200000;right: 10px;display: none;"></div>
+<span id="toast-boxs" class="toast-boxs"
+      style="transition: -webkit-transform 1s ease 0s , opacity 1s ease 0s;-webkit-transition: -webkit-transform 1s ease 0s , opacity 1s ease 0s;opacity:0;visibility: hidden;position:fixed;"></span>
 <!--<script type="text/javascript" src="/js/shop/ware_detail/detail_list_main.js"></script>-->
 
 <script type="text/javascript" src="/js/shop/ware_detail/sensorsdata.min.js"></script>

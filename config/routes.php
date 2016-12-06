@@ -70,9 +70,6 @@ Macaw::post('/shop/order/update_order_type',                'ShopOrderController
 
 //shop END
 
-
-
-
 //managers BEGIN
 
 //managers/index BEGIN
@@ -93,8 +90,37 @@ Macaw::post('/managers/login/loginout',                     'ManagerLoginControl
 Macaw::get('/managers/user',                                'ManagerUserController@index');
 //managers/user END
 
-//manager END
+//managers/menu BEGIN
+//管理平台父菜单列表
+Macaw::get('/managers/menu/to_menu',                        'ManagerMenuController@toMenuUI');
+//跳转管理平台添加父菜单页面
+Macaw::get('/managers/menu/to_menu_add',                    'ManagerMenuController@toMenuAddUI');
+//跳转管理平台修改父菜单页面
+Macaw::get('/managers/menu/to_menu_update',                 'ManagerMenuController@toMenuUpdateUI');
+//管理平台添加父菜单
+Macaw::get('/managers/menu/add_menu',                       'ManagerMenuController@addMenu');
+//管理平台修改父菜单
+Macaw::post('/managers/menu/update_menu',                   'ManagerMenuController@updateMenu');
+//管理平台删除父菜单
+Macaw::post('/managers/menu/delete_menu',                   'ManagerMenuController@deleteMenu');
+//managers/menu END
 
+//managers/sub_menu BEGIN
+//管理平台子菜单列表
+Macaw::get('/managers/sub_menu/to_sub_menu',                'ManagerSubMenuController@toSubMenuUI');
+//跳转管理平台添加子菜单页面
+Macaw::get('/managers/sub_menu/to_sub_menu_add',            'ManagerSubMenuController@toSubMenuAddUI');
+//跳转管理平台修改子菜单页面
+Macaw::get('/managers/sub_menu/to_sub_menu_update',         'ManagerSubMenuController@toSubMenuUpdateUI');
+//管理平台添加子菜单
+Macaw::get('/managers/sub_menu/add_sub_menu',               'ManagerSubMenuController@addSubMenu');
+//管理平台修改子菜单
+Macaw::post('/managers/sub_menu/update_sub_menu',           'ManagerSubMenuController@updateSubMenu');
+//管理平台删除子菜单
+Macaw::post('/managers/sub_menu/delete_sub_menu',           'ManagerSubMenuController@deleteSubMenu');
+//managers/sub_menu END
+
+//manager END
 
 
 
