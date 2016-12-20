@@ -36,11 +36,12 @@ function updateAddress(obj) {
 
 function useIntegral(obj) {
     var is_checked = obj.is(':checked');
+    $.post("/shop/order/use_Integral", {is_use: is_checked}, function (data) {
+        $("#cost_count").html(data);
+        $("#cost_count1").html(data);
+    });
     $.get("/shop/order/use_Integral", {is_use: is_checked}, function (data) {
-        var result = JSON.parse(data);
-        $("#cost_count").html(result.money);
-        $("#cost_count1").html(result.money);
-        $("#cost_integral").html(result.integral);
+        $("#cost_integral").html(data);
     });
 }
 

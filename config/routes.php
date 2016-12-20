@@ -61,7 +61,8 @@ Macaw::get('/shop/order',                                   'ShopOrderController
 //跳转订单地址更换页面
 Macaw::get('/shop/order/to_address_update',                 'ShopOrderController@toAddressUpdateUI');
 //使用积分
-Macaw::get('/shop/order/use_Integral',                      'ShopOrderController@getCostCountByIsUseIntegral');
+Macaw::get('/shop/order/use_Integral',                      'ShopOrderController@getIntegralByIsUse');
+Macaw::post('/shop/order/use_Integral',                     'ShopOrderController@getMoneyByIsUse');
 //添加订单
 Macaw::post('/shop/order/add_orders',                       'ShopOrderController@addOrders');
 //确认收货
@@ -119,6 +120,22 @@ Macaw::post('/managers/sub_menu/update_sub_menu',           'ManagerSubMenuContr
 //管理平台删除子菜单
 Macaw::post('/managers/sub_menu/delete_sub_menu',           'ManagerSubMenuController@deleteSubMenu');
 //managers/sub_menu END
+
+//managers/user BEGIN
+//管理平台用户列表
+Macaw::get('/managers/user/to_user',                        'ManagerUserController@toUserUI');
+//跳转管理平台添加用户页面
+Macaw::get('/managers/user/to_user_add',                    'ManagerUserController@toUserAddUI');
+//跳转管理平台修改用户页面
+Macaw::get('/managers/user/to_user_update',                 'ManagerUserController@toUserUpdateUI');
+//管理平台添加用户
+Macaw::get('/managers/user/add_user',                       'ManagerUserController@addUser');
+//管理平台修改用户
+Macaw::post('/managers/user/update_user',                   'ManagerUserController@updateUser');
+//管理平台删除用户
+Macaw::post('/managers/user/delete_user',                   'ManagerUserController@deleteUser');
+//managers/user END
+
 
 //manager END
 

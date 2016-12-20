@@ -2,9 +2,7 @@
 
 namespace app\contrllers\wx_controller;
 
-use app\contrllers\wx_controller\Controller;
-
-class Wx_IndexController extends Controller
+class index
 {
 
     public function index()
@@ -64,13 +62,9 @@ class Wx_IndexController extends Controller
             $keyword = trim($postObj->Content);
             $arr = array('fromUsername' => $fromUsername, 'toUsername' => $toUsername, 'msgType' => $msgType, 'keyword' => $keyword, 'postObj' => $postObj);
 
-
-//            $reqid = $Log->output('req', $requestStr, $postObj);
-
             $WxController = new WxController($arr);
             $responseStr = $WxController->index();
             //应答报文
-//            $Log->output('res', $responseStr, '', $reqid);
             echo $responseStr;
         } else {
             echo '';

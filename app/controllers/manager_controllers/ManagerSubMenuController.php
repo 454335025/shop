@@ -4,8 +4,6 @@ use app\models\M_SubMenus;
 
 class ManagerSubMenuController extends ManagerController
 {
-
-
     /**
      * 跳转父菜单列表
      */
@@ -13,6 +11,7 @@ class ManagerSubMenuController extends ManagerController
     {
         self::$view = View::make('manager_template.common.index')
             ->with('sub_menus', self::getSubMenuList())
+            ->withTitle('子菜单列表')
             ->withUi('sub_menu/sub_menu_list');
     }
 
@@ -22,22 +21,24 @@ class ManagerSubMenuController extends ManagerController
     public function toSubMenuAddUI()
     {
         self::$view = View::make('manager_template.common.index')
+            ->withTitle('添加子菜单')
             ->withUi('sub_menu/sub_menu_add');
     }
 
     /**
-     * 跳转修改父菜单页面
+     * 跳转修改子菜单页面
      */
     public static function toSubMenuUpdateUI()
     {
         $sub_menu_id = $_REQUEST['sub_menu_id'];
         self::$view = View::make('manager_template.common.index')
             ->with('sub_menus', M_SubMenus::find($sub_menu_id))
+            ->withTitle('修改子菜单')
             ->withUi('sub_menu/sub_menu_update');
     }
 
     /**
-     * 添加父菜单
+     * 添加子菜单
      */
 
     public static function addSubMenu()
@@ -60,7 +61,7 @@ class ManagerSubMenuController extends ManagerController
     }
 
     /**
-     * 修改父菜单
+     * 修改子菜单
      */
     public static function updateSubMenu()
     {
@@ -83,7 +84,7 @@ class ManagerSubMenuController extends ManagerController
     }
 
     /**
-     * 删除父菜单
+     * 删除子菜单
      */
     public static function deleteSubMenu()
     {
@@ -98,7 +99,7 @@ class ManagerSubMenuController extends ManagerController
     }
 
     /**
-     * 获取父菜单信息
+     * 获取子菜单信息
      */
     public static function getSubMenuList()
     {

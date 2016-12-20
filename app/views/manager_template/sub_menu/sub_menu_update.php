@@ -1,81 +1,68 @@
-<!-- //////////////////////////////////////////////////////////////////////////// -->
-<!-- START CONTENT -->
-<div class="content">
+<!-- START CONTAINER -->
+<div class="container-padding">
+    <!-- Start Row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
 
-    <!-- Start Page Header -->
-    <div class="page-header">
-        <h1 class="title">修改子菜单</h1>
-        <ol class="breadcrumb">
-            <li><a href="index.html">菜单管理</a></li>
-            <li><a href="#">子菜单列表</a></li>
-            <li class="active">修改子菜单</li>
-        </ol>
-    </div>
-    <!-- End Page Header -->
-    <!-- START CONTAINER -->
-    <div class="container-padding">
-        <!-- Start Row -->
-        <div class="row">
-            <div class="col-md-12 col-lg-6">
-                <div class="panel panel-default">
-
-                    <div class="panel-title">
-                        修改子菜单
-                        <ul class="panel-tools">
-                            <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
-                            <li><a class="icon expand-tool"><i class="fa fa-expand"></i></a></li>
-                            <li><a class="icon closed-tool"><i class="fa fa-times"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="panel-body">
-                        <form class="form-horizontal">
-                            <input type="hidden" id="sub_menu_id" name="sub_menu_id" value="<?php echo $sub_menus->id ?>"/>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label form-label">父菜单名称</label>
-                                <div class="col-sm-10">
-                                    <select id="menu_id" name="menu_id">
-                                        <option value="">请选择</option>
-                                        <?php foreach (\app\models\M_Menus::all() as $menu) { ?>
-                                            <option value="<?php echo $menu->id ?>"
-                                                <?php if ($menu->id == $sub_menus->menu_id ){ ?> selected="selected"<? } ?>
-                                            ><?php echo $menu->name ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
+                <div class="panel-title">
+                    <?php echo $title?>
+                    <ul class="panel-tools">
+                        <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
+                        <li><a class="icon expand-tool"><i class="fa fa-expand"></i></a></li>
+                        <li><a class="icon closed-tool"><i class="fa fa-times"></i></a></li>
+                    </ul>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal">
+                        <input type="hidden" id="sub_menu_id" name="sub_menu_id" value="<?php echo $sub_menus->id ?>"/>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">父菜单名称</label>
+                            <div class="col-sm-10">
+                                <select id="menu_id" name="menu_id">
+                                    <option value="">请选择</option>
+                                    <?php foreach (\app\models\M_Menus::all() as $menu) { ?>
+                                        <option value="<?php echo $menu->id ?>"
+                                            <?php if ($menu->id == $sub_menus->menu_id) { ?> selected="selected"<? } ?>
+                                        ><?php echo $menu->name ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label form-label">子菜单名称</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="name" name="name" value="<?php echo $sub_menus->name ?>">
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">子菜单名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" name="name"
+                                       value="<?php echo $sub_menus->name ?>">
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label form-label">跳转路径</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="url" name="url" value="<?php echo $sub_menus->url ?>">
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">跳转路径</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="url" name="url"
+                                       value="<?php echo $sub_menus->url ?>">
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label form-label">排序</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="sort" name="sort" value="<?php echo $sub_menus->sort ?>">
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label form-label">排序</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="sort" name="sort"
+                                       value="<?php echo $sub_menus->sort ?>">
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-default">修改</button>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="button" class="btn btn-default">修改</button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <!-- End Row -->
     </div>
-    <!-- END CONTAINER -->
+    <!-- End Row -->
 </div>
-<!-- End Content -->
+<!-- END CONTAINER -->
 
 <script>
     $(document).ready(function () {

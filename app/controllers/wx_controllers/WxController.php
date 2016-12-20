@@ -57,33 +57,33 @@ class WxController
 
     public function text()
     {
-        $text = WxTestReply::getReplyByReply(self::$keyword);
-        if ($text['type'] == 'news') {
-            self::$responseStr = TestNewsController::index();
-        } else {
-            self::$responseStr = TestReplyController::index();
-        }
-
     }
 
     public function event()
     {
         switch (self::$event) {
+            //取消关注
             case 'unsubscribe':
-                ;//取消关注
-            case 'subscribe'://关注
-                self::$responseStr = '';
+                ;
                 break;
-            case 'CLICK':                   //点击菜单
-                self::$responseStr = '';
+            //关注
+            case 'subscribe':
+                ;
+                break;
+            //点击菜单
+            case 'CLICK':
+                self::click();
+                break;
+
         }
     }
 
     public function click()
     {
         switch (self::$eventkey) {
-            case 'bind'://绑定按钮
-                $contentStr = '';
+            //绑定按钮
+            case 'bind':
+                ;
                 break;
         }
 

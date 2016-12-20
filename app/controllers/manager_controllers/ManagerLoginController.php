@@ -1,5 +1,4 @@
 <?php
-
 use app\models\M_Users;
 
 class ManagerLoginController

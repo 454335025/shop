@@ -18,7 +18,7 @@ class ShopOrderController extends BaseController
             exit;
         }
         $get_integral_count = self::getIntegralCount();
-        $surplus_integral = self::isMyInegral();
+        $surplus_integral = self::isMyIntegral();
         if ($surplus_integral) {
             self::$view = View::make('shop_template.order')
                 ->with('user', parent::$user)
@@ -30,26 +30,46 @@ class ShopOrderController extends BaseController
 
         } else {
             echo "<script>
-                alert('your shop car isintegral wares is many');
+                alert('your shop car isIntegral wares is many');
                 window.location.href='/shop/shop_car';</script>";
             exit;
         }
     }
 
     /**
-     * 获取花费积分抵扣金钱
+     *跳转修改默认地址页面
      */
-    public static function getCostCountByIsUseIntegral()
+    public static function toAddressUpdateUI()
+    {
+        self::$view = View::make('shop_template.order_address_update')
+            ->with('user', parent::$user)
+            ->withTitle('update_address');
+    }
+
+    /**
+     * 获取积分(是否使用积分抵扣)
+     */
+    public static function getIntegralByIsUse()
     {
         $is_use = $_REQUEST['is_use'];
         $is_use == 'true' ? $is_use = true : $is_use = false;
-        echo json_encode(
-            array(
-                'money' => self::getActualCostCount() - self::getCostCountByIngeral($is_use),
-                'integral' => parent::$user->integral - self::isMyInegral() + self::getCostIngeral()
-            )
-        );
-        exit;
+        if($is_use){
+            $integral = parent::$user->integral - self::isMyIntegral() + self::getCostIntegral();
+        }else{
+            $integral = parent::$user->integral -self::isMyIntegral();
+        }
+        echo $integral;exit;
+    }
+
+    /**
+     * 获取金额(是否使用积分抵扣)
+     */
+    public static function getMoneyByIsUse()
+    {
+        $is_use = $_REQUEST['is_use'];
+        $is_use == 'true' ? $is_use = true : $is_use = false;
+        $money = self::getActualCostCount() - self::getCostCountByIntegral($is_use);
+        echo $money;exit;
     }
 
     /**
@@ -93,12 +113,10 @@ class ShopOrderController extends BaseController
      * 获取抵扣金钱
      * @return int
      */
-    public static function getCostCountByIngeral($is_use = false)
+    public static function getCostCountByIntegral($is_use = false)
     {
         if ($is_use) {
-            $cost = self::getCostIngeral()
-                / parent::$user->hasOneUserType->min_integral
-                * parent::$user->hasOneUserType->exchange;
+            $cost = self::getCostIntegral() / parent::$user->hasOneUserType->min_integral * parent::$user->hasOneUserType->exchange;
         } else {
             $cost = 0;
         }
@@ -110,14 +128,14 @@ class ShopOrderController extends BaseController
      * 获取最大可用抵扣积分
      * @return int
      */
-    public static function getCostIngeral()
+    public static function getCostIntegral()
     {
         $need_integral = (int)(self::getActualCostCount() / parent::$user->hasOneUserType->exchange)
             * parent::$user->hasOneUserType->min_integral;
-        if (self::isMyInegral() - $need_integral > 0) {
+        if (self::isMyIntegral() - $need_integral > 0) {
             $integral = $need_integral;
         } else {
-            $integral = ((int)(self::isMyInegral() / parent::$user->hasOneUserType->min_integral)) * parent::$user->hasOneUserType->min_integral;
+            $integral = ((int)(self::isMyIntegral() / parent::$user->hasOneUserType->min_integral)) * parent::$user->hasOneUserType->min_integral;
         }
         return $integral;
 
@@ -137,20 +155,10 @@ class ShopOrderController extends BaseController
     }
 
     /**
-     *跳转修改默认地址页面
-     */
-    public static function toAddressUpdateUI()
-    {
-        self::$view = View::make('shop_template.order_address_update')
-            ->with('user', parent::$user)
-            ->withTitle('update_address');
-    }
-
-    /**
      * 获取我的剩余积分
      * @return bool
      */
-    public static function isMyInegral()
+    public static function isMyIntegral()
     {
         $surplus_integral = parent::$user->integral;
         foreach (parent::$shop_carts as $shop_cart) {
@@ -183,7 +191,7 @@ class ShopOrderController extends BaseController
             if (self::addOrder($order_id, $is_use, $order_detail)) {
                 S_ShopCarts::where('user_id', parent::$user->id)->delete();
                 $user = S_User::find(parent::$user->id);
-                $user->integral = $user->integral - $order_detail['cost_integral'] - self::getCostIngeral();
+                $user->integral = $user->integral - $order_detail['cost_integral'] - self::getCostIntegral();
                 $user->save();
                 echo json_encode(array('data' => 1, 'msg' => '订单已经成功生成'));
                 exit;
@@ -210,12 +218,12 @@ class ShopOrderController extends BaseController
         $order->get_integral = self::getIntegralCount();
         $order->user_address_id = self::getIntegralCount();
         $order->money = self::getCostCount();
-        $order->actual_money = self::getActualCostCount() - self::getCostCountByIngeral($is_use);
+        $order->actual_money = self::getActualCostCount() - self::getCostCountByIntegral($is_use);
         $order->discount = parent::$user->hasOneUserType->discount;
         $order->discount_money = self::getCostCount() - self::getActualCostCount();
         $order->is_use_integral = $is_use ? 1 : 0;
-        $order->cost_integral = $order_detail['cost_integral'] + $is_use ? self::getCostIngeral() : 0;
-        $order->integral_money = self::getCostCountByIngeral($is_use);
+        $order->cost_integral = $order_detail['cost_integral'] + $is_use ? self::getCostIntegral() : 0;
+        $order->integral_money = self::getCostCountByIntegral($is_use);
         return $order->save();
 
     }

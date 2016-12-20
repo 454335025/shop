@@ -13,6 +13,9 @@ class ManagerController
         if (isset($_SESSION['username']) && $_SESSION['username'] != '') {
             self::$user = M_Users::where('username',$_SESSION['username'])->first();
             $_SESSION['user'] = self::$user;
+            if(!empty($_REQUEST['relation_id'])){
+                $_SESSION['relation_id'] = $_REQUEST['relation_id'];
+            }
         } else {
             self::$view = View::make('manager_template.login');exit;
         }
