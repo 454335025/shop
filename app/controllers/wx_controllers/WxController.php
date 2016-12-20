@@ -3,8 +3,6 @@
 namespace app\contrllers\wx_controller;
 
 
-use app\models\WxTestReply;
-
 class WxController
 {
     /**

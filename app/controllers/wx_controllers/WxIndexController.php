@@ -2,7 +2,7 @@
 
 namespace app\contrllers\wx_controller;
 
-class index
+class WxIndexController
 {
 
     public function index()
