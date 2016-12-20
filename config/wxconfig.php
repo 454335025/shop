@@ -1,3 +1,3 @@
 <?php
 
-define("TOKEN", "weixin");
+define("TOKEN", "maofengjiuye");

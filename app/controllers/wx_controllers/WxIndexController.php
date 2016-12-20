@@ -1,6 +1,6 @@
 <?php
 
-namespace app\contrllers\wx_controller;
+
 
 class WxIndexController
 {
