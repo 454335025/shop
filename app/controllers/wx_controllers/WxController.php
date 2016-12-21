@@ -2,8 +2,9 @@
 
 namespace app\contrllers\wx_controller;
 
+use app\models\W_Reply;
 
-class WxController
+class WxController extends \WxIndexController
 {
     /**
      * 变量
@@ -16,23 +17,32 @@ class WxController
     protected static $event;
     protected static $eventkey;
 
+
+    protected static $WxCreateXmlController;
+
+
+    protected static $reply;
+
     /**
      * 返回值
      */
-    protected static $responseStr = '';
-    protected static $contentStr = '';
+//    protected static $responseStr = '';
+//    protected static $contentStr = '';
 
 
-    public function __construct($arr)
+    public function __construct()
     {
-        self::$fromUsername = $arr['fromUsername'];
-        self::$toUsername = $arr['toUsername'];
-        self::$msgType = $arr['msgType'];
-        self::$keyword = $arr['keyword'];
+        self::$WxCreateXmlController = new WxCreateXmlController();
 
-        self::$postObj = $arr['postObj'];
-        self::$event = self::$postObj->Event;
-        self::$eventkey = self::$postObj->EventKey;
+        self::$fromUsername = parent::$postObj->FromUserName;
+        self::$toUsername = parent::$postObj->ToUserName;
+        self::$toUsername = parent::$postObj->MsgType;
+        self::$keyword = trim(parent::$postObj->Content);
+
+        self::$postObj = parent::$postObj;
+        self::$event = parent::$postObj->Event;
+        self::$eventkey = parent::$postObj->EventKey;
+
 
     }
 
@@ -50,13 +60,30 @@ class WxController
                 break;
 
         }
-        return self::$responseStr;
     }
 
+    /**
+     * 文本
+     */
     public function text()
     {
+        self::$reply = W_Reply::where('text', self::$keyword)->get();
+        switch (self::$reply->type) {
+            case 'text':
+                (new WxTextReplyController())->index();
+                break;
+            case 'new':
+                (new WxTextNewController())->index();
+                break;
+            case 'type3':
+                ;
+                break;
+        }
     }
 
+    /**
+     * 事件
+     */
     public function event()
     {
         switch (self::$event) {
@@ -76,6 +103,9 @@ class WxController
         }
     }
 
+    /**
+     * 按钮点击事件
+     */
     public function click()
     {
         switch (self::$eventkey) {

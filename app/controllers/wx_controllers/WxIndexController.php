@@ -1,10 +1,12 @@
 <?php
 
-
+use app\contrllers\wx_controller\WxController;
 
 class WxIndexController
 {
-
+    protected static $postObj;
+    protected static $requestStr;
+    protected static $responseStr;
     public function index()
     {
 
@@ -48,24 +50,15 @@ class WxIndexController
     {
 
 //        $requestStr = $_REQUEST['mpxml'];  //线下测试放开
-        $requestStr = $GLOBALS["HTTP_RAW_POST_DATA"];//上线放开
-
-        if ($requestStr == '') {
-            $requestStr = file_get_contents("php://input");//上线放开
+        self::$requestStr = $GLOBALS["HTTP_RAW_POST_DATA"];//上线放开
+        if (self::$requestStr == '') {
+            self::$requestStr = file_get_contents("php://input");//上线放开
         }
 
-        if (!empty($requestStr)) {
-            $postObj = simplexml_load_string($requestStr, 'SimpleXMLElement', LIBXML_NOCDATA);
-            $fromUsername = $postObj->FromUserName;
-            $toUsername = $postObj->ToUserName;
-            $msgType = $postObj->MsgType;
-            $keyword = trim($postObj->Content);
-            $arr = array('fromUsername' => $fromUsername, 'toUsername' => $toUsername, 'msgType' => $msgType, 'keyword' => $keyword, 'postObj' => $postObj);
-
-            $WxController = new WxController($arr);
-            $responseStr = $WxController->index();
-            //应答报文
-            echo $responseStr;
+        if (!empty(self::$requestStr)) {
+            self::$postObj = simplexml_load_string(self::$requestStr, 'SimpleXMLElement', LIBXML_NOCDATA);
+            (new WxController())->index();
+            echo self::$responseStr;
         } else {
             echo '';
             exit;
