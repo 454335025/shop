@@ -1,8 +1,6 @@
 <?php
 
-namespace app\contrllers\wx_controller;
-
-use app\models\W_Reply;
+use app\models\W_TextReply;
 
 class WxController extends \WxIndexController
 {
@@ -46,7 +44,7 @@ class WxController extends \WxIndexController
 
     }
 
-    public function index()
+    public static function index()
     {
         switch (self::$msgType) {
             case 'text':
@@ -67,13 +65,13 @@ class WxController extends \WxIndexController
      */
     public function text()
     {
-        self::$reply = W_Reply::where('text', self::$keyword)->get();
+        self::$reply = W_TextReply::where('reply', self::$keyword)->get();
         switch (self::$reply->type) {
             case 'text':
-                (new WxTextReplyController())->index();
+                WxTextReplyController::index();
                 break;
             case 'new':
-                (new WxTextNewController())->index();
+                WxTextNewController::index();
                 break;
             case 'type3':
                 ;

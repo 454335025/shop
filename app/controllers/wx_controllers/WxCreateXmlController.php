@@ -12,7 +12,7 @@ namespace app\contrllers\wx_controller;
 class WxCreateXmlController
 {
 
-    public function create_text_xml()
+    public static function create_text_xml()
     {
         return $textTpl = "<xml>
                         <ToUserName><![CDATA[%s]]></ToUserName>
@@ -24,7 +24,7 @@ class WxCreateXmlController
                         </xml>";
     }
 
-    public function create_new_xml()
+    public static function create_new_xml()
     {
         return $newsTpl = "<xml>
             <ToUserName><![CDATA[%s]]></ToUserName>
@@ -39,7 +39,7 @@ class WxCreateXmlController
 
     }
 
-    public function create_new_item_xml()
+    public static function create_new_item_xml()
     {
         return $itemTpl = "    <item>
         <Title><![CDATA[%s]]></Title>

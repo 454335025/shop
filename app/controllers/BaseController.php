@@ -13,8 +13,8 @@ class BaseController
 
     public function __construct()
     {
-//        session_start();
 
+        $UserInfo = WxCommonController::OAuth2('getUserInfo');
         if (isset($_SESSION['openid'])) {
             self::$openid = $_SESSION['openid'];
             if (!self::verify()) {
@@ -22,7 +22,7 @@ class BaseController
             }
             self::$shop_carts = S_ShopCarts::with('belongsToWare')->where('user_id', self::$user->id)->get();
         } else {
-            self::$openid = !empty($_REQUEST['openid']) ? $_REQUEST['openid'] : '';
+            self::$openid = !empty($UserInfo['openid']) ? $UserInfo['openid'] : '';
             if (self::$openid != '') {
                 $_SESSION['openid'] = self::$openid;
                 self::__construct();
@@ -33,6 +33,8 @@ class BaseController
 
         }
     }
+
+
 
     public function __destruct()
 
@@ -58,7 +60,7 @@ class BaseController
      * 验证用户登录信息
      */
 
-    public static function verify()
+    private static function verify()
     {
         if (self::$openid) {
             self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', self::$openid)->first();

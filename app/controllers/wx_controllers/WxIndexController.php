@@ -1,6 +1,6 @@
 <?php
 
-use app\contrllers\wx_controller\WxController;
+use app\contrllers\wx_controllers\WxController;
 
 class WxIndexController
 {
@@ -57,13 +57,15 @@ class WxIndexController
 
         if (!empty(self::$requestStr)) {
             self::$postObj = simplexml_load_string(self::$requestStr, 'SimpleXMLElement', LIBXML_NOCDATA);
-            (new WxController())->index();
+            WxController::index();
             echo self::$responseStr;
         } else {
             echo '';
             exit;
         }
     }
+
+
 }
 
 ?>

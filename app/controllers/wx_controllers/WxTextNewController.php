@@ -13,7 +13,7 @@ use app\models\W_TextNew;
 class WxTextNewController extends WxController
 {
     private static $news;
-    public function index()
+    public static function index()
     {
         self::$news = W_TextNew::where('text_id',parent::$reply->reply)->get();
         self::create_reply_xml();
@@ -24,13 +24,13 @@ class WxTextNewController extends WxController
         $count = 0;
         $item_str = '';
 
-        $itemTpl = parent::$WxCreateXmlController->create_new_item_xml();
+        $itemTpl = WxCreateXmlController::create_new_item_xml();
         foreach (self::$news as $new) {
             $item_str .= sprintf($itemTpl, $new->title, $new->description, $new->picurl, $new->url);
             $count++;
         }
 
-        $newsTpl = parent::$WxCreateXmlController->create_new_xml();
+        $newsTpl = WxCreateXmlController::create_new_xml();
 
         parent::$responseStr = sprintf($newsTpl, parent::$fromUsername, parent::$toUsername, time(), $count, $item_str);
     }

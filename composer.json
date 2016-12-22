@@ -4,7 +4,8 @@
     "noahbuscher/macaw": "dev-master",
     "illuminate/database": "*",
     "filp/whoops": "*",
-    "nette/mail": "*"
+    "nette/mail": "*",
+    "predis/predis": "*"
   },
   "autoload": {
     "classmap": [

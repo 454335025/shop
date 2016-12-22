@@ -11,14 +11,14 @@ namespace app\contrllers\wx_controller;
 
 class WxTextReplyController extends WxController
 {
-    public function index()
+    public static function index()
     {
         self::create_text_xml();
     }
 
     private static function create_text_xml()
     {
-        $xml = parent::$WxCreateXmlController->create_text_xml();
+        $xml = WxCreateXmlController::create_text_xml();
         parent::$responseStr = sprintf(
             $xml,
             parent::$fromUsername,
