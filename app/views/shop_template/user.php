@@ -26,8 +26,7 @@
 <div id="wrapper" style="zoom: 1.2875; display: block;">
     <!-- 已登录 -->
     <div class="user">
-        <img src="http://images2.jumei.com/user_avatar/113/880/113880755-64.png?1476096217?1477639359" alt=""
-             class="photo">
+        <img src="<?php echo $user->headimgurl; ?>" alt="" class="photo">
         <div class="user_bg">
             <div class="user_info">
                 <span class="name"><?php echo $user->username; ?></span>
