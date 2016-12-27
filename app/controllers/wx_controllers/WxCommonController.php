@@ -7,7 +7,7 @@ class WxCommonController
 
     public static function OAuth2($function = null)
     {
-        if ($function != null && function_exists('getUserInfo')) {
+        if ($function != null && function_exists($function)) {
             $code = $_GET["code"];//获取code
             $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" . APPID . "&secret" . SECRET . "&code=$code&grant_type=authorization_code";//通过code换取网页授权access_token
             $str = file_get_contents($url);

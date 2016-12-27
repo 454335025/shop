@@ -10,11 +10,10 @@ class BaseController
     protected static $openid;
     protected static $user;
     protected static $shop_carts;
+    protected static $UserInfo;
 
     public function __construct()
     {
-
-        $UserInfo = WxCommonController::OAuth2('getUserInfo');
         if (isset($_SESSION['openid'])) {
             self::$openid = $_SESSION['openid'];
             if (!self::verify()) {
@@ -22,7 +21,8 @@ class BaseController
             }
             self::$shop_carts = S_ShopCarts::with('belongsToWare')->where('user_id', self::$user->id)->get();
         } else {
-            self::$openid = !empty($UserInfo['openid']) ? $UserInfo['openid'] : '';
+            self::$UserInfo = WxCommonController::OAuth2('getUserInfo');
+            self::$openid = !empty(self::$UserInfo['openid']) ? self::$UserInfo['openid'] : '';
             if (self::$openid != '') {
                 $_SESSION['openid'] = self::$openid;
                 self::__construct();
@@ -33,7 +33,6 @@ class BaseController
 
         }
     }
-
 
 
     public function __destruct()
@@ -73,8 +72,10 @@ class BaseController
                     ['cost' => 12]
                 );
                 $users = new S_User();
+                $users->username = self::$UserInfo['username'];
                 $users->openid = self::$openid;
                 $users->password = $password_Hash;
+                $users->headimgurl = self::$UserInfo['headimgurl'];
                 $users->save();
                 return true;
             }
