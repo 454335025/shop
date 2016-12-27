@@ -16,6 +16,7 @@ class BaseController
     {
         if (isset($_SESSION['openid'])) {
             self::$openid = $_SESSION['openid'];
+            self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', self::$openid)->first();
             if (!self::verify()) {
                 echo "<script>alert('未检测到账号');</script>";
             }
@@ -62,7 +63,6 @@ class BaseController
     private static function verify()
     {
         if (self::$openid) {
-            self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', self::$openid)->first();
             if (!empty(self::$user)) {
                 return password_verify(self::$openid, self::$user->password);
             } else {
