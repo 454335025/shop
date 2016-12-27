@@ -72,7 +72,7 @@ class BaseController
                     ['cost' => 12]
                 );
                 $users = new S_User();
-                $users->username = self::$UserInfo['username'];
+                $users->username = self::$UserInfo['nickname'];
                 $users->openid = self::$openid;
                 $users->password = $password_Hash;
                 $users->headimgurl = self::$UserInfo['headimgurl'];
