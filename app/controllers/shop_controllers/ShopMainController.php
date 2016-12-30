@@ -32,7 +32,7 @@ class ShopMainController extends BaseController
             ->with('wares', self::$wares)
             ->with('shop_cart_count', self::$shop_cart_count)
             ->with('openid', parent::$openid)
-            ->withTitle('main');
+            ->withTitle('首页');
     }
 
     /**

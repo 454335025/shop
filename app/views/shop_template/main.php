@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <title><?php echo $title; ?></title>
-    <meta name="description" content="聚美优品是国内">
+    <meta name="description" content="泸州老窖">
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="apple-touch-fullscreen" content="yes">

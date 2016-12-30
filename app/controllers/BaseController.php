@@ -18,7 +18,7 @@ class BaseController
             self::$openid = $_SESSION['openid'];
             self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', self::$openid)->first();
             if (!self::verify()) {
-                echo "<script>alert('未检测到账号');</script>";
+                echo "<script>alert('未检测到账号1');</script>";
             }
             self::$shop_carts = S_ShopCarts::with('belongsToWare')->where('user_id', self::$user->id)->get();
         } else {
@@ -28,7 +28,7 @@ class BaseController
                 $_SESSION['openid'] = self::$openid;
                 self::__construct();
             } else {
-                echo "<script>alert('未检测到账号');</script>";
+                echo "<script>alert('未检测到账号2');</script>";
                 exit;
             }
 
