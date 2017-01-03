@@ -22,7 +22,7 @@ class BaseController
                 exit;
             }
         } else {
-            self::$UserInfo = WxCommonController::OAuth2('snsapi_base');
+            self::$UserInfo = WxCommonController::OAuth2(array('snsapi_base'));
             if (self::$UserInfo['openid'] != '') {
                 $_SESSION['openid'] = self::$UserInfo['openid'];
                 self::__construct();
@@ -69,7 +69,7 @@ class BaseController
                 return false;
             }
         } else {
-            self::$UserInfo = WxCommonController::OAuth2('getUserInfo');
+            self::$UserInfo = WxCommonController::OAuth2(array('snsapi_base', 'getUserInfo'));
             $password_Hash = password_hash(
                 self::$openid,
                 PASSWORD_DEFAULT,

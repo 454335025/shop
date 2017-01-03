@@ -7,12 +7,15 @@ class WxCommonController
     private static $code;
     private static $url;
 
-    public static function OAuth2($function = null)
+    public static function OAuth2($function = array())
     {
-        if ($function != null && method_exists('WxCommonController', $function)) {
+        if (count($function) == 0 && method_exists('WxCommonController', $function)) {
             self::$code = $_GET["code"];//获取code
             self::$url = $_GET["state"];//获取url
-            return call_user_func(array('WxCommonController', $function));
+            foreach ($function as $value) {
+                $function_array = call_user_func(array('WxCommonController', $value));
+            }
+            return end($function_array);
         } else {
             echo "未找到方法";
             exit;
