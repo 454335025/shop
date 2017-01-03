@@ -43,8 +43,7 @@ class WxCommonController
         if (isset(self::$url)) {
             $redirect_uri = "https://open.weixin.qq.com/connect/oauth2/authorize?
             appid=wxd98c74d2183c3a4e&redirect_uri=" . self::$url . "&response_type=code&scope=snsapi_userinfo&state=" . self::$url . "#wechat_redirect";
-            Header("HTTP/1.1 303 See Other");
-            Header("Location:" . $redirect_uri);
+            header("Location:$redirect_uri");
             exit;
         }
     }
