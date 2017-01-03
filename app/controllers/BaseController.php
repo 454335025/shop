@@ -23,9 +23,8 @@ class BaseController
             self::$shop_carts = S_ShopCarts::with('belongsToWare')->where('user_id', self::$user->id)->get();
         } else {
             self::$UserInfo = WxCommonController::OAuth2('getUserInfo');
-            self::$openid = !empty(self::$UserInfo['openid']) ? self::$UserInfo['openid'] : '';
-            if (self::$openid != '') {
-                $_SESSION['openid'] = self::$openid;
+            if (self::$UserInfo['openid'] != '') {
+                $_SESSION['openid'] = self::$UserInfo['openid'];
                 self::__construct();
             } else {
                 echo "<script>alert('未检测到账号2');</script>";
