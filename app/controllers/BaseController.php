@@ -16,10 +16,12 @@ class BaseController
     {
         if (isset($_SESSION['openid'])) {
             self::$openid = $_SESSION['openid'];
-            self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', self::$openid)->first();
+            self::$user = S_User::where('openid', self::$openid)->first();
             if (!self::verify()) {
                 echo "<script>alert('绑定出现问题请稍后再试！');</script>";
                 exit;
+            }else{
+                self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', self::$openid)->first();
             }
         } else {
             self::$UserInfo = WxCommonController::OAuth2();
