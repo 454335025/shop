@@ -6,14 +6,13 @@
  * Time: 18:28
  */
 
-namespace app\contrllers\wx_controller;
 
 use app\models\W_TextNew;
 
 class WxTextNewController extends WxController
 {
     private static $news;
-    public static function index()
+    public static function news()
     {
         self::$news = W_TextNew::where('text_id',parent::$reply->reply)->get();
         self::create_reply_xml();

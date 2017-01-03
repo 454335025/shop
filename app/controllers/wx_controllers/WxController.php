@@ -2,7 +2,7 @@
 
 use app\models\W_TextReply;
 
-class WxController extends \WxIndexController
+class WxController extends WxIndexController
 {
     /**
      * 变量
@@ -44,7 +44,7 @@ class WxController extends \WxIndexController
 
     }
 
-    public static function index()
+    public static function routes()
     {
         switch (self::$msgType) {
             case 'text':
@@ -68,10 +68,10 @@ class WxController extends \WxIndexController
         self::$reply = W_TextReply::where('reply', self::$keyword)->get();
         switch (self::$reply->type) {
             case 'text':
-                WxTextReplyController::index();
+                WxTextReplyController::text();
                 break;
             case 'new':
-                WxTextNewController::index();
+                WxTextNewController::news();
                 break;
             case 'type3':
                 ;
@@ -106,13 +106,18 @@ class WxController extends \WxIndexController
      */
     public function click()
     {
-        switch (self::$eventkey) {
-            //绑定按钮
-            case 'bind':
-                ;
-                break;
+        if (strpos(self::$eventkey, 'other')) {
+            switch (self::$eventkey) {
+                //绑定按钮
+                case 'toMain':
+                    ;
+                    break;
+            }
+        } else {
+            $redirect_uri = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" . APPID . "&redirect_uri=" . self::$eventkey . "&response_type=code&scope=snsapi_userinfo#wechat_redirect";
+            header("Location:$redirect_uri");
+            exit;
         }
-
     }
 
 

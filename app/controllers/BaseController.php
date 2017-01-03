@@ -16,13 +16,16 @@ class BaseController
     {
         if (isset($_SESSION['openid'])) {
             self::$openid = $_SESSION['openid'];
-            self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', self::$openid)->first();
+            self::$user = S_User::where('openid', self::$openid)->first();
             if (!self::verify()) {
                 echo "<script>alert('绑定出现问题请稍后再试！');</script>";
                 exit;
+            }else{
+                self::$shop_carts = S_ShopCarts::with('belongsToWare')->where('user_id', self::$user->id)->get();
+                self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', self::$openid)->first();
             }
         } else {
-            self::$UserInfo = WxCommonController::OAuth2('snsapi_base');
+            self::$UserInfo = WxCommonController::OAuth2();
             if (self::$UserInfo['openid'] != '') {
                 $_SESSION['openid'] = self::$UserInfo['openid'];
                 self::__construct();
@@ -62,14 +65,9 @@ class BaseController
     private static function verify()
     {
         if (!empty(self::$user)) {
-            if (password_verify(self::$openid, self::$user->password)) {
-                self::$shop_carts = S_ShopCarts::with('belongsToWare')->where('user_id', self::$user->id)->get();
-                return true;
-            } else {
-                return false;
-            }
+            return password_verify(self::$openid, self::$user->password);
         } else {
-            self::$UserInfo = WxCommonController::OAuth2('getUserInfo');
+            self::$UserInfo = WxCommonController::OAuth2('snsapi_userinfo');
             $password_Hash = password_hash(
                 self::$openid,
                 PASSWORD_DEFAULT,

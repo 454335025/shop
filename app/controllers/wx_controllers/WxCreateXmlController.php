@@ -1,13 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: GE62
- * Date: 2016/12/20
- * Time: 18:44
- */
-
-namespace app\contrllers\wx_controller;
-
 
 class WxCreateXmlController
 {
