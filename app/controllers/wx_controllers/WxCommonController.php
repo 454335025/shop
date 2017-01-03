@@ -13,7 +13,7 @@ class WxCommonController
         self::$url = $_GET["state"];//获取url
         self::$oauth = call_user_func(array('WxCommonController', 'snsapi_base'));
 
-        if ($function != null && method_exists(array('WxCommonController', $function))) {
+        if ($function != null && method_exists('WxCommonController', $function)) {
             return call_user_func(array('WxCommonController', $function));
         } else {
             return self::$oauth;
