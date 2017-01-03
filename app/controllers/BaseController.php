@@ -18,11 +18,11 @@ class BaseController
             self::$openid = $_SESSION['openid'];
             self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', self::$openid)->first();
             if (!self::verify()) {
-                echo "<script>alert('未检测到账号1');</script>";
+                echo "<script>alert('绑定出现问题请稍后再试！');</script>";
+                exit;
             }
-            self::$shop_carts = S_ShopCarts::with('belongsToWare')->where('user_id', self::$user->id)->get();
         } else {
-            self::$UserInfo = WxCommonController::OAuth2('getUserInfo');
+            self::$UserInfo = WxCommonController::OAuth2('snsapi_base');
             if (self::$UserInfo['openid'] != '') {
                 $_SESSION['openid'] = self::$UserInfo['openid'];
                 self::__construct();
@@ -61,26 +61,27 @@ class BaseController
 
     private static function verify()
     {
-        if (self::$openid) {
-            if (!empty(self::$user)) {
-                return password_verify(self::$openid, self::$user->password);
-            } else {
-                $password_Hash = password_hash(
-                    self::$openid,
-                    PASSWORD_DEFAULT,
-                    ['cost' => 12]
-                );
-                $users = new S_User();
-                $users->username = self::$UserInfo['nickname'];
-                $users->openid = self::$openid;
-                $users->password = $password_Hash;
-                $users->headimgurl = self::$UserInfo['headimgurl'];
-                $users->save();
+        if (!empty(self::$user)) {
+            if (password_verify(self::$openid, self::$user->password)) {
+                self::$shop_carts = S_ShopCarts::with('belongsToWare')->where('user_id', self::$user->id)->get();
                 return true;
+            } else {
+                return false;
             }
         } else {
-            return false;
+            self::$UserInfo = WxCommonController::OAuth2('getUserInfo');
+            $password_Hash = password_hash(
+                self::$openid,
+                PASSWORD_DEFAULT,
+                ['cost' => 12]
+            );
+            $users = new S_User();
+            $users->username = self::$UserInfo['nickname'];
+            $users->openid = self::$openid;
+            $users->password = $password_Hash;
+            $users->headimgurl = self::$UserInfo['headimgurl'];
+            $users->save();
+            return true;
         }
     }
-
 }

@@ -12,7 +12,6 @@ class WxCommonController
         if ($function != null && method_exists('WxCommonController', $function)) {
             self::$code = $_GET["code"];//获取code
             self::$url = $_GET["state"];//获取url
-            self::$oauth = self::snsapi_base();
             return call_user_func(array('WxCommonController', $function));
         } else {
             echo "未找到方法";
@@ -41,8 +40,7 @@ class WxCommonController
     function snsapi_userinfo()
     {
         if (isset(self::$url)) {
-            $redirect_uri = "https://open.weixin.qq.com/connect/oauth2/authorize?
-            appid=wxd98c74d2183c3a4e&redirect_uri=" . self::$url . "&response_type=code&scope=snsapi_userinfo&state=" . self::$url . "#wechat_redirect";
+            $redirect_uri = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd98c74d2183c3a4e&redirect_uri=" . self::$url . "&response_type=code&scope=snsapi_userinfo&state=" . self::$url . "#wechat_redirect";
             header("Location:$redirect_uri");
             exit;
         }
