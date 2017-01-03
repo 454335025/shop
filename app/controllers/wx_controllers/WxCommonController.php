@@ -7,24 +7,19 @@ class WxCommonController
     private static $code;
     private static $url;
 
-    public static function OAuth2($function = array())
+    public function __construct()
     {
-        if (count($function) == 0) {
-            self::$code = $_GET["code"];//获取code
-            self::$url = $_GET["state"];//获取url
-            foreach ($function as $value) {
-                if(method_exists('WxCommonController', $value)){
-                    $function_array = call_user_func(array('WxCommonController', $value));
-                }else{
-                    echo "未找到 $value 方法";
-                    exit;
-                }
+        self::$code = $_GET["code"];//获取code
+        self::$url = $_GET["state"];//获取url
+        self::$oauth = call_user_func(array('WxCommonController', 'snsapi_base'));
+    }
 
-            }
-            return end($function_array);
+    public static function OAuth2($function = null)
+    {
+        if ($function != null && method_exists(array('WxCommonController', $function))) {
+            return call_user_func(array('WxCommonController', $function));
         } else {
-            echo "调用方法为空";
-            exit;
+            return self::$oauth;
         }
     }
 
