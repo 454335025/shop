@@ -24,10 +24,11 @@ class WxCommonController
     {
         $url = "https://api.weixin.qq.com/sns/userinfo?access_token=" . self::$oauth['access_token'] . "&openid=" . self::$oauth['openid'];
         $str = file_get_contents($url);//获取用户信息
+        $str = json_decode($str, true);
         if (array_key_exists('errcode', $str) && $str['errcode'] == '48001') {
             self::snsapi_userinfo();
         }
-        return json_decode($str, true);
+        return $str;
     }
 
     function snsapi_base()
