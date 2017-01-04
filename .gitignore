@@ -3,4 +3,5 @@
 .env
 /config/database.php
 .idea
+/config/database.php
 /public/MP_verify_47CO65mpKW9IsQaA.txt
