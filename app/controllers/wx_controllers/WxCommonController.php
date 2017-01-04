@@ -8,8 +8,10 @@ class WxCommonController
 
     public static function OAuth2($function = null)
     {
-        self::$code = $_GET["code"];//获取code
+        self::$code = !empty($_REQUEST['code']) ? $_REQUEST['code'] : '';//获取code
 
+        self::is_code();
+        
         self::$oauth = call_user_func(array('WxCommonController', 'snsapi_base'));
 
         if ($function != null && method_exists('WxCommonController', $function)) {
@@ -39,6 +41,13 @@ class WxCommonController
         $url = "https://api.weixin.qq.com/sns/userinfo?access_token=" . self::$oauth['access_token'] . "&openid=" . self::$oauth['openid'];
         $str = file_get_contents($url);//获取用户信息
         return json_decode($str, true);
+    }
+
+    function is_code()
+    {
+        if(self::$code == ''){
+            echo "<script>alert('请您用微信服务号访问')</script>";exit;
+        }
     }
 
 
