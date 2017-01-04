@@ -144,6 +144,8 @@ Macaw::post('/managers/user/delete_user',                   'ManagerUserControll
 //wx BEGIN
 Macaw::get('/wx',                                           'WxIndexController@index');
 Macaw::get('/wx/index',                                     'WxIndexController@index');
+Macaw::post('/wx',                                          'WxIndexController@index');
+Macaw::post('/wx/index',                                    'WxIndexController@index');
 //wx END
 //test BEGIN
 Macaw::get('/test', 'TestController@index');
