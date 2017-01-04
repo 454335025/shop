@@ -6,12 +6,12 @@
  * Time: 18:28
  */
 
-namespace app\contrllers\wx_controller;
+
 
 
 class WxTextReplyController extends WxController
 {
-    public static function index()
+    public static function texts()
     {
         self::create_text_xml();
     }
