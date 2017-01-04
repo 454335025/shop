@@ -10,6 +10,8 @@ class WxCommonController
     {
         self::$code = !empty($_REQUEST['code']) ? $_REQUEST['code'] : '';//获取code
 
+        self::is_code();
+        
         self::$oauth = call_user_func(array('WxCommonController', 'snsapi_base'));
 
         if ($function != null && method_exists('WxCommonController', $function)) {
