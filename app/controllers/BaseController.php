@@ -16,13 +16,12 @@ class BaseController
     {
         if (isset($_SESSION['openid'])) {
             self::$openid = $_SESSION['openid'];
-            self::$user = S_User::where('openid', self::$openid)->first();
-            if (!self::verify()) {
+            self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', self::$openid)->first();
+            if (self::verify()) {
+                self::$shop_carts = S_ShopCarts::with('belongsToWare')->where('user_id', self::$user->id)->get();
+            }else{
                 echo "<script>alert('绑定出现问题请稍后再试！');</script>";
                 exit;
-            }else{
-                self::$shop_carts = S_ShopCarts::with('belongsToWare')->where('user_id', self::$user->id)->get();
-                self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', self::$openid)->first();
             }
         } else {
             self::$UserInfo = WxCommonController::OAuth2();
@@ -64,7 +63,7 @@ class BaseController
 
     private static function verify()
     {
-        if (!empty(self::$user)) {
+        if (self::$user->id != '') {
             return password_verify(self::$openid, self::$user->password);
         } else {
             self::$UserInfo = WxCommonController::OAuth2('snsapi_userinfo');
