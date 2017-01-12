@@ -11,7 +11,7 @@ class ShopOrderController extends BaseController
     public static function index()
     {
         $cost_count = self::getActualCostCount();
-        if (self::getCostCount() <= 0) {
+        if (S_ShopCarts::where('user_id', parent::$user->id)->count() <= 0) {
             echo "<script>
                 alert('购物车里没有商品,快去商城添加吧');
                 window.location.href='/shop/main';</script>";
@@ -19,7 +19,7 @@ class ShopOrderController extends BaseController
         }
         $get_integral_count = self::getIntegralCount();
         $surplus_integral = self::isMyIntegral();
-        if ($surplus_integral) {
+        if ($surplus_integral !== false) {
             self::$view = View::make('shop_template.order')
                 ->with('user', parent::$user)
                 ->with('shop_carts', parent::$shop_carts)
