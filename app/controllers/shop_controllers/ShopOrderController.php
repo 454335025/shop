@@ -53,12 +53,13 @@ class ShopOrderController extends BaseController
     {
         $is_use = $_REQUEST['is_use'];
         $is_use == 'true' ? $is_use = true : $is_use = false;
-        if($is_use){
+        if ($is_use) {
             $integral = parent::$user->integral - self::isMyIntegral() + self::getCostIntegral();
-        }else{
-            $integral = parent::$user->integral -self::isMyIntegral();
+        } else {
+            $integral = parent::$user->integral - self::isMyIntegral();
         }
-        echo $integral;exit;
+        echo $integral;
+        exit;
     }
 
     /**
@@ -69,7 +70,8 @@ class ShopOrderController extends BaseController
         $is_use = $_REQUEST['is_use'];
         $is_use == 'true' ? $is_use = true : $is_use = false;
         $money = self::getActualCostCount() - self::getCostCountByIntegral($is_use);
-        echo $money;exit;
+        echo $money;
+        exit;
     }
 
     /**
@@ -178,29 +180,34 @@ class ShopOrderController extends BaseController
      */
     public static function addOrders()
     {
-
-        $order_id = 'DDBH' . (date('YmdHis', time()) . rand(100000, 999999));
+        $data = array();
+        $order_id = self::createOrderNum();
         $is_use = $_REQUEST['is_use'];
         $is_use == 'true' ? $is_use = true : $is_use = false;
         $order_detail = self::addOrderDetail($order_id);
-        if ($order_detail['i'] != 0) {
-            S_OrderDetails::where('order_id', $order_id)->delete();
-            echo json_encode(array('data' => 2, 'msg' => 'create order error'));
-            exit;
-        } else if ($order_detail['i'] == 0) {
-            if (self::addOrder($order_id, $is_use, $order_detail)) {
-                S_ShopCarts::where('user_id', parent::$user->id)->delete();
-                $user = S_User::find(parent::$user->id);
-                $user->integral = $user->integral - $order_detail['cost_integral'] - self::getCostIntegral();
-                $user->save();
-                echo json_encode(array('data' => 1, 'msg' => '订单已经成功生成'));
-                exit;
-            } else {
+        $user_address_id = ShopUserController::getUserAddressIdByUserId();
+        if ($user_address_id) {
+            if ($order_detail['i'] != 0) {
                 S_OrderDetails::where('order_id', $order_id)->delete();
-                echo json_encode(array('data' => 2, 'msg' => '订单生产失败'));
-                exit;
+                $data = array('data' => 3, 'msg' => 'create order error');
+            } else if ($order_detail['i'] == 0) {
+                if (self::addOrder($order_id, $is_use, $order_detail, $user_address_id)) {
+                    S_ShopCarts::where('user_id', parent::$user->id)->delete();
+                    $user = S_User::find(parent::$user->id);
+                    $user->integral = $user->integral - $order_detail['cost_integral'] - self::getCostIntegral();
+                    $user->save();
+                    $data = array('data' => 1, 'msg' => '订单已经成功生成');
+                } else {
+                    S_OrderDetails::where('order_id', $order_id)->delete();
+                    $data = array('data' => 2, 'msg' => '订单生产失败');
+                }
             }
+        } else {
+            $data = array('data' => 4, 'msg' => '先去添加收货地址吧');
         }
+
+        echo json_encode($data);
+        exit;
     }
 
     /**
@@ -210,13 +217,13 @@ class ShopOrderController extends BaseController
      * @param $order_detail 订单商品详情添加状态
      * @return bool
      */
-    public static function addOrder($order_id, $is_use, $order_detail)
+    public static function addOrder($order_id, $is_use, $order_detail, $user_address_id)
     {
         $order = new S_Orders();
         $order->order_id = $order_id;
         $order->user_id = parent::$user->id;
         $order->get_integral = self::getIntegralCount();
-        $order->user_address_id = self::getIntegralCount();
+        $order->user_address_id =
         $order->money = self::getCostCount();
         $order->actual_money = self::getActualCostCount() - self::getCostCountByIntegral($is_use);
         $order->discount = parent::$user->hasOneUserType->discount;
@@ -264,5 +271,10 @@ class ShopOrderController extends BaseController
         S_Orders::where('order_id', $order_id)->update(['type' => 3]);
         echo 1;
         exit;
+    }
+
+    public static function createOrderNum()
+    {
+        return 'DDBH' . (date('YmdHis', time()) . rand(100000, 999999));
     }
 }

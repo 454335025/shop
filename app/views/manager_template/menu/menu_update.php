@@ -15,19 +15,19 @@
                 </div>
                 <div class="panel-body">
                     <form class="form-horizontal">
-                        <input type="hidden" id="menu_id" name="menu_id" value="<?php echo $menus->id ?>"/>
+                        <input type="hidden" id="menu_id" name="menu_id" value="<?php echo $menu->id ?>"/>
                         <div class="form-group">
                             <label class="col-sm-2 control-label form-label">菜单名称</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="name" name="name"
-                                       value="<?php echo $menus->name ?>">
+                                       value="<?php echo $menu->name ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label form-label">排序</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="sort" name="sort"
-                                       value="<?php echo $menus->sort ?>">
+                                       value="<?php echo $menu->sort ?>">
                             </div>
                         </div>
                         <div class="form-group">

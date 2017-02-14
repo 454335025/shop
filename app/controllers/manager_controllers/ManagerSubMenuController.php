@@ -9,7 +9,7 @@ class ManagerSubMenuController extends ManagerController
      */
     public function toSubMenuUI()
     {
-        self::$view = View::make('manager_template.common.index')
+        self::$view = View::make(MANAGER_VIEW)
             ->with('sub_menus', self::getSubMenuList())
             ->withTitle('子菜单列表')
             ->withUi('sub_menu/sub_menu_list');
@@ -20,7 +20,8 @@ class ManagerSubMenuController extends ManagerController
      */
     public function toSubMenuAddUI()
     {
-        self::$view = View::make('manager_template.common.index')
+        self::$view = View::make(MANAGER_VIEW)
+            ->with('menus', ManagerMenuController::getMenuList())
             ->withTitle('添加子菜单')
             ->withUi('sub_menu/sub_menu_add');
     }
@@ -31,8 +32,9 @@ class ManagerSubMenuController extends ManagerController
     public static function toSubMenuUpdateUI()
     {
         $sub_menu_id = $_REQUEST['sub_menu_id'];
-        self::$view = View::make('manager_template.common.index')
-            ->with('sub_menus', M_SubMenus::find($sub_menu_id))
+        self::$view = View::make(MANAGER_VIEW)
+            ->with('sub_menu1', self::getSubMenuListById($sub_menu_id))
+            ->with('menus', ManagerMenuController::getMenuList())
             ->withTitle('修改子菜单')
             ->withUi('sub_menu/sub_menu_update');
     }
@@ -70,7 +72,7 @@ class ManagerSubMenuController extends ManagerController
         $name = $_REQUEST['name'];
         $url = $_REQUEST['url'];
         $sort = $_REQUEST['sort'];
-        $sub_menu = M_SubMenus::find($sub_menu_id);
+        $sub_menu = self::getSubMenuListById($sub_menu_id);
         $sub_menu->menu_id = $menu_id;
         $sub_menu->name = $name;
         $sub_menu->url = $url;
@@ -89,7 +91,7 @@ class ManagerSubMenuController extends ManagerController
     public static function deleteSubMenu()
     {
         $sub_menu_id = $_REQUEST['sub_menu_id'];
-        $sub_menu = M_SubMenus::find($sub_menu_id);
+        $sub_menu = self::getSubMenuListById($sub_menu_id);
         if ($sub_menu->delete()) {
             echo 1;
             exit;
@@ -104,6 +106,14 @@ class ManagerSubMenuController extends ManagerController
     public static function getSubMenuList()
     {
         return M_SubMenus::all();
+    }
+
+    /**
+     * 获取子菜单信息通过id
+     */
+    public static function getSubMenuListById($sub_menu_id)
+    {
+        return M_SubMenus::find($sub_menu_id);
     }
 
 }

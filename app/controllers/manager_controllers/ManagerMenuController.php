@@ -33,7 +33,7 @@ class ManagerMenuController extends ManagerController
     {
         $menu_id = $_REQUEST['menu_id'];
         parent::$view = View::make('manager_template.common.index')
-            ->with('menus', M_Menus::find($menu_id))
+            ->with('menu', self::getMenuListById($menu_id))
             ->withTitle('修改父菜单')
             ->withUi('menu/menu_update');
     }
@@ -65,7 +65,7 @@ class ManagerMenuController extends ManagerController
         $menu_id = $_REQUEST['menu_id'];
         $name = $_REQUEST['name'];
         $sort = $_REQUEST['sort'];
-        $menu = M_Menus::find($menu_id);
+        $menu = self::getMenuListById($menu_id);
         $menu->name = $name;
         $menu->sort = $sort;
         if ($menu->save()) {
@@ -82,7 +82,7 @@ class ManagerMenuController extends ManagerController
     public static function deleteMenu()
     {
         $menu_id = $_REQUEST['menu_id'];
-        $menu = M_Menus::find($menu_id);
+        $menu = self::getMenuListById($menu_id);
         if ($menu->delete()) {
             echo 1;
             exit;
@@ -98,5 +98,11 @@ class ManagerMenuController extends ManagerController
     {
         return M_Menus::all();
     }
-
+    /**
+     * 获取父菜单信息通过id
+     */
+    public static function getMenuListById($menu_id)
+    {
+        return M_Menus::find($menu_id);
+    }
 }
