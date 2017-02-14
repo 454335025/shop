@@ -2,6 +2,7 @@
 
 use app\models\M_Users;
 
+
 class ManagerController
 {
     protected static $view;
@@ -10,6 +11,7 @@ class ManagerController
 
     public function __construct()
     {
+
         if (isset($_SESSION['username']) && $_SESSION['username'] != '') {
             self::$user = M_Users::where('username',$_SESSION['username'])->first();
             $_SESSION['user'] = self::$user;

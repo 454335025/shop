@@ -6,7 +6,7 @@
             <div class="panel panel-default">
 
                 <div class="panel-title">
-                    <?php echo $title?>
+                    <?php echo $title ?>
                     <ul class="panel-tools">
                         <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
                         <li><a class="icon expand-tool"><i class="fa fa-expand"></i></a></li>
@@ -20,7 +20,7 @@
                             <div class="col-sm-10">
                                 <select id="menu_id" name="menu_id">
                                     <option value="">请选择</option>
-                                    <?php foreach (\app\models\M_Menus::all() as $menu) { ?>
+                                    <?php foreach ($menus as $menu) { ?>
                                         <option value="<?php echo $menu->id ?>"><?php echo $menu->name ?></option>
                                     <?php } ?>
                                 </select>
@@ -67,14 +67,19 @@
     });
 
     function add_menu() {
-        var name, sort;
+        var menu_id, name, url, sort;
+        menu_id = $("#menu_id option:selected").val();
         name = $("#name").val();
+        url = $("#url").val();
         sort = $("#sort").val();
         $.get("/managers/sub_menu/add_sub_menu",
             {
+                menu_id: menu_id,
                 name: name,
+                url: url,
                 sort: sort
             }, function (data) {
+
                 if (data == 1) {
                     swal("添加成功!", "", "success");
                     window.location.href = "/managers/sub_menu/to_sub_menu";

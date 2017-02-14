@@ -52,6 +52,8 @@ function add_order() {
         alert(result.msg);
         if(result.data == 1){
             window.location.href = "/shop/user";
+        }else if(result.data == 4){
+            window.location.href = "/shop/user/to_address_add";
         }
     });
 }

@@ -37,7 +37,6 @@ class ShopUserController extends BaseController
      */
     public static function toAddressUI()
     {
-        self::$user_addresses = self::getUserAddressById();
         self::$view = View::make('shop_template.user_address')
             ->with('user', parent::$user)
             ->withTitle('我的地址');
@@ -53,12 +52,13 @@ class ShopUserController extends BaseController
     }
 
     /**
-     * 获取收货地址
+     * 获取默认收货地址
      * @return mixed
      */
-    public static function getUserAddressById()
+    public static function getUserAddressIdByUserId()
     {
-        return S_UserAddress::all()->where('user_id', self::$user->id)->sortByDesc('isdefault');
+        $user_address = S_UserAddress::where('user_id', self::$user->id)->sortByDesc('isdefault')->get(0);
+        return $user_address->id;
     }
 
     /**

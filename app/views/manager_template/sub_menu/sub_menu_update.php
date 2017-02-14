@@ -6,7 +6,7 @@
             <div class="panel panel-default">
 
                 <div class="panel-title">
-                    <?php echo $title?>
+                    <?php echo $title ?>
                     <ul class="panel-tools">
                         <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
                         <li><a class="icon expand-tool"><i class="fa fa-expand"></i></a></li>
@@ -15,16 +15,18 @@
                 </div>
                 <div class="panel-body">
                     <form class="form-horizontal">
-                        <input type="hidden" id="sub_menu_id" name="sub_menu_id" value="<?php echo $sub_menus->id ?>"/>
+                        <input type="hidden" id="sub_menu_id" name="sub_menu_id" value="<?php echo $sub_menu1->id ?>"/>
                         <div class="form-group">
                             <label class="col-sm-2 control-label form-label">父菜单名称</label>
                             <div class="col-sm-10">
                                 <select id="menu_id" name="menu_id">
                                     <option value="">请选择</option>
-                                    <?php foreach (\app\models\M_Menus::all() as $menu) { ?>
+                                    <?php foreach ($menus as $menu) { ?>
                                         <option value="<?php echo $menu->id ?>"
-                                            <?php if ($menu->id == $sub_menus->menu_id) { ?> selected="selected"<? } ?>
-                                        ><?php echo $menu->name ?></option>
+                                            <?php if ($menu->id == $sub_menu1->menu_id) { ?> selected="selected"<?php } ?>
+                                        >
+                                            <?php echo $menu->name?>
+                                        </option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -33,21 +35,21 @@
                             <label class="col-sm-2 control-label form-label">子菜单名称</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="name" name="name"
-                                       value="<?php echo $sub_menus->name ?>">
+                                       value="<?php echo $sub_menu1->name ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label form-label">跳转路径</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="url" name="url"
-                                       value="<?php echo $sub_menus->url ?>">
+                                       value="<?php echo $sub_menu1->url ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label form-label">排序</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="sort" name="sort"
-                                       value="<?php echo $sub_menus->sort ?>">
+                                       value="<?php echo $sub_menu1->sort ?>">
                             </div>
                         </div>
                         <div class="form-group">
