@@ -29,7 +29,7 @@
             <div class="order-info">
                 <div class="list-ordernum">
                     <div class="ordernum-left">
-                        <a href="/m/order/detail/?order_id=816921108">
+                        <a href="/shop/user/to_order_detail?order_id=<?php echo $order->order_id?>">
                             交易单 <span class="order-num"><?php echo $order->order_id ?></span>
                             <!--不同的状态只需要给order-status添加不同的类名，待处理status-pending，已发货status-delivered，已过期status-expired-->
                             <?php if ($order->type == 1) { ?>
@@ -43,27 +43,27 @@
                     </div>
                 </div>
             </div>
-            <?php foreach ($order->hasManyOrderDeails as $hasManyOrderDeail) { ?>
-                <a href="/m/order/detail/?order_id=816921108">
+            <?php foreach ($order->hasManyOrderDetails as $hasManyOrderDetails) { ?>
+                <a href="/shop/user/to_order_detail?order_id=<?php echo $order->order_id?>">
                     <div class="product-wrap clearfix">
                         <div class="list-product clearfix">
                             <div class="product-pic">
-                                <img src="<?php echo $hasManyOrderDeail->belongsToWare->detail_img ?>"
-                                     alt="<?php echo $hasManyOrderDeail->belongsToWare->name ?>">
+                                <img src="<?php echo $hasManyOrderDetails->belongsToWare->detail_img ?>"
+                                     alt="<?php echo $hasManyOrderDetails->belongsToWare->name ?>">
                             </div>
                             <div class="product-info">
-                                <p class="info-text"><?php echo $hasManyOrderDeail->belongsToWare->name ?></p>
+                                <p class="info-text"><?php echo $hasManyOrderDetails->belongsToWare->name ?></p>
 
                             </div>
                             <div class="product-price">
                                 <div class="price">
-                                    <?php if ($hasManyOrderDeail->is_integral == 1) {
-                                        echo $hasManyOrderDeail->cost_integral . '积分';
+                                    <?php if ($hasManyOrderDetails->is_integral == 1) {
+                                        echo $hasManyOrderDetails->cost_integral . '积分';
                                     } else {
-                                        echo '¥' . $hasManyOrderDeail->actual_money;
+                                        echo '¥' . $hasManyOrderDetails->actual_money;
                                     } ?>
                                 </div>
-                                <div class="num-wrap">x<span class="num"><?php echo $hasManyOrderDeail->number ?></span>
+                                <div class="num-wrap">x<span class="num"><?php echo $hasManyOrderDetails->number ?></span>
                                 </div>
                             </div>
                         </div>

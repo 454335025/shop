@@ -27,9 +27,9 @@ Macaw::get('/shop/shop_car',                                'ShopShopCarControll
 //添加商品到购物车
 Macaw::post('/shop/shop_car/add_ware',                      'ShopShopCarController@addWare');
 //修改购物车商品数量
-Macaw::get('/shop/shop_car/update_number',                  'ShopShopCarController@updateWareNumberById');
+Macaw::post('/shop/shop_car/update_number',                 'ShopShopCarController@updateWareNumberById');
 //删除购物车商品
-Macaw::get('/shop/shop_car/delete_ware',                    'ShopShopCarController@deleteWareById');
+Macaw::post('/shop/shop_car/delete_ware',                   'ShopShopCarController@deleteWareById');
 //shop/shop_car END
 
 //shop/ware BEGIN
@@ -42,6 +42,8 @@ Macaw::get('/shop/ware',                                    'ShopWareController@
 Macaw::get('/shop/user',                                    'ShopUserController@index');
 //我的订单页面
 Macaw::get('/shop/user/to_order',                           'ShopUserController@toOrderUI');
+//我的订单详情
+Macaw::get('/shop/user/to_order_detail',                    'ShopUserController@toOrderDetailUI');
 //我的地址页面
 Macaw::get('/shop/user/to_address',                         'ShopUserController@toAddressUI');
 //添加地址页面

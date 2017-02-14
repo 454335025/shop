@@ -52,13 +52,29 @@ class ShopUserController extends BaseController
     }
 
     /**
+     * 跳转我的订单详情
+     */
+    public static function toOrderDetailUI()
+    {
+        $order_id = $_REQUEST['order_id'];
+        $order = S_Orders::where('order_id', $order_id)->first();
+        self::$view = View::make('shop_template.user_order_detail')
+            ->with('order',$order)
+            ->withTitle('订单详情');
+    }
+
+    /**
      * 获取默认收货地址
      * @return mixed
      */
     public static function getUserAddressIdByUserId()
     {
-        $user_address = S_UserAddress::where('user_id', self::$user->id)->sortByDesc('isdefault')->get(0);
-        return $user_address->id;
+        $user_address = S_UserAddress::where('user_id', self::$user->id)->orderBy('isdefault', 'desc')->first();
+        if($user_address){
+            return $user_address->id;
+        }else{
+            return 0;
+        }
     }
 
     /**

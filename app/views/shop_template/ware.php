@@ -122,12 +122,8 @@
 <script type="text/javascript" src="/js/shop/common/jumei.js"></script>
 <script type="text/javascript" src="/js/shop/common/guide_download_main.js"></script>
 <script type="text/javascript" src="/js/shop/common/ui.js"></script>
-<!--<script type="text/javascript" src="//a5.jmstatic.com/a3dc29676cc4dd43/detail_main.js"></script>-->
-<div id="toTop"
-     style="background: url(http://ms0.jmstatic.com/beauty/image/back_top@2x.png) left center no-repeat !important;background-size: 44px 44px !important;position: fixed;bottom: 80px;width: 45px;height: 45px;z-index: 200000;right: 10px;display: none;"></div>
-<span id="toast-boxs" class="toast-boxs"
-      style="transition: -webkit-transform 1s ease 0s , opacity 1s ease 0s;-webkit-transition: -webkit-transform 1s ease 0s , opacity 1s ease 0s;opacity:0;visibility: hidden;position:fixed;"></span>
-<!--<script type="text/javascript" src="/js/shop/ware_detail/detail_list_main.js"></script>-->
+<div id="toTop" style="background: url(http://ms0.jmstatic.com/beauty/image/back_top@2x.png) left center no-repeat !important;background-size: 44px 44px !important;position: fixed;bottom: 80px;width: 45px;height: 45px;z-index: 200000;right: 10px;display: none;"></div>
+<span id="toast-boxs" class="toast-boxs" style="transition: -webkit-transform 1s ease 0s , opacity 1s ease 0s;-webkit-transition: -webkit-transform 1s ease 0s , opacity 1s ease 0s;opacity:0;visibility: hidden;position:fixed;"></span>
 
 <script type="text/javascript" src="/js/shop/ware_detail/sensorsdata.min.js"></script>
 

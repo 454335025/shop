@@ -15,24 +15,26 @@ class BaseController
     public function __construct()
     {
         if (isset($_SESSION['openid'])) {
-            self::$openid = $_SESSION['openid'];
-            self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', self::$openid)->first();
-            if (self::verify()) {
-                self::$shop_carts = S_ShopCarts::with('belongsToWare')->where('user_id', self::$user->id)->get();
-            }else{
-                echo "<script>alert('绑定出现问题请稍后再试！');</script>";
-                exit;
-            }
+            self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', $_SESSION['openid'])->first();
+            self::$shop_carts = S_ShopCarts::with('belongsToWare')->where('user_id', self::$user->id)->get();
         } else {
-            self::$UserInfo = WxCommonController::OAuth2();
-            if (self::$UserInfo['openid'] != '') {
-                $_SESSION['openid'] = self::$UserInfo['openid'];
-                self::__construct();
-            } else {
-                echo "<script>alert('未检测到账号2');</script>";
-                exit;
-            }
+//            self::$UserInfo = WxCommonController::OAuth2();
+//            if (self::$UserInfo['openid'] != '') {
+//                self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', self::$UserInfo['openid'])->first();
+//                if (self::verify()) {
+//                    $_SESSION['openid'] = self::$UserInfo['openid'];
+//                    self::__construct();
+//                } else {
+//                    echo "<script>alert('绑定出现问题请稍后再试！');</script>";
+//                    exit;
+//                }
+//            } else {
+//                echo "<script>alert('未检测到账号2');</script>";
+//                exit;
+//            }
 
+            $_SESSION['openid'] = 'oeLmkwttYCe4IzqYDJXkiNS_C9zw';
+            self::__construct();
         }
     }
 
@@ -64,7 +66,7 @@ class BaseController
     private static function verify()
     {
         if (self::$user->id != '') {
-            return password_verify(self::$openid, self::$user->password);
+            return password_verify(self::$UserInfo['openid'], self::$user->password);
         } else {
             self::$UserInfo = WxCommonController::OAuth2('snsapi_userinfo');
             $password_Hash = password_hash(

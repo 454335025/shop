@@ -1,0 +1,374 @@
+.detail-wrap {
+    background: #FAFAFA;
+    color: #333;
+    width: 320px;
+    font-size: 12px
+}
+
+.order-wrap {
+    width: 320px;
+    background: #FFF
+}
+
+.orderlist-wrap {
+    width: 320px;
+    overflow: hidden
+}
+
+.item-wrap li, .order-wrap li {
+    padding: 10px;
+    width: 300px;
+    border-bottom: 1px solid #E0E0E0;
+    overflow: hidden
+}
+
+.order-title {
+    float: left;
+    width: 60px
+}
+
+.order-content {
+    float: left;
+    margin-left: 10px;
+    width: 230px
+}
+
+.order-status {
+    padding: 2px 6px 2px 0
+}
+
+.group-status {
+    color: #FFF;
+    background-color: #F3414F;
+    padding: 2px 6px
+}
+
+.reciever-info {
+    width: 230px;
+    overflow: hidden
+}
+
+.info-name {
+    width: 60px;
+    float: left
+}
+
+.info-tel {
+    float: right;
+    width: 120px;
+    text-align: right
+}
+
+.infor-address {
+    line-height: 20px
+}
+
+.cost-wrap {
+    width: 300px;
+    margin: 4px 0;
+    overflow: hidden
+}
+
+.cost-left {
+    float: left;
+    width: 80px;
+    text-align: left
+}
+
+.cost-right {
+    width: 80px;
+    float: right;
+    text-align: right
+}
+
+.cost-color {
+    color: #E50050
+}
+
+.item-wrap {
+    width: 320px;
+    background: #FFF;
+    margin-top: 10px;
+    border-top: 1px solid #E0E0E0;
+    overflow: hidden
+}
+
+.item-left {
+    width: 50px
+}
+
+.item-center {
+    width: 180px
+}
+
+.item-btn, .item-no, .item-title {
+    line-height: 24px
+}
+
+.item-right {
+    border: 1px solid #E0E0E0;
+    padding: 4px 6px
+}
+
+.status-tab span {
+    color: #FFF;
+    padding: 2px 6px
+}
+
+.status-delivered {
+    background: #30BF78
+}
+
+.status-pending {
+    background: #F44051
+}
+
+.status-expired {
+    background: #ccc
+}
+
+.product-list {
+    width: 300px;
+    overflow: hidden;
+    margin-left: -10px
+}
+
+.list-left {
+    width: 42px;
+    height: 42px;
+    float: left
+}
+
+.list-left img {
+    display: block;
+    width: 100%
+}
+
+.list-center {
+    float: left;
+    width: 180px;
+    margin-left: 6px;
+    padding-top: 10px
+}
+
+.product-tab {
+    color: #999
+}
+
+.product-tab span {
+    margin-right: 4px
+}
+
+.list-right {
+    float: right;
+    text-align: right;
+    padding-top: 10px
+}
+
+.product-num {
+    color: #999
+}
+
+.bill-box {
+    width: 310px;
+    border: 1px solid #E0E0E0;
+    margin-top: 10px;
+    overflow: hidden;
+    background: #FFF;
+    color: #333;
+    border-left: none;
+    border-right: none;
+    padding: 10px 0 10px 10px
+}
+
+.info-title {
+    width: 50px;
+    margin-right: 6px
+}
+
+.info-content {
+    width: 250px
+}
+
+.bill-remind {
+    color: #999;
+    padding-top: 4px
+}
+
+.p-content {
+    padding-left: 4px
+}
+
+.operation-wrap {
+    position: fixed;
+    bottom: 0
+}
+
+.operation-wrap .item-right {
+    padding: 0;
+    margin: 10px 5px
+}
+
+.operation-wrap .item-right .btn {
+    display: inline-block;
+    padding: 10px
+}
+
+.cancel-dialog .ui-dialog-content {
+    padding: 0
+}
+
+.cancel-reason-item {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+    border-top: 1px solid #ccc;
+    color: #333;
+    font-size: 14px
+}
+
+.cancel-reason-item input[type=radio] {
+    background: url(../../images/touch/radio.png);
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background-size: 50px 25px;
+    background-position: 25px;
+    float: right;
+    margin-right: 10px;
+    margin-top: 7px;
+    border: 0
+}
+
+.cancel-reason-item input[type=radio]:checked {
+    background-position: 0
+}
+
+.cancel-reason-item label {
+    line-height: 40px;
+    display: inline-block;
+    width: 200px
+}
+
+.order-content {
+    font-size: 12px
+}
+
+html {
+    -webkit-text-size-adjust: none
+}
+
+.main-wrap {
+    min-height: 500px
+}
+
+.btn-view-detail {
+    margin-left: 6px
+}
+
+.btn-view-detail i {
+    vertical-align: top;
+    margin-top: 1px;
+    margin-left: 4px;
+    display: inline-block;
+    content: '';
+    background: url(../../images/order/icon_arrow_right.png);
+    -webkit-background-size: cover;
+    background-size: cover;
+    width: 12px;
+    height: 12px
+}
+
+.mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .6)
+}
+
+.dialog {
+    position: fixed;
+    top: 106px;
+    left: 50%;
+    z-index: 1999;
+    margin-left: -126px;
+    display: none;
+    width: 252px;
+    background: #fff;
+    border-radius: 6px
+}
+
+.dialog .head {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e0e0e0
+}
+
+.dialog .head span {
+    font-size: 12px;
+    line-height: 1;
+    padding-left: 12px;
+    padding-right: 30px
+}
+
+.dialog .closebtn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 16px;
+    height: 16px;
+    background: url(../../images/order/close.png) center no-repeat;
+    background-size: cover
+}
+
+.dialog .content {
+    padding: 10px 15px 15px;
+    font-size: 0
+}
+
+.group-goods {
+    width: 93px;
+    display: inline-block;
+    text-align: center
+}
+
+.group-goods .img {
+    height: 67px
+}
+
+.group-goods .img img {
+    max-height: 100%
+}
+
+.group-goods .name {
+    font-size: 9px;
+    line-height: 10px;
+    max-height: 20px;
+    overflow: hidden
+}
+
+.group-goods .size {
+    margin-top: 9px;
+    font-size: 9px;
+    line-height: 1;
+    color: #999
+}
+
+.icon-puls {
+    vertical-align: top;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-top: 28px;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: url(../../images/order/icon_puls.png) no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover
+}

@@ -4,7 +4,6 @@
     <meta name="viewport" id="viewport"
           content="width=320,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
     <meta name="format-detection" content="telephone=no">
-    <meta name="description" content="聚美优品是国内知名正品女性团购网站,也是领先的品牌化妆品团购和护肤品团购网,聚美优品团购化妆品每天有超值的化妆品和护肤品团购信息.">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="full-screen" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -39,7 +38,6 @@
 <body style="width: 20rem;">
 <?php include_once SHOP_COMMON; ?>
 
-<!--<div id="loadding-img" style="display:; z-index: 10000; position: absolute; width: 100%; height: 100%; background-color: gray;opacity: 0.5;" class="loadding">-->
 <section id="touch-cart-container" class="touch-cart-container">
     <div class="message"></div>
     <!--购物车列表-->
@@ -55,17 +53,12 @@
                         <div class="cart-title clear">
                             <div class="info-left fl">
                                 <div class="main-title new-cart-title">
-<!--                                    --><?php //if (strlen($shop_cart->belongsToWare->name) > 12) {
-//                                        echo substr($shop_cart->belongsToWare->name, 0, 12);
-//                                    } else {
-                                        echo $shop_cart->belongsToWare->name;
-//                                    } ?>
+                                    <?php echo $shop_cart->belongsToWare->name; ?>
                                 </div>
                                 <div class="sub-title new-cart-title"></div>
                             </div>
                             <div class="fr price-list">
                                 <div class="sale-price">
-
                                     <?php if ($shop_cart->belongsToWare->is_integral == 1) {
                                         echo $shop_cart->belongsToWare->cost_integral . '积分';
                                     } else {
@@ -85,8 +78,7 @@
                                 <input type="hidden" name="item_key" class="item-key" value="1071454_">
 
                                 <?php if ($shop_cart->number > 1) { ?>
-                                    <a class="btn-sub  btn-sub-select  fl"
-                                       href="/shop/shop_car/update_number?openid=<?php echo $user->openid ?>&id=<?php echo $shop_cart->id ?>&action=sub&num=1"></a>
+                                    <a class="btn-sub  btn-sub-select  fl" href="javascript:update_ware(<?php echo $shop_cart->id ?>,'sub',1)"></a>
                                 <?php } else { ?>
                                     <a class="btn-sub  fl"></a>
                                 <?php } ?>
@@ -96,11 +88,11 @@
                                        data-price="<?php echo $shop_cart->belongsToWare->money ?>"
                                        data-restriction="0">
                                 <a class="btn-add btn-add-select fl"
-                                   href="/shop/shop_car/update_number?openid=<?php echo $user->openid ?>&id=<?php echo $shop_cart->id ?>&action=add&num=1"></a>
+                                   href="javascript:update_ware(<?php echo $shop_cart->id ?>,'add',1)"></a>
                             </div>
                             <div class="opt fr">
                                 <a class="cart-del"
-                                   href="javascript:del_ware('<?php echo $user->openid ?>','<?php echo $shop_cart->id ?>');"></a>
+                                   href="javascript:del_ware('<?php echo $shop_cart->id ?>');"></a>
                             </div>
                         </div>
                     </div>
@@ -125,6 +117,8 @@
 </section>
 
 <footer class="touch-footer"></footer>
+
+<script type="text/javascript" src="<?php echo STATIC_COMMON; ?>/js/jquery-3.1.1.min.js"></script>
 
 <script type="text/javascript" src="/js/shop/shop_car/jumei_cartlist.js"></script>
 <script type="text/javascript" src="/js/shop/common/guide_download_main.js"></script>
