@@ -100,7 +100,7 @@
                         <div>
                             <span>
                                 <input type="checkbox"
-                                    <?php if ($surplus_integral < $user->hasOneUserType->min_integral) { ?>
+                                    <?php if ($surplus_integral < $user->hasOneUserType->min_integral || $surplus_integral == 0) { ?>
                                         disabled="disabled"
                                     <?php } ?>
                                        id="is_use" name="is_use">

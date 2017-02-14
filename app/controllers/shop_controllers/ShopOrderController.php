@@ -118,7 +118,11 @@ class ShopOrderController extends BaseController
     public static function getCostCountByIntegral($is_use = false)
     {
         if ($is_use) {
-            $cost = self::getCostIntegral() / parent::$user->hasOneUserType->min_integral * parent::$user->hasOneUserType->exchange;
+            if(parent::$user->hasOneUserType->min_integral == 0){
+                $cost = self::getCostIntegral() * parent::$user->hasOneUserType->exchange;
+            }else{
+                $cost = self::getCostIntegral() / parent::$user->hasOneUserType->min_integral * parent::$user->hasOneUserType->exchange;
+            }
         } else {
             $cost = 0;
         }
@@ -132,15 +136,19 @@ class ShopOrderController extends BaseController
      */
     public static function getCostIntegral()
     {
-        $need_integral = (int)(self::getActualCostCount() / parent::$user->hasOneUserType->exchange)
-            * parent::$user->hasOneUserType->min_integral;
-        if (self::isMyIntegral() - $need_integral > 0) {
-            $integral = $need_integral;
+        if (parent::$user->hasOneUserType->exchange == 0) {
+            $integral = 0;
         } else {
-            $integral = ((int)(self::isMyIntegral() / parent::$user->hasOneUserType->min_integral)) * parent::$user->hasOneUserType->min_integral;
+            $need_integral = (int)(self::getActualCostCount() / parent::$user->hasOneUserType->exchange) * parent::$user->hasOneUserType->min_integral;
+            if (self::isMyIntegral() - $need_integral > 0) {
+                $integral = $need_integral;
+            } else if(parent::$user->hasOneUserType->min_integral == 0) {
+                $integral = self::isMyIntegral();
+            } else{
+                $integral = ((int)(self::isMyIntegral() / parent::$user->hasOneUserType->min_integral)) * parent::$user->hasOneUserType->min_integral;
+            }
         }
         return $integral;
-
     }
 
     /**
@@ -181,22 +189,22 @@ class ShopOrderController extends BaseController
     public static function addOrders()
     {
         $data = array();
-        $order_id = self::createOrderNum();
         $is_use = $_REQUEST['is_use'];
-        $is_use == 'true' ? $is_use = true : $is_use = false;
-        $order_detail = self::addOrderDetail($order_id);
         $user_address_id = ShopUserController::getUserAddressIdByUserId();
         if ($user_address_id) {
+            $order_id = self::createOrderNum();
+            $is_use == 'true' ? $is_use = true : $is_use = false;
+            $order_detail = self::addOrderDetail($order_id);
             if ($order_detail['i'] != 0) {
                 S_OrderDetails::where('order_id', $order_id)->delete();
                 $data = array('data' => 3, 'msg' => 'create order error');
             } else if ($order_detail['i'] == 0) {
                 if (self::addOrder($order_id, $is_use, $order_detail, $user_address_id)) {
-                    S_ShopCarts::where('user_id', parent::$user->id)->delete();
                     $user = S_User::find(parent::$user->id);
                     $user->integral = $user->integral - $order_detail['cost_integral'] - self::getCostIntegral();
                     $user->save();
                     $data = array('data' => 1, 'msg' => '订单已经成功生成');
+                    S_ShopCarts::where('user_id', parent::$user->id)->delete();
                 } else {
                     S_OrderDetails::where('order_id', $order_id)->delete();
                     $data = array('data' => 2, 'msg' => '订单生产失败');
@@ -205,7 +213,6 @@ class ShopOrderController extends BaseController
         } else {
             $data = array('data' => 4, 'msg' => '先去添加收货地址吧');
         }
-
         echo json_encode($data);
         exit;
     }
@@ -223,7 +230,7 @@ class ShopOrderController extends BaseController
         $order->order_id = $order_id;
         $order->user_id = parent::$user->id;
         $order->get_integral = self::getIntegralCount();
-        $order->user_address_id =
+        $order->user_address_id = $user_address_id;
         $order->money = self::getCostCount();
         $order->actual_money = self::getActualCostCount() - self::getCostCountByIntegral($is_use);
         $order->discount = parent::$user->hasOneUserType->discount;
@@ -265,6 +272,9 @@ class ShopOrderController extends BaseController
         return array('i' => $i, 'cost_integral' => $cost_integral);
     }
 
+    /**
+     * 修改订单类型
+     */
     public static function updateOrderType()
     {
         $order_id = $_REQUEST['order_id'];
@@ -273,6 +283,10 @@ class ShopOrderController extends BaseController
         exit;
     }
 
+    /**
+     * 生成订单号
+     * @return string
+     */
     public static function createOrderNum()
     {
         return 'DDBH' . (date('YmdHis', time()) . rand(100000, 999999));

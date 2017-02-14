@@ -11,7 +11,7 @@ class ShopShopCarController extends BaseController
     public static function index()
     {
         parent::$view = View::make('shop_template.shop_car')
-            ->with('cost_count', (new ShopOrderController())->getActualCostCount())
+            ->with('cost_count', ShopOrderController::getActualCostCount())
             ->with('user', parent::$user)
             ->with('shop_carts', parent::$shop_carts)
             ->withTitle('购物车');
@@ -23,6 +23,7 @@ class ShopShopCarController extends BaseController
 
     public static function updateWareNumberById()
     {
+
         $id = $_REQUEST['id'];
         $action = $_REQUEST['action'];
         $num = $_REQUEST['num'];
@@ -33,15 +34,16 @@ class ShopShopCarController extends BaseController
         } else if ($action == 'sub') {
             $shop_car->number = $shop_car->number - $num;
             if ($shop_car->number < 1) {
-                echo "<script>alert('未能修改成功');</script>";
-                self::index();
+                echo 0;
                 exit;
             }
         }
         if ($shop_car->save()) {
-            self::index();
+            echo 1;
+            exit;
         } else {
-            echo "<script>alert('未能修改成功');</script>";
+            echo 0;
+            exit;
         }
     }
 
@@ -54,9 +56,11 @@ class ShopShopCarController extends BaseController
         $id = $_REQUEST['id'];
         $shop_car = S_ShopCarts::find($id);
         if ($shop_car->delete()) {
-            self::index();
+            echo 1;
+            exit;
         } else {
-            echo "<script>alert('未能删除成功');</script>";
+            echo 0;
+            exit;
         }
     }
 
@@ -74,7 +78,12 @@ class ShopShopCarController extends BaseController
         $shop_car->user_id = parent::$user->id;
         $shop_car->ware_id = $ware_id;
         $shop_car->number = $shop_car->number + 1;
-        echo $shop_car->save() ? 1 : 0;
-        exit;
+        if ($shop_car->save()) {
+            echo 1;
+            exit;
+        } else {
+            echo 0;
+            exit;
+        }
     }
 }

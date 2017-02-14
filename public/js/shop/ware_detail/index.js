@@ -9,7 +9,7 @@ function add_shopping() {
     $.post("/shop/shop_car/add_ware", {ware_id: ware_id}, function (data) {
         if (data == 1) {
             alert("添加成功");
-            window.location.href = "/shop/ware?ware_id=" + ware_id;
+            window.location.reload();
         } else {
             alert("添加失败");
         }

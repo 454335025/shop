@@ -48,6 +48,7 @@ function useIntegral(obj) {
 function add_order() {
     var is_checked = $("#is_use").is(':checked');
     $.post("/shop/order/add_orders", {is_use: is_checked}, function (data) {
+        console.log(data);return;
         var result =JSON.parse(data);
         alert(result.msg);
         if(result.data == 1){
