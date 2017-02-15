@@ -14,9 +14,11 @@ class WxCommonController
 
         $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" . APPID . "&secret=" . SECRET . "&code=" . self::$code . "&grant_type=authorization_code";
         $str = file_get_contents($url);
-        $oauth = json_decode($str, true);
-        if ($oauth['access_token'] != '' && $function != null && method_exists('WxCommonController', $function)) {
-            return call_user_func(array('WxCommonController', $function), $oauth);
+        if($str){
+            $oauth = json_decode($str, true);
+            if ($oauth['access_token'] != '' && $function != null && method_exists('WxCommonController', $function)) {
+                return call_user_func(array('WxCommonController', $function), $oauth);
+            }
         }
     }
 
