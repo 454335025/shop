@@ -14,28 +14,26 @@ class BaseController
 
     public function __construct()
     {
-        if ($_SESSION['openid'] != '') {
+        if ($_SESSION['openid'] == '') {
+            self::$UserInfo = WxCommonController::OAuth2();
+            if (self::$UserInfo['openid'] == '') {
+                echo "<script>alert('请使用微信登录本平台');</script>";
+                exit;
+            }
+            if (self::verify()) {
+                $_SESSION['openid'] = self::$UserInfo['openid'];
+                self::__construct();
+            } else {
+                echo "<script>alert('绑定出现问题请稍后再试！');</script>";
+                exit;
+            }
+        } else {
             self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', $_SESSION['openid'])->first();
-            if(self::$user == null){
+            if (self::$user == null) {
                 $_SESSION['openid'] = '';
                 self::__construct();
             }
             self::$shop_carts = S_ShopCarts::with('belongsToWare')->where('user_id', self::$user->id)->get();
-        } else {
-            self::$UserInfo = WxCommonController::OAuth2();
-            if (self::$UserInfo['openid'] != '') {
-                self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', self::$UserInfo['openid'])->first();
-                if (self::verify()) {
-                    $_SESSION['openid'] = self::$UserInfo['openid'];
-                    self::__construct();
-                } else {
-                    echo "<script>alert('绑定出现问题请稍后再试！');</script>";
-                    exit;
-                }
-            } else {
-                echo "<script>alert('未检测到账号2');</script>";
-                exit;
-            }
 //            $_SESSION['openid'] = 'oeLmkwttYCe4IzqYDJXkiNS_C9zw';
 //            self::__construct();
         }
@@ -68,26 +66,33 @@ class BaseController
 
     private static function verify()
     {
-        if(self::$user != null){
-            if (self::$user->id != '') {
-                return password_verify(self::$UserInfo['openid'], self::$user->password);
-            } else {
-                self::$UserInfo = WxCommonController::OAuth2('snsapi_userinfo');
-                $password_Hash = password_hash(
-                    self::$openid,
-                    PASSWORD_DEFAULT,
-                    ['cost' => 12]
-                );
-                $users = new S_User();
-                $users->username = self::$UserInfo['nickname'];
-                $users->openid = self::$openid;
-                $users->password = $password_Hash;
-                $users->headimgurl = self::$UserInfo['headimgurl'];
-                $users->save();
-                return true;
-            }
-        }else{
-            return false;
+        self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', self::$UserInfo['openid'])->first();
+        if (self::$user == null) {
+            return self::add_user();
+        } else {
+            return password_verify(self::$UserInfo['openid'], self::$user->password);
         }
+    }
+
+    /**
+     * 添加用户信息
+     * @return bool
+     */
+
+    private static function add_user()
+    {
+        self::$UserInfo = WxCommonController::OAuth2('snsapi_userinfo');
+        $password_Hash = password_hash(
+            self::$openid,
+            PASSWORD_DEFAULT,
+            ['cost' => 12]
+        );
+        $users = new S_User();
+        $users->username = self::$UserInfo['nickname'];
+        $users->openid = self::$openid;
+        $users->password = $password_Hash;
+        $users->headimgurl = self::$UserInfo['headimgurl'];
+        $users->save();
+        return true;
     }
 }
