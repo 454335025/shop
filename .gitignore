@@ -1,6 +1,6 @@
 /vendor
 /node_modules
 .env
-/config/database.php
+
 .idea
 /public/MP_verify_47CO65mpKW9IsQaA.txt
