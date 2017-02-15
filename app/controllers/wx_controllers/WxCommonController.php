@@ -5,15 +5,17 @@ class WxCommonController
 {
     private static $oauth;
     private static $code;
+    private $WxCommonController;
 
     public static function OAuth2($function = null)
     {
+        $WxCommonController = new WxCommonController();
         self::$code = !empty($_REQUEST['code']) ? $_REQUEST['code'] : '';//获取code
         self::is_code();
-        self::$oauth = call_user_func(array('WxCommonController', 'snsapi_base'));
+        self::$oauth = $WxCommonController->snsapi_base();
 
-        if ($function != null && method_exists('WxCommonController', $function)) {
-            return call_user_func(array('WxCommonController', $function));
+        if ($function != null ) {
+            return $WxCommonController->$function();
         } else {
             return self::$oauth;
         }
