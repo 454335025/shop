@@ -6,7 +6,7 @@ class WxCommonController
     private static $code;
 
 
-    public static function OAuth2($function = null)
+    public  function OAuth2($function = null)
     {
         self::$code = !empty($_REQUEST['code']) ? $_REQUEST['code'] : '';//获取code
 
@@ -36,7 +36,7 @@ class WxCommonController
      * 获取微信用户信息
      * @return mixed
      */
-    private static function snsapi_userinfo($oauth)
+    private  function snsapi_userinfo($oauth)
     {
         $url = "https://api.weixin.qq.com/sns/userinfo?access_token=" . $oauth['access_token'] . "&openid=" . $oauth['openid'];
         $str = file_get_contents($url);//获取用户信息
