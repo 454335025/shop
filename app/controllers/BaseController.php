@@ -68,22 +68,26 @@ class BaseController
 
     private static function verify()
     {
-        if (self::$user->id != '') {
-            return password_verify(self::$UserInfo['openid'], self::$user->password);
-        } else {
-            self::$UserInfo = WxCommonController::OAuth2('snsapi_userinfo');
-            $password_Hash = password_hash(
-                self::$openid,
-                PASSWORD_DEFAULT,
-                ['cost' => 12]
-            );
-            $users = new S_User();
-            $users->username = self::$UserInfo['nickname'];
-            $users->openid = self::$openid;
-            $users->password = $password_Hash;
-            $users->headimgurl = self::$UserInfo['headimgurl'];
-            $users->save();
-            return true;
+        if(self::$user != null){
+            if (self::$user->id != '') {
+                return password_verify(self::$UserInfo['openid'], self::$user->password);
+            } else {
+                self::$UserInfo = WxCommonController::OAuth2('snsapi_userinfo');
+                $password_Hash = password_hash(
+                    self::$openid,
+                    PASSWORD_DEFAULT,
+                    ['cost' => 12]
+                );
+                $users = new S_User();
+                $users->username = self::$UserInfo['nickname'];
+                $users->openid = self::$openid;
+                $users->password = $password_Hash;
+                $users->headimgurl = self::$UserInfo['headimgurl'];
+                $users->save();
+                return true;
+            }
+        }else{
+            return false;
         }
     }
 }
