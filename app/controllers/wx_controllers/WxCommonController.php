@@ -8,9 +8,15 @@ class WxCommonController
 
     public function __construct()
     {
+        $myfile = fopen("log/".date('Ymd',time()).".log", "a+") or die("Unable to open file!");
+        fwrite($myfile, date("Y-m-d H:i:s"). ": 1 \r\n");
+
         self::$code = !empty($_REQUEST['code']) ? $_REQUEST['code'] : '';//获取code
         self::is_code();
+        fwrite($myfile, date("Y-m-d H:i:s"). ":2code: ".self::$code." \r\n");
         self::$oauth = self::snsapi_base();
+        fwrite($myfile, date("Y-m-d H:i:s"). ":3access_token: ".self::$oauth['access_token']." \r\n");
+        fclose($myfile);
     }
 
     /**
@@ -19,8 +25,12 @@ class WxCommonController
      */
     private static function snsapi_base()
     {
+        $myfile = fopen("log/".date('Ymd',time()).".log", "a+") or die("Unable to open file!");
+        fwrite($myfile, date("Y-m-d H:i:s"). ": 4 \r\n");
         $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" . APPID . "&secret=" . SECRET . "&code=" . self::$code . "&grant_type=authorization_code";
         $str = file_get_contents($url);
+        fwrite($myfile, date("Y-m-d H:i:s"). ": 5 \r\n");
+        fclose($myfile);
         return json_decode($str, true);
     }
 
