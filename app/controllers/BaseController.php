@@ -14,8 +14,12 @@ class BaseController
 
     public function __construct()
     {
-        if (isset($_SESSION['openid'])) {
+        if ($_SESSION['openid'] != '') {
             self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', $_SESSION['openid'])->first();
+            if(self::$user == null){
+                $_SESSION['openid'] = '';
+                self::__construct();
+            }
             self::$shop_carts = S_ShopCarts::with('belongsToWare')->where('user_id', self::$user->id)->get();
         } else {
             self::$UserInfo = WxCommonController::OAuth2();
