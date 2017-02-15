@@ -5,17 +5,17 @@ class WxCommonController
 {
     private static $oauth;
     private static $code;
-    private $WxCommonController;
 
     public static function OAuth2($function = null)
     {
-        $WxCommonController = new WxCommonController();
         self::$code = !empty($_REQUEST['code']) ? $_REQUEST['code'] : '';//获取code
         self::is_code();
-        self::$oauth = $WxCommonController->snsapi_base();
+        self::$oauth = call_user_func(array('WxCommonController', 'snsapi_base'));
 
-        if ($function != null ) {
-            return $WxCommonController->$function();
+        if ($function != null && method_exists('WxCommonController', $function)) {
+            self::$oauth = isset(self::$oauth) ? self::$oauth : null;
+            if (is_null(self::$oauth)) die('Token ID is not set');
+            return call_user_func(array('WxCommonController', $function));
         } else {
             return self::$oauth;
         }
@@ -24,17 +24,20 @@ class WxCommonController
      * 通过code换取网页授权access_token
      * @return mixed
      */
-    private function snsapi_base()
+    private static function snsapi_base()
     {
         $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" . APPID . "&secret=" . SECRET . "&code=" . self::$code . "&grant_type=authorization_code";
         $str = file_get_contents($url);
-        return json_decode($str, true);
+        if (empty($str)) die('Failed to fetch data');
+        $data = json_decode($str, true);
+        if (is_null($data) || $data === false) die('Failed to decode data');
+        return $data;
     }
     /**
      * 获取微信用户信息
      * @return mixed
      */
-    private function snsapi_userinfo()
+    private static function snsapi_userinfo()
     {
         $url = "https://api.weixin.qq.com/sns/userinfo?access_token=" . self::$oauth['access_token'] . "&openid=" . self::$oauth['openid'];
         $str = file_get_contents($url);//获取用户信息

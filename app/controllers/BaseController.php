@@ -15,18 +15,7 @@ class BaseController
     public function __construct()
     {
         if ($_SESSION['openid'] == '') {
-
-            $code = !empty($_REQUEST['code']) ? $_REQUEST['code'] : '';//获取code
-            $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" . APPID . "&secret=" . SECRET . "&code=" . $code . "&grant_type=authorization_code";
-            $str = file_get_contents($url);
-            $a = json_decode($str, true);
-            $openid = $a["openid"];
-            $access_token=$a['access_token'];
-            $url = "https://api.weixin.qq.com/sns/userinfo?access_token=" . $access_token . "&openid=" . $openid;
-            $str = file_get_contents($url);//获取用户信息
-            self::$UserInfo = json_decode($str, true);
-
-//            self::$UserInfo = (new WxCommonController)->OAuth2('snsapi_userinfo');
+            self::$UserInfo = WxCommonController::OAuth2('snsapi_userinfo');
             if (self::$UserInfo['openid'] == '') {
                 echo "<script>alert('请使用微信登录本平台');</script>";
                 exit;
