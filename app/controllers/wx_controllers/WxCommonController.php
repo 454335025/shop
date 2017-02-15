@@ -8,7 +8,7 @@ class WxCommonController
 
     public function __construct()
     {
-        $myfile = fopen("log/".date('Ymd',time()).".log", "a+") or die("Unable to open file!");
+        $myfile = fopen(__DIR__."/log/".date('Ymd',time()).".log", "a+") or die("Unable to open file!");
         fwrite($myfile, date("Y-m-d H:i:s"). ": 1 \r\n");
 
         self::$code = !empty($_REQUEST['code']) ? $_REQUEST['code'] : '';//获取code
@@ -25,7 +25,7 @@ class WxCommonController
      */
     private static function snsapi_base()
     {
-        $myfile = fopen("log/".date('Ymd',time()).".log", "a+") or die("Unable to open file!");
+        $myfile = fopen(__DIR__."/log/".date('Ymd',time()).".log", "a+") or die("Unable to open file!");
         fwrite($myfile, date("Y-m-d H:i:s"). ": 4 \r\n");
         $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" . APPID . "&secret=" . SECRET . "&code=" . self::$code . "&grant_type=authorization_code";
         $str = file_get_contents($url);
