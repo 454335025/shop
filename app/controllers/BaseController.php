@@ -15,7 +15,7 @@ class BaseController
     public function __construct()
     {
         if ($_SESSION['openid'] == '') {
-            self::$UserInfo = WxCommonController::OAuth2();
+            self::$UserInfo = WxCommonController::OAuth2('snsapi_userinfo');
             if (self::$UserInfo['openid'] == '') {
                 echo "<script>alert('请使用微信登录本平台');</script>";
                 exit;
@@ -81,7 +81,6 @@ class BaseController
 
     private static function add_user()
     {
-        self::$UserInfo = WxCommonController::OAuth2('snsapi_userinfo');
         $password_Hash = password_hash(
             self::$openid,
             PASSWORD_DEFAULT,
