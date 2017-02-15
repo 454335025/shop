@@ -6,17 +6,11 @@ class WxCommonController
     private static $oauth;
     private static $code;
 
-    public static function OAuth2($function = null)
+    public function __construct()
     {
         self::$code = !empty($_REQUEST['code']) ? $_REQUEST['code'] : '';//获取code
         self::is_code();
-        self::$oauth = call_user_func(array('WxCommonController', 'snsapi_base'));
-
-        if ($function != null && method_exists('WxCommonController', $function)) {
-            return call_user_func(array('WxCommonController', $function));
-        } else {
-            return self::$oauth;
-        }
+        self::$oauth = self::snsapi_base();
     }
 
     /**
@@ -34,7 +28,7 @@ class WxCommonController
      * 获取微信用户信息
      * @return mixed
      */
-    private static function snsapi_userinfo()
+    public static function snsapi_userinfo()
     {
         $url = "https://api.weixin.qq.com/sns/userinfo?access_token=" . self::$oauth['access_token'] . "&openid=" . self::$oauth['openid'];
         $str = file_get_contents($url);//获取用户信息
