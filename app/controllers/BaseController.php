@@ -20,7 +20,9 @@ class BaseController
             $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" . APPID . "&secret=" . SECRET . "&code=" . $code . "&grant_type=authorization_code";
             $str = file_get_contents($url);
             $a = json_decode($str, true);
-            $url = "https://api.weixin.qq.com/sns/userinfo?access_token=" . $a['access_token'] . "&openid=" . $a['openid'];
+            $openid = $a["openid"];
+            $access_token=$a['access_token'];
+            $url = "https://api.weixin.qq.com/sns/userinfo?access_token=" . $access_token . "&openid=" . $openid;
             $str = file_get_contents($url);//获取用户信息
             self::$UserInfo = json_decode($str, true);
 
