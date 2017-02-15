@@ -6,12 +6,19 @@ class WxCommonController
     private static $oauth;
     private static $code;
 
-//    public function __construct()
-//    {
-//        self::$code = !empty($_REQUEST['code']) ? $_REQUEST['code'] : '';//获取code
-//        self::is_code();
-//        self::$oauth = self::snsapi_base();
-//    }
+
+    public static function OAuth2($function = null)
+    {
+        self::$code = !empty($_REQUEST['code']) ? $_REQUEST['code'] : '';//获取code
+
+        self::is_code();
+
+        self::$oauth = self::snsapi_base();
+
+        if ($function != null && method_exists('WxCommonController', $function)) {
+            return call_user_func(array('WxCommonController', $function) ,self::$oauth);
+        }
+    }
 
     /**
      * 通过code换取网页授权access_token
@@ -28,11 +35,9 @@ class WxCommonController
      * 获取微信用户信息
      * @return mixed
      */
-    public static function snsapi_userinfo()
+    private static function snsapi_userinfo($oauth)
     {
-        self::$code = !empty($_REQUEST['code']) ? $_REQUEST['code'] : '';//获取code
-        self::is_code();
-        $url = "https://api.weixin.qq.com/sns/userinfo?access_token=" . self::snsapi_base()['access_token'] . "&openid=" . self::snsapi_base()['openid'];
+        $url = "https://api.weixin.qq.com/sns/userinfo?access_token=" . $oauth['access_token'] . "&openid=" . $oauth['openid'];
         $str = file_get_contents($url);//获取用户信息
         return json_decode($str, true);
     }
