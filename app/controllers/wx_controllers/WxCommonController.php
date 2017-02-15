@@ -52,13 +52,22 @@ class WxCommonController
 //    }
 
     function aa(){
+        $myfile = fopen(__DIR__."/log/".date('Ymd',time()).".log", "a+") or die("Unable to open file!");
+        fwrite($myfile, date("Y-m-d H:i:s"). ":1:  \r\n");
+
         $code = !empty($_REQUEST['code']) ? $_REQUEST['code'] : '';//获取code
+        fwrite($myfile, date("Y-m-d H:i:s"). ":2: $code \r\n");
         $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" . APPID . "&secret=" . SECRET . "&code=" . $code . "&grant_type=authorization_code";
+        fwrite($myfile, date("Y-m-d H:i:s"). ":3: $url \r\n");
         $str = file_get_contents($url);
+        fwrite($myfile, date("Y-m-d H:i:s"). ":4:  \r\n");
         $oauth = json_decode($str, true);
+        fwrite($myfile, date("Y-m-d H:i:s"). ":5: $oauth[access_token] \r\n");
 
         $url = "https://api.weixin.qq.com/sns/userinfo?access_token=" . $oauth['access_token'] . "&openid=" . $oauth['openid'];
+        fwrite($myfile, date("Y-m-d H:i:s"). ":6: $url \r\n");
         $str = file_get_contents($url);//获取用户信息
+        fclose($myfile);
         return json_decode($str, true);
     }
 
