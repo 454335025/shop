@@ -3,7 +3,6 @@
 
 class WxCommonController
 {
-    private static $oauth;
     private static $code;
 
 
@@ -13,10 +12,11 @@ class WxCommonController
 
         self::is_code();
 
-        self::$oauth = self::snsapi_base();
-
+        $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" . APPID . "&secret=" . SECRET . "&code=" . self::$code . "&grant_type=authorization_code";
+        $str = file_get_contents($url);
+        $oauth = json_decode($str, true);
         if ($function != null && method_exists('WxCommonController', $function)) {
-            return call_user_func(array('WxCommonController', $function) ,self::$oauth);
+            return call_user_func(array('WxCommonController', $function), $oauth);
         }
     }
 
@@ -26,9 +26,8 @@ class WxCommonController
      */
     private static function snsapi_base()
     {
-        $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" . APPID . "&secret=" . SECRET . "&code=" . self::$code . "&grant_type=authorization_code";
-        $str = file_get_contents($url);
-        return json_decode($str, true);
+
+//        return json_decode($str, true);
     }
 
     /**
@@ -44,8 +43,9 @@ class WxCommonController
 
     private static function is_code()
     {
-        if(self::$code == ''){
-            echo "<script>alert('请您用微信服务号访问')</script>";exit;
+        if (self::$code == '') {
+            echo "<script>alert('请您用微信服务号访问')</script>";
+            exit;
         }
     }
 
