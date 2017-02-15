@@ -5,14 +5,12 @@ class WxCommonController
 {
     private static $oauth;
     private static $code;
-    private static $access_token;
 
     public function __construct()
     {
         self::$code = !empty($_REQUEST['code']) ? $_REQUEST['code'] : '';//获取code
         self::is_code();
         self::$oauth = self::snsapi_base();
-        self::$access_token = self::$oauth['access_token'];
     }
 
     /**
@@ -23,6 +21,7 @@ class WxCommonController
     {
         $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" . APPID . "&secret=" . SECRET . "&code=" . self::$code . "&grant_type=authorization_code";
         $str = file_get_contents($url);
+        var_dump(json_decode($str, true));exit;
         return json_decode($str, true);
     }
 
@@ -32,7 +31,7 @@ class WxCommonController
      */
     public static function snsapi_userinfo()
     {
-        $url = "https://api.weixin.qq.com/sns/userinfo?access_token=" . self::$access_token. "&openid=" . self::$oauth['openid'];
+        $url = "https://api.weixin.qq.com/sns/userinfo?access_token=" . self::$oauth['access_token'] . "&openid=" . self::$oauth['openid'];
         $str = file_get_contents($url);//获取用户信息
         return json_decode($str, true);
     }
