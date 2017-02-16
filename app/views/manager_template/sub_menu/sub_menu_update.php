@@ -75,7 +75,7 @@
 
     function update_sub_menu() {
         var menu_id, sub_menu_id, name, url, sort;
-        menu_id = $("#menu_id").val();
+        menu_id = $("#menu_id option:selected").val();
         sub_menu_id = $("#sub_menu_id").val();
         name = $("#name").val();
         url = $("#url").val();

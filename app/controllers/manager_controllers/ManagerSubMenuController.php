@@ -9,10 +9,9 @@ class ManagerSubMenuController extends ManagerController
      */
     public function toSubMenuUI()
     {
-        self::$view = View::make(MANAGER_VIEW)
+        self::$view = View::make('manager_template.sub_menu.sub_menu_list')
             ->with('sub_menus', self::getSubMenuList())
-            ->withTitle('子菜单列表')
-            ->withUi('sub_menu/sub_menu_list');
+            ->withTitle('子菜单列表');
     }
 
     /**
@@ -20,10 +19,9 @@ class ManagerSubMenuController extends ManagerController
      */
     public function toSubMenuAddUI()
     {
-        self::$view = View::make(MANAGER_VIEW)
+        self::$view = View::make('manager_template.sub_menu.sub_menu_add')
             ->with('menus', ManagerMenuController::getMenuList())
-            ->withTitle('添加子菜单')
-            ->withUi('sub_menu/sub_menu_add');
+            ->withTitle('添加子菜单');
     }
 
     /**
@@ -32,11 +30,10 @@ class ManagerSubMenuController extends ManagerController
     public static function toSubMenuUpdateUI()
     {
         $sub_menu_id = $_REQUEST['sub_menu_id'];
-        self::$view = View::make(MANAGER_VIEW)
+        self::$view = View::make('manager_template.sub_menu.sub_menu_update')
             ->with('sub_menu1', self::getSubMenuListById($sub_menu_id))
             ->with('menus', ManagerMenuController::getMenuList())
-            ->withTitle('修改子菜单')
-            ->withUi('sub_menu/sub_menu_update');
+            ->withTitle('修改子菜单');
     }
 
     /**

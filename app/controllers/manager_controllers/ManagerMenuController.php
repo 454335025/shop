@@ -10,10 +10,9 @@ class ManagerMenuController extends ManagerController
      */
     public function toMenuUI()
     {
-        parent::$view = View::make('manager_template.common.index')
+        parent::$view = View::make('manager_template.menu.menu_list')
             ->with('menus', self::getMenuList())
-            ->withTitle('父菜单列表')
-            ->withUi('menu/menu_list');
+            ->withTitle('父菜单列表');
     }
 
     /**
@@ -21,9 +20,8 @@ class ManagerMenuController extends ManagerController
      */
     public function toMenuAddUI()
     {
-        parent::$view = View::make('manager_template.common.index')
-            ->withTitle('添加父菜单')
-            ->withUi('menu/menu_add');
+        parent::$view = View::make('manager_template.menu.menu_add')
+            ->withTitle('添加父菜单');
     }
 
     /**
@@ -32,10 +30,9 @@ class ManagerMenuController extends ManagerController
     public static function toMenuUpdateUI()
     {
         $menu_id = $_REQUEST['menu_id'];
-        parent::$view = View::make('manager_template.common.index')
+        parent::$view = View::make('manager_template.menu.menu_update')
             ->with('menu', self::getMenuListById($menu_id))
-            ->withTitle('修改父菜单')
-            ->withUi('menu/menu_update');
+            ->withTitle('修改父菜单');
     }
 
     /**

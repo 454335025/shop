@@ -16,32 +16,27 @@
                 <div class="panel-body">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label form-label">父菜单名称</label>
+                            <label class="col-sm-2 control-label form-label">用户类型</label>
                             <div class="col-sm-10">
-                                <select id="menu_id" name="menu_id">
-                                    <option value="">请选择</option>
-                                    <?php foreach ($menus as $menu) { ?>
-                                        <option value="<?php echo $menu->id ?>"><?php echo $menu->name ?></option>
-                                    <?php } ?>
-                                </select>
+                                <input type="text" class="form-control" id="type" name="type">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label form-label">子菜单名称</label>
+                            <label class="col-sm-2 control-label form-label">订单折扣(0.00-1.00)</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" class="form-control" id="discount" name="discount">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label form-label">跳转路径</label>
+                            <label class="col-sm-2 control-label form-label">最低积分兑换</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="url" name="url">
+                                <input type="text" class="form-control" id="min_integral" name="min_integral">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label form-label">排序</label>
+                            <label class="col-sm-2 control-label form-label">多少钱1分</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="sort" name="sort">
+                                <input type="text" class="form-control" id="exchange" name="exchange">
                             </div>
                         </div>
                         <div class="form-group">
@@ -61,27 +56,26 @@
 <script>
     $(document).ready(function () {
         $(".btn-default").on("click", function () {
-            add_menu();
+            add_user_type();
         })
     });
 
-    function add_menu() {
-        var menu_id, name, url, sort;
-        menu_id = $("#menu_id option:selected").val();
-        name = $("#name").val();
-        url = $("#url").val();
-        sort = $("#sort").val();
-        $.post("/managers/sub_menu/add_sub_menu",
+    function add_user_type() {
+        var type, discount, min_integral, exchange;
+        type = $("#type").val();
+        discount = $("#discount").val();
+        min_integral = $("#min_integral").val();
+        exchange = $("#exchange").val();
+        $.post("/managers/user_type/add_user_type",
             {
-                menu_id: menu_id,
-                name: name,
-                url: url,
-                sort: sort
+                type: type,
+                discount: discount,
+                min_integral: min_integral,
+                exchange: exchange
             }, function (data) {
-
                 if (data == 1) {
                     swal("添加成功!", "", "success");
-                    window.location.href = "/managers/sub_menu/to_sub_menu";
+                    window.location.href = "/managers/user_type/to_user_type";
                 } else {
                     swal("添加失败!", "", "error");
                 }

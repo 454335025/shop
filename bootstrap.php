@@ -15,9 +15,6 @@ define('STATIC_COMMON', '');
 
 define('SHOP_COMMON', __DIR__ . '/app/views/shop_template/common/header.php');
 
-//
-
-define('MANAGER_VIEW', 'manager_template.common.index');
 
 // Autoload 自动载入
 

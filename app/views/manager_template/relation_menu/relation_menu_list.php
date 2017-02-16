@@ -7,6 +7,11 @@
             <div class="panel panel-default">
                 <div class="panel-title">
                     <?php echo $title?>
+                    <div style="float:right ">
+                        <a href="/managers/relation_menu/to_relation_menu_add" class="btn btn-danger" style="background-color: #399bff;">
+                            <i class="fa fa-pencil"></i>添加
+                        </a>
+                    </div>
                 </div>
                 <div class="panel-body table-responsive">
                     <table id="example0" class="table display">
@@ -25,13 +30,14 @@
                         <?php foreach ($relation_menus as $relation_menu) { ?>
                             <tr>
                                 <td><?php echo $relation_menu->id ?></td>
-                                <td><?php echo $relation_menu->belongsToMenus->name ?></td>
-                                <td><?php echo $relation_menu->belongsToSubMenus->name ?></td>
+                                <td><?php echo $relation_menu->belongsToUser->username ?></td>
+                                <td><?php echo $relation_menu->belongsToMenu->name ?></td>
+                                <td><?php echo $relation_menu->belongsToSubMenu->name ?></td>
                                 <td><?php echo $relation_menu->created_at ?></td>
                                 <td><?php echo $relation_menu->updated_at ?></td>
                                 <td>
-                                    <a href="/managers/relation_menu/to_relation_menu_update?user_id=<?php echo $relation_menu->user_id ?>">修改</a>
-                                    <a href="javascript:delete_relation_menu(<?php echo $relation_menu->user_id ?>)">删除</a>
+                                    <a href="/managers/relation_menu/to_relation_menu_update?relation_menu_id=<?php echo $relation_menu->id ?>">修改</a>
+                                    <a href="javascript:delete_relation_menu(<?php echo $relation_menu->id ?>)">删除</a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -55,7 +61,7 @@ Data Tables
     $(document).ready(function () {
         $('#example0').DataTable();
     });
-    function delete_relation_menu(u) {
+    function delete_relation_menu(relation_menu_id) {
         sweetAlert({
             title: "你确定要删除么？",
             type: "warning",

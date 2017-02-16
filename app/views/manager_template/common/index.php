@@ -42,7 +42,7 @@
             </ol>
         </div>
     <?php } ?>
-    <?php include_once BASE_PATH . "/app/views/manager_template/$ui.php"; ?>
+    <?php include_once $ui; ?>
 </div>
 <!-- End Content -->
 

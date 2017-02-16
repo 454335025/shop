@@ -8,7 +8,8 @@
                 <div class="panel-title">
                     <?php echo $title?>
                     <div style="float:right ">
-                        <a href="/managers/user/to_user_add" class="btn btn-danger" style="background-color: #399bff;">
+                        <a href="/managers/user_type/to_user_type_add" class="btn btn-danger"
+                           style="background-color: #399bff;">
                             <i class="fa fa-pencil"></i>添加
                         </a>
                     </div>
@@ -18,28 +19,24 @@
                         <thead>
                         <tr>
                             <th>Id</th>
-                            <th>用户名</th>
-                            <th>邮箱</th>
-                            <th>手机号</th>
-                            <th>是否管理员</th>
-                            <th>创建时间</th>
-                            <th>修改时间</th>
+                            <th>用户类型</th>
+                            <th>订单折扣</th>
+                            <th>最低使用积分</th>
+                            <th>多少钱1分</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($users as $user) { ?>
+                        <?php foreach ($user_types as $user_type) { ?>
                             <tr>
-                                <td><?php echo $user->id ?></td>
-                                <td><?php echo $user->username ?></td>
-                                <td><?php echo $user->email ?></td>
-                                <td><?php echo $user->phone ?></td>
-                                <td><?php echo $user->isroot ?></td>
-                                <td><?php echo $user->created_at ?></td>
-                                <td><?php echo $user->updated_at ?></td>
+                                <td><?php echo $user_type->id ?></td>
+                                <td><?php echo $user_type->type ?></td>
+                                <td><?php echo $user_type->discount ?></td>
+                                <td><?php echo $user_type->min_integral ?></td>
+                                <td><?php echo $user_type->exchange ?></td>
                                 <td>
-                                    <a href="/managers/user/to_user_update?user_id=<?php echo $user->id ?>">修改</a>
-                                    <a href="javascript:delete_user(<?php echo $user->id ?>)">删除</a>
+                                    <a href="/managers/user_type/to_user_type_update?user_type_id=<?php echo $user_type->id ?>">修改</a>
+                                    <a href="javascript:delete_user_type(<?php echo $user_type->id ?>);">删除</a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -63,7 +60,7 @@ Data Tables
     $(document).ready(function () {
         $('#example0').DataTable();
     });
-    function delete_user(user_id) {
+    function delete_user_type(user_type_id) {
         sweetAlert({
             title: "你确定要删除么？",
             type: "warning",
@@ -73,14 +70,14 @@ Data Tables
             cancelButtonText: "取消",
             closeOnConfirm: false
         }, function () {
-            $.post("/managers/user/delete_user", {user_id: user_id}, function (data) {
+            $.post("/managers/user_type/delete_user_type", {user_type_id: user_type_id}, function (data) {
                 if (data == 1) {
                     swal("删除成功!", "", "success");
-                    setTimeout(function (){
-                        window.location.href = "/managers/user/to_user";
-                    },1500);
-                } else {
-                    swal("删除成功!", "", "error");
+                    window.location.href = "/managers/user_type/to_user_type";
+                } else if(data == 2) {
+                    swal("不能删除，还有商户是该类型", "", "error");
+                }else{
+                    swal("删除失败!", "", "error");
                 }
             });
         });

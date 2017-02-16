@@ -15,38 +15,46 @@
                 </div>
                 <div class="panel-body">
                     <form class="form-horizontal">
+                        <input type="hidden" id="shop_sub_directory_id" name="shop_sub_directory_id" value="<?php echo $shop_sub_directory->id ?>"/>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label form-label">父菜单名称</label>
+                            <label class="col-sm-2 control-label form-label">主目录名称</label>
                             <div class="col-sm-10">
-                                <select id="menu_id" name="menu_id">
+                                <select id="shop_directory_id" name="shop_directory_id">
                                     <option value="">请选择</option>
-                                    <?php foreach ($menus as $menu) { ?>
-                                        <option value="<?php echo $menu->id ?>"><?php echo $menu->name ?></option>
+                                    <?php foreach ($shop_directories as $shop_directory) { ?>
+                                        <option value="<?php echo $shop_directory->id ?>"
+                                            <?php if ($shop_directory->id == $shop_sub_directory->directory_id) { ?> selected="selected"<?php } ?>
+                                        >
+                                            <?php echo $shop_directory->name?>
+                                        </option>
                                     <?php } ?>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label form-label">子菜单名称</label>
+                            <label class="col-sm-2 control-label form-label">子目录名称</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" class="form-control" id="name" name="name"
+                                       value="<?php echo $shop_sub_directory->name ?>">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label form-label">跳转路径</label>
+                            <label class="col-sm-2 control-label form-label">url</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="url" name="url">
+                                <input type="text" class="form-control" id="url" name="url"
+                                       value="<?php echo $shop_sub_directory->url ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label form-label">排序</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="sort" name="sort">
+                                <input type="text" class="form-control" id="sort" name="sort"
+                                       value="<?php echo $shop_sub_directory->sort ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="button" class="btn btn-default">添加</button>
+                                <button type="button" class="btn btn-default">修改</button>
                             </div>
                         </div>
                     </form>
@@ -61,30 +69,32 @@
 <script>
     $(document).ready(function () {
         $(".btn-default").on("click", function () {
-            add_menu();
+            update_shop_sub_directory();
         })
     });
 
-    function add_menu() {
-        var menu_id, name, url, sort;
-        menu_id = $("#menu_id option:selected").val();
+    function update_shop_sub_directory() {
+        var shop_directory_id, shop_sub_directory_id, name, url, sort;
+        shop_directory_id = $("#shop_directory_id option:selected").val();
+        shop_sub_directory_id = $("#shop_sub_directory_id").val();
         name = $("#name").val();
         url = $("#url").val();
         sort = $("#sort").val();
-        $.post("/managers/sub_menu/add_sub_menu",
+        $.post("/managers/shop_sub_directory/update_shop_sub_directory",
             {
-                menu_id: menu_id,
+                shop_sub_directory_id: shop_sub_directory_id,
+                shop_directory_id: shop_directory_id,
                 name: name,
                 url: url,
                 sort: sort
             }, function (data) {
-
                 if (data == 1) {
-                    swal("添加成功!", "", "success");
-                    window.location.href = "/managers/sub_menu/to_sub_menu";
+                    swal("修改成功!", "", "success");
+                    window.location.href = "/managers/shop_sub_directory/to_shop_sub_directory";
                 } else {
-                    swal("添加失败!", "", "error");
+                    swal("修改失败!", "", "error");
                 }
             });
+
     }
 </script>

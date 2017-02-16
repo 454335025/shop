@@ -12,7 +12,7 @@ class M_RelationMenus extends Model
 
     public function belongsToUser()
     {
-        return parent::hasOne('app\models\M_Users', 'user_id','id');
+        return parent::belongsTo('app\models\M_Users', 'user_id','id');
     }
 
     public function belongsToMenu()

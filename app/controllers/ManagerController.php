@@ -3,8 +3,10 @@
 use app\models\M_Users;
 
 
+
 class ManagerController
 {
+    const MANAGER_TEMPLATE = '/app/views/manager_template/common/index.php';
     protected static $view;
     protected static $mail;
     protected static $user;
@@ -29,7 +31,9 @@ class ManagerController
         $view = self::$view;
         if ($view instanceof View) {
             if (!empty($view->data)) {
+                $view->data['ui'] = $view->view;
                 extract($view->data);
+                $view->view = BASE_PATH.self::MANAGER_TEMPLATE;
             }
             require $view->view;
         }

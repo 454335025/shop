@@ -53,7 +53,7 @@
         var name, sort;
         name = $("#name").val();
         sort = $("#sort").val();
-        $.get("/managers/menu/add_menu",
+        $.post("/managers/menu/add_menu",
             {
                 name: name,
                 sort: sort
