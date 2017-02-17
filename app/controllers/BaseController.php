@@ -14,7 +14,8 @@ class BaseController
 
     public function __construct()
     {
-        if (isset($_SESSION['openid']) && $_SESSION['openid'] == '') {
+        $_SESSION['openid'] = !empty($_SESSION['openid']) ? $_SESSION['openid'] : '';
+        if ($_SESSION['openid'] == '') {
             self::$UserInfo = WxCommonController::OAuth2('snsapi_userinfo');
             if (self::$UserInfo['openid'] == '') {
                 echo "<script>alert('请使用微信登录本平台');</script>";
@@ -29,7 +30,7 @@ class BaseController
             }
         } else {
             self::$user = S_User::with('hasOneUserType', 'hasManyShopCarts', 'hasOneUserType')->where('openid', $_SESSION['openid'])->first();
-            if (self::$user == null) {
+            if (empty(self::$user)) {
                 $_SESSION['openid'] = '';
                 self::__construct();
             }
