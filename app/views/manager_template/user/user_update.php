@@ -80,7 +80,7 @@ Moment.js
 <script>
     $(document).ready(function () {
 
-        setTimeout("updateAdminClass();",300);
+        setTimeout("updateToggleClass();",300);
 
         $(".btn-default").on("click", function () {
             update_user();
@@ -129,7 +129,7 @@ Moment.js
             });
     }
 
-    function updateAdminClass() {
+    function updateToggleClass() {
         var is_root = $("#is_root").val();
         if(is_root == 1){
             $(".toggle").attr("class",'toggle btn btn-success');

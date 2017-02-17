@@ -212,6 +212,10 @@ Macaw::post('/managers/shop_ware/add_shop_ware',              'ManagerShopWareCo
 Macaw::post('/managers/shop_ware/update_shop_ware',           'ManagerShopWareController@updateShopWare');
 //管理平台删除商品
 Macaw::post('/managers/shop_ware/delete_shop_ware',           'ManagerShopWareController@deleteShopWare');
+//跳转管理平台修改商品页面
+Macaw::get('/managers/shop_ware/to_shop_ware_image_update',   'ManagerShopWareController@toShopWareImageUpdateUI');
+//管理平台修改商品图片
+Macaw::post('/managers/shop_ware/update_shop_ware_image',       'ManagerShopWareController@updateShopWareImage');
 //managers/shop_ware END
 
 //manager END

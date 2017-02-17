@@ -18,4 +18,9 @@ class S_Ware extends Model
         return parent::hasMany('app\models\S_WareImages', 'ware_id', 'id');
     }
 
+    public function belongsToSubDirectories()
+    {
+        return parent::belongsTo('app\models\S_SubDirectories','sub_directory_id','id');
+    }
+
 }
