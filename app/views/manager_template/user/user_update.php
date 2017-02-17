@@ -1,7 +1,5 @@
 <!-- START CONTAINER -->
-<div class="container-padding" onload="
-<?php if($user->isroot == 0){ ?>
-<?php }?>">
+<div class="container-padding">
     <!-- Start Row -->
     <div class="row">
         <div class="col-md-12">
@@ -19,6 +17,7 @@
                 <div class="panel-body">
                     <form class="form-horizontal">
                         <input type="hidden" id="user_id" name="user_id" value="<?php echo $user->id ?>">
+                        <input type="hidden" id="is_root" name="is_root" value="<?php echo $user->isroot ?>">
                         <div class="form-group">
                             <label class="col-sm-2 control-label form-label">用户名</label>
                             <div class="col-sm-10">
@@ -81,13 +80,13 @@ Moment.js
 <script>
     $(document).ready(function () {
 
+        setTimeout("updateAdminClass();",300);
 
         $(".btn-default").on("click", function () {
-            add_user();
-        })
+            update_user();
+        });
     });
-
-    function add_user() {
+    function update_user() {
         var user_id, username, password, re_password, email, phone, admin;
         user_id = $("#user_id").val();
         username = $("#username").val();
@@ -130,7 +129,12 @@ Moment.js
             });
     }
 
-    function a() {
-        $(".toggle").attr("class", "toggle btn btn-light off");
+    function updateAdminClass() {
+        var is_root = $("#is_root").val();
+        if(is_root == 1){
+            $(".toggle").attr("class",'toggle btn btn-success');
+        }else{
+            $(".toggle").attr("class",'toggle btn btn-light off');
+        }
     }
 </script>

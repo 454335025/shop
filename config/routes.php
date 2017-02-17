@@ -198,6 +198,22 @@ Macaw::post('/managers/shop_sub_directory/update_shop_sub_directory',           
 Macaw::post('/managers/shop_sub_directory/delete_shop_sub_directory',           'ManagerShopSubDirectoryController@deleteShopSubDirectory');
 //managers/shop_sub_directory END
 
+
+//managers/shop_ware BEGIN
+//管理平台商品列表
+Macaw::get('/managers/shop_ware/to_shop_ware',                'ManagerShopWareController@toShopWareUI');
+//跳转管理平台添加商品页面
+Macaw::get('/managers/shop_ware/to_shop_ware_add',            'ManagerShopWareController@toShopWareAddUI');
+//跳转管理平台修改商品页面
+Macaw::get('/managers/shop_ware/to_shop_ware_update',         'ManagerShopWareController@toShopWareUpdateUI');
+//管理平台添加商品
+Macaw::post('/managers/shop_ware/add_shop_ware',              'ManagerShopWareController@addShopWare');
+//管理平台修改商品
+Macaw::post('/managers/shop_ware/update_shop_ware',           'ManagerShopWareController@updateShopWare');
+//管理平台删除商品
+Macaw::post('/managers/shop_ware/delete_shop_ware',           'ManagerShopWareController@deleteShopWare');
+//managers/shop_ware END
+
 //manager END
 
 
