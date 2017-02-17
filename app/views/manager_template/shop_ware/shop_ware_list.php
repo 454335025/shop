@@ -52,7 +52,7 @@
                                 <td><?php echo $shop_ware->cost_integral ?></td>
                                 <td>
                                     <a href="/managers/shop_ware/to_shop_ware_image_update?shop_ware_id=<?php echo $shop_ware->id ?>">图片</a>
-                                    <a href="/managers/shop_ware/to_shop_ware_update?shop_ware_id=<?php echo $shop_ware->id ?>">描述图片管理</a>
+                                    <a href="/managers/shop_ware_image/to_shop_ware_image?shop_ware_id=<?php echo $shop_ware->id ?>">描述图片管理</a>
                                 </td>
                                 <td>
                                     <a href="/managers/shop_ware/to_shop_ware_update?shop_ware_id=<?php echo $shop_ware->id ?>">修改</a>
@@ -94,7 +94,7 @@ Data Tables
                 if (data == 1) {
                     swal("删除成功!", "", "success");
                     setTimeout(function (){
-                        window.location.href = "/managers/shop_ware_id/to_shop_ware_id";
+                        window.location.href = "/managers/shop_ware/to_shop_ware";
                     },1500);
                 } else {
                     swal("删除成功!", "", "error");

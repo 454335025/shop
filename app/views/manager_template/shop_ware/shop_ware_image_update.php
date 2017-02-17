@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label form-label">图片展示</label>
                             <div class="col-sm-10">
-                                <img style="width: 300px;height: 300%;" src="<?php echo $shop_ware->main_img ?>"/>
+                                <img style="width: 300px;height: 300px;" src="<?php echo $shop_ware->main_img ?>"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -47,10 +47,10 @@
     function uploadImg() {
         $("#image_form").ajaxSubmit(function (data) {
             if (data == 1) {
-                swal("添加成功!", "", "success");
+                swal("修改成功!", "", "success");
 //                window.location.href = "/managers/shop_ware/to_shop_ware";
             } else {
-                swal("添加失败!", "", "error");
+                swal("修改失败!", "", "error");
             }
         });
     }

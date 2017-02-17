@@ -17,8 +17,8 @@
                 <div class="panel-body">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-4 control-label form-label">用户名</label>
-                            <div class="col-sm-8">
+                            <label class="col-sm-2 control-label form-label">用户名</label>
+                            <div class="col-sm-10">
                                 <select class="selectpicker" data-live-search="true" style="display: none;" id="user_id"
                                         name="user_id">
                                     <?php foreach ($users as $user) { ?>
@@ -28,8 +28,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label form-label">菜单权限</label>
-                            <div class="col-sm-8">
+                            <label class="col-sm-2 control-label form-label">菜单权限</label>
+                            <div class="col-sm-10">
                                 <select class="selectpicker" data-live-search="true" style="display: none;" id="menu"
                                         name="menu">
                                     <?php foreach ($sub_menus as $sub_menu) { ?>

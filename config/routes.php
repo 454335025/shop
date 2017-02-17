@@ -212,12 +212,42 @@ Macaw::post('/managers/shop_ware/add_shop_ware',              'ManagerShopWareCo
 Macaw::post('/managers/shop_ware/update_shop_ware',           'ManagerShopWareController@updateShopWare');
 //管理平台删除商品
 Macaw::post('/managers/shop_ware/delete_shop_ware',           'ManagerShopWareController@deleteShopWare');
-//跳转管理平台修改商品页面
+//跳转管理平台修改商品图片页面
 Macaw::get('/managers/shop_ware/to_shop_ware_image_update',   'ManagerShopWareController@toShopWareImageUpdateUI');
 //管理平台修改商品图片
 Macaw::post('/managers/shop_ware/update_shop_ware_image',       'ManagerShopWareController@updateShopWareImage');
 //managers/shop_ware END
 
+
+//managers/shop_ware_image BEGIN
+//管理平台商品列表
+Macaw::get('/managers/shop_ware_image/to_shop_ware_image',                'ManagerShopWareImageController@toShopWareImageUI');
+//跳转管理平台添加商品页面
+Macaw::get('/managers/shop_ware_image/to_shop_ware_image_add',            'ManagerShopWareImageController@toShopWareImageAddUI');
+//跳转管理平台修改商品页面
+Macaw::get('/managers/shop_ware_image/to_shop_ware_image_update',         'ManagerShopWareImageController@toShopWareImageUpdateUI');
+//管理平台添加商品
+Macaw::post('/managers/shop_ware_image/add_shop_ware_image',              'ManagerShopWareImageController@addShopWareImage');
+//管理平台修改商品
+Macaw::post('/managers/shop_ware_image/update_shop_ware_image',           'ManagerShopWareImageController@updateShopWareImage');
+//管理平台删除商品
+Macaw::post('/managers/shop_ware_image/delete_shop_ware_image',           'ManagerShopWareImageController@deleteShopWareImage');
+//managers/shop_ware_image END
+
+//managers/shop_ware_image BEGIN
+//管理平台商品列表
+Macaw::get('/managers/shop_user/to_shop_user',                'ManagerShopUserController@toShopUserUI');
+//跳转管理平台添加商品页面
+Macaw::get('/managers/shop_user/to_shop_user_add',            'ManagerShopUserController@toShopUserAddUI');
+//跳转管理平台修改商品页面
+Macaw::get('/managers/shop_user/to_shop_user_update',         'ManagerShopUserController@toShopUserUpdateUI');
+//管理平台添加商品
+Macaw::post('/managers/shop_user/add_shop_user',              'ManagerShopUserController@addShopUser');
+//管理平台修改商品
+Macaw::post('/managers/shop_user/update_shop_user',           'ManagerShopUserController@updateShopUser');
+//管理平台删除商品
+Macaw::post('/managers/shop_user/delete_shop_user',           'ManagerShopUserController@deleteShopUser');
+//managers/shop_user END
 //manager END
 
 

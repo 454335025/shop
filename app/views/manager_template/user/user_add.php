@@ -47,8 +47,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label form-label">是否管理员</label>
-                            <div class="col-sm-8">
+                            <label class="col-sm-2 control-label form-label">是否管理员</label>
+                            <div class="col-sm-10">
                                 <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" id="admin"
                                        name="admin">
                             </div>
