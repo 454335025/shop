@@ -30,7 +30,7 @@ class ShopOrderController extends BaseController
 
         } else {
             echo "<script>
-                alert('your shop car isIntegral wares is many');
+                alert('您的积分不足以兑换购物车的商品');
                 window.location.href='/shop/shop_car';</script>";
             exit;
         }
@@ -118,9 +118,9 @@ class ShopOrderController extends BaseController
     public static function getCostCountByIntegral($is_use = false)
     {
         if ($is_use) {
-            if(parent::$user->hasOneUserType->min_integral == 0){
+            if (parent::$user->hasOneUserType->min_integral == 0) {
                 $cost = self::getCostIntegral() * parent::$user->hasOneUserType->exchange;
-            }else{
+            } else {
                 $cost = self::getCostIntegral() / parent::$user->hasOneUserType->min_integral * parent::$user->hasOneUserType->exchange;
             }
         } else {
@@ -142,9 +142,9 @@ class ShopOrderController extends BaseController
             $need_integral = (int)(self::getActualCostCount() / parent::$user->hasOneUserType->exchange) * parent::$user->hasOneUserType->min_integral;
             if (self::isMyIntegral() - $need_integral > 0) {
                 $integral = $need_integral;
-            } else if(parent::$user->hasOneUserType->min_integral == 0) {
+            } else if (parent::$user->hasOneUserType->min_integral == 0) {
                 $integral = self::isMyIntegral();
-            } else{
+            } else {
                 $integral = ((int)(self::isMyIntegral() / parent::$user->hasOneUserType->min_integral)) * parent::$user->hasOneUserType->min_integral;
             }
         }
@@ -188,30 +188,32 @@ class ShopOrderController extends BaseController
      */
     public static function addOrders()
     {
-        $data = array();
         $is_use = $_REQUEST['is_use'];
         $user_address_id = ShopUserController::getUserAddressIdByUserId();
-        if ($user_address_id) {
-            $order_id = self::createOrderNum();
-            $is_use == 'true' ? $is_use = true : $is_use = false;
-            $order_detail = self::addOrderDetail($order_id);
-            if ($order_detail['i'] != 0) {
-                S_OrderDetails::where('order_id', $order_id)->delete();
-                $data = array('data' => 3, 'msg' => 'create order error');
-            } else if ($order_detail['i'] == 0) {
-                if (self::addOrder($order_id, $is_use, $order_detail, $user_address_id)) {
-                    $user = S_User::find(parent::$user->id);
-                    $user->integral = $user->integral - $order_detail['cost_integral'] - self::getCostIntegral();
-                    $user->save();
-                    $data = array('data' => 1, 'msg' => '订单已经成功生成');
-                    S_ShopCarts::where('user_id', parent::$user->id)->delete();
-                } else {
+        if (count(parent::$shop_carts) >0) {
+            if ($user_address_id) {
+                $order_id = self::createOrderNum();
+                $is_use == 'true' ? $is_use = true : $is_use = false;
+                $order_detail = self::addOrderDetail($order_id);
+                if ($order_detail['i'] != 0) {
                     S_OrderDetails::where('order_id', $order_id)->delete();
-                    $data = array('data' => 2, 'msg' => '订单生产失败');
+                    $data = array('data' => 3, 'msg' => 'create order error');
+                } else{
+                    if (self::addOrder($order_id, $is_use, $order_detail, $user_address_id)) {
+                        parent::$user->integral = parent::$user->integral - $order_detail['cost_integral'] - self::getCostIntegral();
+                        parent::$user->save();
+                        $data = array('data' => 1, 'msg' => '订单已经成功生成');
+                        S_ShopCarts::where('user_id', parent::$user->id)->delete();
+                    } else {
+                        S_OrderDetails::where('order_id', $order_id)->delete();
+                        $data = array('data' => 2, 'msg' => '订单生产失败');
+                    }
                 }
+            } else {
+                $data = array('data' => 4, 'msg' => '先去添加收货地址吧');
             }
         } else {
-            $data = array('data' => 4, 'msg' => '先去添加收货地址吧');
+            $data = array('data' => 3, 'msg' => '购物车为空');
         }
         echo json_encode($data);
         exit;
@@ -250,13 +252,18 @@ class ShopOrderController extends BaseController
     public static function addOrderDetail($order_id)
     {
         $cost_integral = 0;
+        $actual_money = 0;
         $i = 0;
         foreach (parent::$shop_carts as $shop_cart) {
             $order_detail = new S_OrderDetails();
             $order_detail->order_id = $order_id;
             $order_detail->ware_id = $shop_cart->belongsToWare->id;
             $order_detail->money = $shop_cart->belongsToWare->money;
-            $order_detail->actual_money = $shop_cart->belongsToWare->money * parent::$user->hasOneUserType->discount;
+            if($shop_cart->is_integral == 1){
+                $order_detail->actual_money = $shop_cart->belongsToWare->money * parent::$user->hasOneUserType->discount;
+                $cost_integral = $cost_integral + $shop_cart->belongsToWare->cost_integral;
+            }
+            $order_detail->actual_money = $shop_cart->belongsToWare->money;
             $order_detail->number = $shop_cart->number;
             $order_detail->is_discount = $shop_cart->belongsToWare->is_discount;
             $order_detail->discount = parent::$user->hasOneUserType->discount;
@@ -267,9 +274,15 @@ class ShopOrderController extends BaseController
                 $i++;
                 continue;
             }
-            $cost_integral = $cost_integral + $shop_cart->belongsToWare->cost_integral;
+            if($order_detail->is_integral == 1){
+                $cost_integral = $cost_integral + $shop_cart->belongsToWare->cost_integral;
+            }
+            if($order_detail->is_discount == 1){
+                $actual_money = $actual_money + $shop_cart->belongsToWare->money;
+            }
+
         }
-        return array('i' => $i, 'cost_integral' => $cost_integral);
+        return array('i' => $i, 'cost_integral' => $cost_integral,'actual_money'=>$actual_money);
     }
 
     /**

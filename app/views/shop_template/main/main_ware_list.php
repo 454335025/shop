@@ -22,9 +22,9 @@
                             </span>
                         </div>
                     </div>
-                    <div class="clearfix buy_num">
-                        <div class="grey">xxx人已购买</div>
-                    </div>
+<!--                    <div class="clearfix buy_num">-->
+<!--                        <div class="grey">xxx人已购买</div>-->
+<!--                    </div>-->
                 </div>
             </div>
         </a>

@@ -234,22 +234,52 @@ Macaw::post('/managers/shop_ware_image/update_shop_ware_image',           'Manag
 Macaw::post('/managers/shop_ware_image/delete_shop_ware_image',           'ManagerShopWareImageController@deleteShopWareImage');
 //managers/shop_ware_image END
 
-//managers/shop_ware_image BEGIN
-//管理平台商品列表
+//managers/shop_user BEGIN
+//管理平台微信用户列表
 Macaw::get('/managers/shop_user/to_shop_user',                'ManagerShopUserController@toShopUserUI');
-//跳转管理平台添加商品页面
+//跳转管理平台添加微信用户页面
 Macaw::get('/managers/shop_user/to_shop_user_add',            'ManagerShopUserController@toShopUserAddUI');
-//跳转管理平台修改商品页面
+//跳转管理平台修改微信用户页面
 Macaw::get('/managers/shop_user/to_shop_user_update',         'ManagerShopUserController@toShopUserUpdateUI');
-//管理平台添加商品
+//管理平台添加微信用户
 Macaw::post('/managers/shop_user/add_shop_user',              'ManagerShopUserController@addShopUser');
-//管理平台修改商品
+//管理平台修改微信用户
 Macaw::post('/managers/shop_user/update_shop_user',           'ManagerShopUserController@updateShopUser');
-//管理平台删除商品
+//管理平台删除微信用户
 Macaw::post('/managers/shop_user/delete_shop_user',           'ManagerShopUserController@deleteShopUser');
 //managers/shop_user END
 //manager END
 
+//managers/shop_order BEGIN
+//管理平台订单列表
+Macaw::get('/managers/shop_order/to_shop_order',                'ManagerShopOrderController@toShopOrderUI');
+//跳转管理平台添加订单页面
+Macaw::get('/managers/shop_order/to_shop_order_add',            'ManagerShopOrderController@toShopOrderAddUI');
+//跳转管理平台修改订单页面
+Macaw::get('/managers/shop_order/to_shop_order_update',         'ManagerShopOrderController@toShopOrderUpdateUI');
+//管理平台添加订单
+Macaw::post('/managers/shop_order/add_shop_order',              'ManagerShopOrderController@addShopOrder');
+//管理平台修改订单
+Macaw::post('/managers/shop_order/update_shop_order',           'ManagerShopOrderController@updateShopOrder');
+//管理平台删除订单
+Macaw::post('/managers/shop_order/delete_shop_order',           'ManagerShopOrderController@deleteShopOrder');
+//managers/shop_order END
+
+//managers/shop_order_detail BEGIN
+//管理平台订单列表
+Macaw::get('/managers/shop_order_detail/to_shop_order_detail',                'ManagerShopOrderDetailController@toShopOrderDetailUI');
+//跳转管理平台添加订单页面
+Macaw::get('/managers/shop_order_detail/to_shop_order_detail_add',            'ManagerShopOrderDetailController@toShopOrderDetailAddUI');
+//跳转管理平台修改订单页面
+Macaw::get('/managers/shop_order_detail/to_shop_order_detail_update',         'ManagerShopOrderDetailController@toShopOrderDetailUpdateUI');
+//管理平台添加订单
+Macaw::post('/managers/shop_order_detail/add_shop_order_detail',              'ManagerShopOrderDetailController@addShopOrderDetail');
+//管理平台修改订单
+Macaw::post('/managers/shop_order_detail/update_shop_order_detail',           'ManagerShopOrderDetailController@updateShopOrderDetail');
+//管理平台删除订单
+Macaw::post('/managers/shop_order_detail/delete_shop_order_detail',           'ManagerShopOrderDetailController@deleteShopOrderDetail');
+//managers/shop_order_detail END
+//manager END
 
 
 //wx BEGIN

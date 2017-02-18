@@ -65,7 +65,7 @@
             我的资产
         </div>
         <div class="block-content">
-            <a class="block-item" href="/m/membership/show_promocards">
+            <a class="block-item" href="###">
                 <div class="value"></div>
                 <span>积分：<?php echo $user->integral ?></span>
             </a>
@@ -87,8 +87,8 @@
         客服全天24小时在线，拨打前请记录您的UID 113880755
     </div>
 </div>
-<script style="zoom: 1.2875;">
-    seajs.use('mobile_usercenter/myjumei.js');
+<script>
+    seajs.use('weizhi/list');
 </script>
 
 

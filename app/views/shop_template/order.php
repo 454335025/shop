@@ -94,7 +94,7 @@
                             <?php if ($user->integral <= 0) { ?>
                                 <span class="no-select-tag">暂无可用</span>
                             <?php } else { ?>
-                                <span class="no-select-tag"><?php echo $surplus_integral ?>积分</span>
+                                <span class="no-select-tag"><?php echo $user->integral ?>积分</span>
                             <?php } ?>
                         </div>
                         <div>

@@ -23,9 +23,8 @@ class ShopUserController extends BaseController
     public static function toOrderUI()
     {
         $orders = !empty($_REQUEST['type'])
-            ? S_Orders::where('type', $_REQUEST['type'])->where('user_id', parent::$user->id)->get()
+            ? S_Orders::where('type', $_REQUEST['type'])->where('user_id', parent::$user->id)->orderBy('updated_at','desc')->get()
             : parent::$user->hasManyOrders;
-//        echo $_REQUEST['type'];exit;
         self::$view = View::make('shop_template.user_order')
             ->with('user', parent::$user)
             ->with('orders', $orders)

@@ -15,7 +15,6 @@
     <title><?php echo $title ?></title>
 
     <link href="<?php echo STATIC_COMMON; ?>/css/shop/common/common.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo STATIC_COMMON; ?>/css/shop/shop_car/guide_download.css" rel="stylesheet" type="text/css">
     <link href="<?php echo STATIC_COMMON; ?>/css/shop/common/ui.css" rel="stylesheet" type="text/css">
     <link href="<?php echo STATIC_COMMON; ?>/css/shop/shop_car/index.css" rel="stylesheet" type="text/css">
     <link href="<?php echo STATIC_COMMON; ?>/css/shop/shop_car/portrait.css" rel="stylesheet">
@@ -115,13 +114,13 @@
     </div>
     <a id="touch-cart-confirm" href="/shop/order" class="touch-cart-confirm fr">去结算</a>
 </section>
-
+<script>
+    seajs.use('weizhi/list');
+</script>
 <footer class="touch-footer"></footer>
 
 <script type="text/javascript" src="<?php echo STATIC_COMMON; ?>/js/jquery-3.1.1.min.js"></script>
 
-<script type="text/javascript" src="/js/shop/shop_car/jumei_cartlist.js"></script>
-<script type="text/javascript" src="/js/shop/common/guide_download_main.js"></script>
 
 <script type="text/javascript" src="/js/shop/shop_car/ui.js"></script>
 <script type="text/javascript" src="/js/shop/common/index_main.js"></script>

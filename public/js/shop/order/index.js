@@ -48,13 +48,14 @@ function useIntegral(obj) {
 function add_order() {
     var is_checked = $("#is_use").is(':checked');
     $.post("/shop/order/add_orders", {is_use: is_checked}, function (data) {
-        console.log(data);return;
         var result =JSON.parse(data);
         alert(result.msg);
         if(result.data == 1){
             window.location.href = "/shop/user";
         }else if(result.data == 4){
             window.location.href = "/shop/user/to_address_add";
+        }else if(result.data == 3){
+            window.location.href = "/shop/user/to_main";
         }
     });
 }

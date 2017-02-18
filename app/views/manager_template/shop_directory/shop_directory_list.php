@@ -23,6 +23,7 @@
                             <th>Url</th>
                             <th>排序</th>
                             <th>创建时间</th>
+                            <th>修改时间</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -34,6 +35,7 @@
                                 <td><?php echo $shop_directory->url ?></td>
                                 <td><?php echo $shop_directory->sort ?></td>
                                 <td><?php echo $shop_directory->created_at ?></td>
+                                <td><?php echo $shop_directory->updated_at ?></td>
                                 <td>
                                     <a href="/managers/shop_directory/to_shop_directory_update?shop_directory_id=<?php echo $shop_directory->id ?>">修改</a>
                                     <a href="javascript:delete_shop_directory(<?php echo $shop_directory->id ?>);">删除</a>

@@ -19,7 +19,8 @@
                 width: 1px;
             }
         }
-        .status-btn{
+
+        .status-btn {
             float: right;
             margin-right: 10px;
             padding: 0 10px;
@@ -95,7 +96,15 @@
                                 <p class="product-info"><?php echo $hasManyOrderDetail->belongsToWare->name ?></p>
                             </div>
                             <div class="list-right">
-                                <p class="product-price">￥<?php echo $hasManyOrderDetail->actual_money ?></p>
+
+                                <?php if ($hasManyOrderDetail->is_integral == 1) { ?>
+                                    <p class="product-price">积分<?php echo $hasManyOrderDetail->cost_integral ?></p>
+                                <?php } else if ($hasManyOrderDetail->is_discount == 1) { ?>
+                                    <p class="product-price">￥<?php echo $hasManyOrderDetail->actual_money ?></p>
+                                    <p class="product-price">x<?php echo $hasManyOrderDetail->discount ?></p>
+                                <?php } else { ?>
+                                    <p class="product-price">￥<?php echo $hasManyOrderDetail->actual_money ?></p>
+                                <?php } ?>
                                 <p class="product-num">x<?php echo $hasManyOrderDetail->number ?></p>
                             </div>
                         </div>

@@ -19,4 +19,9 @@ class S_Orders extends Model
     {
         return parent::belongsTo('app\models\S_UserAddress','user_address_id','id');
     }
+
+    public function belongsToUser()
+    {
+        return parent::belongsTo('app\models\S_User','user_id','id');
+    }
 }
