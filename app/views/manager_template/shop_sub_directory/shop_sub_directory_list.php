@@ -24,6 +24,7 @@
                             <th>URL</th>
                             <th>排序</th>
                             <th>创建时间</th>
+                            <th>修改时间</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -36,6 +37,7 @@
                                 <td><?php echo $shop_sub_directory->url ?></td>
                                 <td><?php echo $shop_sub_directory->sort ?></td>
                                 <td><?php echo $shop_sub_directory->created_at ?></td>
+                                <td><?php echo $shop_sub_directory->updated_at ?></td>
                                 <td>
                                     <a href="/managers/shop_sub_directory/to_shop_sub_directory_update?shop_sub_directory_id=<?php echo $shop_sub_directory->id ?>">修改</a>
                                     <a href="javascript:delete_shop_sub_directory(<?php echo $shop_sub_directory->id ?>)">删除</a>
@@ -75,7 +77,9 @@ Data Tables
             $.post("/managers/shop_sub_directory/delete_shop_sub_directory", {shop_sub_directory_id: shop_sub_directory_id}, function (data) {
                 if (data == 1) {
                     swal("删除成功!", "", "success");
-                    window.location.href = "/managers/shop_sub_directory/to_shop_sub_directory";
+                    setTimeout(function () {
+                        window.location.href = "/managers/shop_sub_directory/to_shop_sub_directory";
+                    }, 1500);
                 } else {
                     swal("删除成功!", "", "error");
                 }

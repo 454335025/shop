@@ -67,7 +67,9 @@
             }, function (data) {
                 if (data == 1) {
                     swal("添加成功!", "", "success");
-                    window.location.href = "/managers/shop_directory/to_shop_directory";
+                    setTimeout(function () {
+                        window.location.href = "/managers/shop_directory/shop_directory";
+                    }, 1500);
                 } else {
                     swal("添加失败!", "", "error");
                 }

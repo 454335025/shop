@@ -9,7 +9,7 @@ class ManagerShopWareController extends ManagerController
     public function toShopWareUI()
     {
         parent::$view = MView::make('manager_template.shop_ware.shop_ware_list')
-            ->with('shop_wares', S_Ware::all())
+            ->with('shop_wares', S_Ware::all()->sortByDesc('updated_at'))
             ->withTitle('商品列表');
     }
 
@@ -25,6 +25,7 @@ class ManagerShopWareController extends ManagerController
         $shop_ware_id = $_REQUEST['shop_ware_id'];
         parent::$view = View::make('manager_template.shop_ware.shop_ware_update')
             ->with('shop_ware', S_Ware::find($shop_ware_id))
+            ->with('shop_sub_directories', S_SubDirectories::all())
             ->withTitle('修改商品');
     }
 
@@ -53,8 +54,8 @@ class ManagerShopWareController extends ManagerController
         $shop_ware = new S_Ware();
         $shop_ware->name = $name;
         $shop_ware->remark = $remark;
-        $shop_ware->shop_directory_id = $shop_directory_id;
-        $shop_ware->shop_sub_directory_id = $shop_sub_directory_id;
+        $shop_ware->directory_id = $shop_directory_id;
+        $shop_ware->sub_directory_id = $shop_sub_directory_id;
         $shop_ware->sort = $sort;
         $shop_ware->is_discount = $is_discount;
         $shop_ware->original_money = $original_money;
@@ -91,8 +92,8 @@ class ManagerShopWareController extends ManagerController
         $shop_ware = S_Ware::find($shop_ware_id);
         $shop_ware->name = $name;
         $shop_ware->remark = $remark;
-        $shop_ware->shop_directory_id = $shop_directory_id;
-        $shop_ware->shop_sub_directory_id = $shop_sub_directory_id;
+        $shop_ware->directory_id = $shop_directory_id;
+        $shop_ware->sub_directory_id = $shop_sub_directory_id;
         $shop_ware->sort = $sort;
         $shop_ware->is_discount = $is_discount;
         $shop_ware->original_money = $original_money;

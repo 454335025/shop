@@ -86,9 +86,9 @@
             disableScroll: !1,
             stopPropagation: !1,
             callback: function (e) {
-                var i = t.length;
-                for (e >= i && (e %= 2); i--;)t[i].className = " ";
-                t[e].className = "cur"
+                // var i = t.length;
+                // for (e >= i && (e %= 2); i--;)t[i].className = " ";
+                // // t[e].className = "cur"
             }
         })
     }(), $(function () {

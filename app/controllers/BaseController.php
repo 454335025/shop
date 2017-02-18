@@ -15,6 +15,7 @@ class BaseController
     public function __construct()
     {
         $_SESSION['openid'] = !empty($_SESSION['openid']) ? $_SESSION['openid'] : '';
+                    $_SESSION['openid'] = 'oeLmkwttYCe4IzqYDJXkiNS_C9zw';
         if ($_SESSION['openid'] == '') {
             self::$UserInfo = WxCommonController::OAuth2('snsapi_userinfo');
             if (self::$UserInfo['openid'] == '') {

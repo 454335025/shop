@@ -73,7 +73,9 @@ Data Tables
             $.post("/managers/shop_directory/delete_shop_directory", {shop_directory_id: shop_directory_id}, function (data) {
                 if (data == 1) {
                     swal("删除成功!", "", "success");
-                    window.location.href = "/managers/shop_directory/to_shop_directory";
+                    setTimeout(function () {
+                        window.location.href = "/managers/shop_directory/shop_directory";
+                    }, 1500);
                 }else{
                     swal("删除失败!", "", "error");
                 }

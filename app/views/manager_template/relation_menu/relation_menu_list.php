@@ -74,7 +74,9 @@ Data Tables
             $.post("/managers/relation_menu/delete_relation_menu", {relation_menu_id: relation_menu_id}, function (data) {
                 if (data == 1) {
                     swal("删除成功!", "", "success");
-                    window.location.href = "/managers/relation_menu/to_relation_menu";
+                    setTimeout(function () {
+                        window.location.href = "/managers/relation_menu/to_relation_menu";
+                    }, 1500);
                 } else {
                     swal("删除成功!", "", "error");
                 }

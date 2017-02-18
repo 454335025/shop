@@ -116,11 +116,10 @@
     });
 
     function add_shop_ware() {
-        var name, remark, shop_directory, sort, is_discount, original_money, money, integral, parameter, is_integral, cost_integral;
+        var name, remark, shop_directory_id,shop_sub_directory_id, sort, is_discount, original_money, money, integral, parameter, is_integral, cost_integral;
 
         name = $("#name").val();
         remark = $("#remark").val();
-        shop_directory = $("#shop_directory option:selected").val();
         sort = $("#sort").val();
         original_money = $("#original_money").val();
         money = $("#money").val();
@@ -139,11 +138,20 @@
             is_integral = 0;
         }
 
+        var strs = new Array();
+        strs = $("#shop_directory option:selected").val().split(","); //字符分割
+        shop_directory_id = strs[0];
+        shop_sub_directory_id = strs[1];
+
+        if(shop_directory_id == ''){
+            swal("请选择子目录!", "", "error");return;
+        }
         $.post("/managers/shop_ware/add_shop_ware",
             {
                 name:name,
                 remark:remark,
-                shop_directory:shop_directory,
+                shop_directory_id:shop_directory_id,
+                shop_sub_directory_id:shop_sub_directory_id,
                 sort:sort,
                 is_discount:is_discount,
                 original_money:original_money,
@@ -156,7 +164,9 @@
         function (data) {
             if (data == 1) {
                 swal("添加成功!", "", "success");
-                window.location.href = "/managers/shop_ware/to_shop_ware";
+                setTimeout(function () {
+                    window.location.href = "/managers/shop_ware/to_shop_ware";
+                }, 1500);
             } else {
                 swal("添加失败!", "", "error");
             }

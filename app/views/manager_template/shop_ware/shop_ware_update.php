@@ -55,9 +55,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label form-label">是否参与折扣</label>
                             <div class="col-sm-8">
-                                <input type="checkbox" checked data-toggle="toggle" data-onstyle="success"
-                                       id="is_discount"
-                                       name="is_discount">
+                                <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" id="is_discount" name="is_discount">
                             </div>
                         </div>
                         <div class="form-group">
@@ -150,9 +148,13 @@
         }
 
         var strs = new Array();
-        shop_directory = $("#shop_directory option:selected").val().split(","); //字符分割
+        strs = $("#shop_directory option:selected").val().split(","); //字符分割
         shop_directory_id = strs[0];
         shop_sub_directory_id = strs[1];
+
+        if(shop_directory_id == ''){
+            swal("请选择子目录!", "", "error");return;
+        }
 
         $.post("/managers/shop_ware/update_shop_ware",
             {
@@ -173,7 +175,9 @@
             function (data) {
                 if (data == 1) {
                     swal("修改成功!", "", "success");
-                    window.location.href = "/managers/shop_ware/to_shop_ware";
+                    setTimeout(function () {
+                        window.location.href = "/managers/shop_ware/to_shop_ware";
+                    }, 1500);
                 } else {
                     swal("修改失败!", "", "error");
                 }
@@ -186,15 +190,15 @@
         var isdiscount = $("#isdiscount").val();
         var isintegral = $("#isintegral").val();
         if(isdiscount == 1){
-            $("#is_discount").parents().attr("class",'toggle btn btn-success');
+            $("#is_discount").parent().attr("class",'toggle btn btn-success');
         }else{
-            $("#is_discount").parents().attr("class",'toggle btn btn-light off');
+            $("#is_discount").parent().attr("class",'toggle btn btn-light off');
         }
 
         if(isintegral == 1){
-            $("#is_integral").parents().attr("class",'toggle btn btn-success');
+            $("#is_integral").parent().attr("class",'toggle btn btn-success');
         }else{
-            $("#is_integral").parents().attr("class",'toggle btn btn-light off');
+            $("#is_integral").parent().attr("class",'toggle btn btn-light off');
         }
 
     }

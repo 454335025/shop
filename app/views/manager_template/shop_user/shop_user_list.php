@@ -86,7 +86,9 @@ Data Tables
             $.post("/managers/shop_user/delete_shop_user", {shop_user_id: shop_user_id}, function (data) {
                 if (data == 1) {
                     swal("删除成功!", "", "success");
-                    window.location.href = "/managers/shop_user/to_shop_user";
+                    setTimeout(function () {
+                        window.location.href = "/managers/shop_user/to_shop_user";
+                    }, 1500);
                 } else {
                     swal("删除成功!", "", "error");
                 }

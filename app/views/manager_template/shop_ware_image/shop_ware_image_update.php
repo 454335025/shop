@@ -54,7 +54,9 @@
         $("#image_form").ajaxSubmit(function (data) {
             if (data == 1) {
                 swal("修改成功!", "", "success");
-                window.location.href = "/managers/shop_ware_image/to_shop_ware_image?shop_ware_id=<?php echo $shop_ware_image->ware_id?>";
+                setTimeout(function () {
+                    window.location.href = "/managers/shop_ware_image/to_shop_ware_image?shop_ware_id=<?php echo $shop_ware_image?>";
+                }, 1500);
             } else {
                 swal("修改成功!", "", "error");
             }

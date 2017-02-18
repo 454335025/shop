@@ -12,7 +12,7 @@ class ManagerShopSubDirectoryController extends ManagerController
     public function toShopSubDirectoryUI()
     {
         parent::$view = View::make('manager_template.shop_sub_directory.shop_sub_directory_list')
-            ->with('shop_sub_directories', S_SubDirectories::all())
+            ->with('shop_sub_directories', S_SubDirectories::all()->sortByDesc('updated_at'))
             ->withTitle('商城子目录列表');
     }
 

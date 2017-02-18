@@ -80,6 +80,11 @@
         name = $("#name").val();
         url = $("#url").val();
         sort = $("#sort").val();
+
+        if(shop_directory_id == ''){
+            swal("请选择主目录!", "", "error");return;
+        }
+
         $.post("/managers/shop_sub_directory/update_shop_sub_directory",
             {
                 shop_sub_directory_id: shop_sub_directory_id,
@@ -90,7 +95,9 @@
             }, function (data) {
                 if (data == 1) {
                     swal("修改成功!", "", "success");
-                    window.location.href = "/managers/shop_sub_directory/to_shop_sub_directory";
+                    setTimeout(function () {
+                        window.location.href = "/managers/shop_sub_directory/to_shop_sub_directory";
+                    }, 1500);
                 } else {
                     swal("修改失败!", "", "error");
                 }

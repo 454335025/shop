@@ -19,7 +19,7 @@
                         <tr>
                             <th>Id</th>
                             <th>商品名称</th>
-                            <th>商品名称</th>
+                            <th>商品图片</th>
                             <th>子目录</th>
                             <th>排序</th>
                             <th>是否折扣</th>
@@ -94,7 +94,9 @@ Data Tables
                 if (data == 1) {
                     swal("删除成功!", "", "success");
                     setTimeout(function (){
-                        window.location.href = "/managers/shop_ware/to_shop_ware";
+                        setTimeout(function () {
+                            window.location.href = "/managers/shop_ware/to_shop_ware";
+                        }, 1500);
                     },1500);
                 } else {
                     swal("删除成功!", "", "error");

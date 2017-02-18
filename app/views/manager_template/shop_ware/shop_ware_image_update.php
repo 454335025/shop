@@ -48,7 +48,9 @@
         $("#image_form").ajaxSubmit(function (data) {
             if (data == 1) {
                 swal("修改成功!", "", "success");
-//                window.location.href = "/managers/shop_ware/to_shop_ware";
+                setTimeout(function () {
+                    window.location.href = "/managers/shop_ware/to_shop_ware";
+                }, 1500);
             } else {
                 swal("修改失败!", "", "error");
             }

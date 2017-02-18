@@ -9,7 +9,7 @@ class ManagerShopWareImageController extends ManagerController
     {
         $shop_ware_id = $_REQUEST['shop_ware_id'];
         parent::$view = MView::make('manager_template.shop_ware_image.shop_ware_image_list')
-            ->with('shop_ware_images', S_WareImages::where('ware_id', $shop_ware_id)->get())
+            ->with('shop_ware_images', S_WareImages::where('ware_id', $shop_ware_id)->orderBy('updated_at','desc')->get())
             ->with('shop_ware_id', $shop_ware_id)
             ->withTitle('商品详情图片列表');
     }

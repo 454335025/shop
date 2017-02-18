@@ -74,7 +74,9 @@
             }, function (data) {
                 if (data == 1) {
                     swal("修改成功!", "", "success");
-                    window.location.href = "/managers/shop_directory/to_shop_directory";
+                    setTimeout(function () {
+                        window.location.href = "/managers/shop_directory/shop_directory";
+                    }, 1500);
                 } else {
                     swal("修改失败!", "", "error");
                 }
