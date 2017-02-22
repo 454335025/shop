@@ -55,7 +55,7 @@
             if (data == 1) {
                 swal("修改成功!", "", "success");
                 setTimeout(function () {
-                    window.location.href = "/managers/shop_ware_image/to_shop_ware_image?shop_ware_id=<?php echo $shop_ware_image?>";
+                    window.location.href = "/managers/shop_ware_image/to_shop_ware_image?shop_ware_id=<?php echo $shop_ware_id?>";
                 }, 1500);
             } else {
                 swal("修改成功!", "", "error");
