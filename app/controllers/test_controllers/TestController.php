@@ -18,6 +18,10 @@ class TestController
         echo 1;exit;
     }
 
+    public function aa()
+    {
+        phpinfo();
+    }
 //    public function index()
 //    {
 //
